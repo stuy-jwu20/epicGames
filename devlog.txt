@@ -1,7 +1,10 @@
-Epic Games | Jonathan Wu (Loki), Jesse Xie (Polly), William Chen ()
+Epic Games | Jonathan Wu (Loki), Jesse Xie (Polly), William Chen (), Josephine Lee (Kitty)
 SoftDev
 P04 -- SoftDev Project 2021-22
 2022-05-18
 
-jonathanW -- 2022-05018 17:34
+jonathanW -- 2022-05-18 17:34
 - Created repo and initial setup of repo.
+
+jesseX -- 2022-05-18 18:00
+- Added teamflag

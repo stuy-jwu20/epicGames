@@ -1,6 +1,6 @@
 # [Placeholder Text]
 
-Team: Epic Games -- Jonathan Wu (Loki), Jesse Xie (Polly), William Chen ()  
+Team: Epic Games -- Jonathan Wu (Loki), Jesse Xie (Polly), William Chen (), Josephine Lee (Kitty)  
 SoftDev  
 P04 -- SoftDev Project 2021-22
 
@@ -11,6 +11,7 @@ P04 -- SoftDev Project 2021-22
 - Jonathan (PM):
 - Jesse:
 - William:
+- Josephine:
 
 ## Launch Codes
 - [Placeholder Text]

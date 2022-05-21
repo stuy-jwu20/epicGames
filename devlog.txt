@@ -8,3 +8,7 @@ jonathanW -- 2022-05-18 17:34
 
 jesseX -- 2022-05-18 18:00
 - Added teamflag
+
+jonathanW -- 2022-05-20 21:23
+- Updated things accordingly and added the ducky name for William.
+- Linked this to the repo of holding.

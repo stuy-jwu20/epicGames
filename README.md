@@ -1,4 +1,4 @@
-# [Placeholder Text]
+# PYTHNX
 
 Team: Epic Games -- Jonathan Wu (Loki), Jesse Xie (Polly), William Chen (Cheap), Josephine Lee (Kitty)  
 SoftDev  

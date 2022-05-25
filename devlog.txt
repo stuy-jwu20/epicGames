@@ -20,3 +20,6 @@ jonathanW -- 2022-05-25 00:45
 - Created initial GUI for the game.
 - Added favicon.
 - Lots of CSS/HTML
+
+josephineL -- 2022-05-25 09:08
+- Created popup input box for username.

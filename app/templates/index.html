@@ -15,11 +15,22 @@ P04 -- SoftDev Project 2021-22
     <link rel="stylesheet" href="/static/css/style.css">
     <title>PYTHNX</title>
   </head>
+  <script>
+  function myFunction() {
+    let text;
+    let person = prompt("Please create a username:", "");
+    if (person == null || person == "") {
+      text = "";
+    } else {
+      text = "Hello " + person + "!";
+    }
+    document.getElementById("demo").innerHTML = text;
+  }
   <body>
     <div class="main-menu">
       <div class="menu-text">
           <h1 class="breathe"> PYTHNX </h1>
-          <h2> <a href="/"> START </a> </h2>
+          <h2> <button onclick="myFunction()">START</button></h2>
           <h2> <a href="/"> LEADERBOARD </a> </h2>
           <h2> <a href="/"> OPTIONS </a> </h2>
         </div>

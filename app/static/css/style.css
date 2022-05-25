@@ -105,3 +105,10 @@ h2:hover {
     color: #749ecf;
   }
 }
+
+#canvas {
+    position:fixed;
+    left:0;
+    top:0;
+    z-index: -10;
+}

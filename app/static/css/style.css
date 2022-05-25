@@ -1,0 +1,94 @@
+/* Epic Games | Jonathan Wu (Loki), Jesse Xie (Polly), William Chen (Cheap), Josephine Lee (Kitty)
+SoftDev
+P04 -- SoftDev Project 2021-22
+2022-05-18
+0 minutes */
+
+@font-face {
+    font-family: 'BigBoldPixel';
+    src: url('../assets/fonts/BigBoldPixel.eot');
+    src: url('../assets/fonts/BigBoldPixel.eot?#iefix') format('embedded-opentype'),
+         url('../assets/fonts/BigBoldPixel.woff2') format('woff2'),
+         url('../assets/fonts/BigBoldPixel.woff') format('woff'),
+         url('../assets/fonts/BigBoldPixel.ttf') format('truetype'),
+         url('../assets/fonts/BigBoldPixel.svg#BigBoldPixel') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+
+body {
+  font-family: "BigBoldPixel";
+  color: #fffcf2;
+  background: #2e2d2d;
+}
+
+a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  color:inherit;
+}
+
+h1{
+  padding-top: 3rem;
+  padding-bottom: 4rem;
+  margin-bottom: 3rem;
+  font-size: 3rem;
+}
+
+h2 {
+  padding-top: 1.5rem;
+  padding-bottom: 3rem;
+  font-size: 1.5rem;
+}
+
+h2:hover {
+  color: #56a67b;
+  text-shadow: 0px 0px 10px black;
+  transition: 0.9s ease all;
+}
+
+.main-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0;
+  margin-left: 0;
+  margin: auto;
+  width: 80vw;
+  height: 100vh;
+}
+
+.menu-text {
+  height: 75%;
+  width: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin: auto;
+}
+
+/* Animations */
+
+.breathe {
+  animation-name: breathe;
+  animation-duration: 4s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes breathe {
+  0% {
+    font-size: 3rem;
+    color: #749ecf;
+  }
+
+  50% {
+    font-size: 2.9rem;
+    color: #dcde8c;
+  }
+
+  100% {
+    font-size: 3rem;
+    color: #749ecf;
+  }
+}

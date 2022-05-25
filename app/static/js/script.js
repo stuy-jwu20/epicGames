@@ -6,20 +6,20 @@ angleChange = 0
 function keyDown(e) {
   key = e.keyCode ;
   if (key == 65) {
-    angleChange-- ;
+    angleChange = -1 ;
   }
   if (key == 68) {
-    angleChange++ ;
+    angleChange = 1 ;
   }
 }
 
 function keyUp(e) {
   key = e.keyCode ;
   if (key == 65) {
-    angleChange++ ;
+    angleChange = 0 ;
   }
   if (key == 68) {
-    angleChange-- ;
+    angleChange = 0 ;
   }
 }
 
@@ -53,7 +53,7 @@ class Snake {
     this.speed = speed ;
   }
   addSegment(snakeSegment) {
-    this.segments.append(snakeSegment) ;
+    this.segments.push(snakeSegment) ;
   }
   moveSnake() {
     for(var i=0; i<this.segments.length;i++) {
@@ -62,7 +62,7 @@ class Snake {
     }
     var xy = this.segments[0].getXY() ;
     this.segments[0].move(xy[0]+Math.cos(this.angle*(Math.PI/180)),xy[1]+Math.sin(this.angle*(Math.PI/180))) ;
-    for(var i=1; i<this.segments.length-1;i++) {
+    for(var i=1; i<this.segments.length;i++) {
       this.segments[i].move(this.segments[i-1].lastX,this.segments[i-1].lastY) ;
     }
   }
@@ -73,7 +73,7 @@ class Snake {
     for(var i=0; i<this.segments.length;i++) {
       var segment = this.segments[i] ;
       ctx.beginPath();
-      ctx.arc(segment.x, segment.y, 80, 0, 2 * Math.PI);
+      ctx.arc(segment.x, segment.y, 50, 0, 2 * Math.PI);
       ctx.fillStyle = segment.color ;
       ctx.fill();
     }
@@ -82,7 +82,9 @@ class Snake {
 
 }
 let first = new SnakeSegment('bill','nye','green',100,100,100) ;
-let snake = new Snake(first,0,1) ;
+let second = new SnakeSegment('bill','nye','blue',75,100,100) ;
+let snake = new Snake(first,0,2) ;
+snake.addSegment(second) ;
 
 function display() {
   ctx.clearRect(0,0,2000,1000) ;

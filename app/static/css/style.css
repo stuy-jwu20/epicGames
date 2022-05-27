@@ -107,8 +107,9 @@ h2:hover {
 }
 
 #canvas {
-    position:fixed;
-    left:0;
-    top:0;
+    position: absolute;
+    text-align: center;
+    border-style: solid;
+    border-color: white ;
     z-index: -10;
 }

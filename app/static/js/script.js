@@ -63,8 +63,17 @@ class Snake {
     }
   }
   updateAngle() {
+    
     if (angleChange != 0) {
+      console.log(this.segments[0].angle) ;
       this.segments[0].angle += angleChange ;
+      if (this.segments[0].angle >= 360) {
+        this.segments[0].angle -= 360 ;
+      }
+      if (this.segments[0].angle < 0) {
+        this.segments[0].angle += 360 ;
+      }
+      this.segments[0].angle = this.segments[0].angle % 360 ;
       if (this.segments.length > 1) {
         this.segments[1].turningPoints.push([this.segments[0].x,this.segments[0].y,this.segments[0].angle]) ;
       }

@@ -38,5 +38,6 @@ jesseX -- 2022-05-26 22:19
   - Revised template to include leaderboard submission prompt
   - Added link and reference to HMart guide for ajax/jquery
 
-josephineL -- 2022-05-27 09:03
+josephineL -- 2022-05-27 09:19
 - Made functions for showing leaderboard and options via the home page
+- Created leaderboard and user database

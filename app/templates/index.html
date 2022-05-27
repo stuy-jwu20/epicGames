@@ -27,14 +27,29 @@ P04 -- SoftDev Project 2021-22
     document.getElementById("demo").innerHTML = text;
   }
   </script>
+  <script>
+    function showLeaders(){
+      <canvas width="1000" height="800" id="leadersCanvas"></canvas>
+
+    }
+
+  </script>
+  <script>
+    function showOptions(){
+
+      <canvas width="1000" height="800" id="optionsCanvas"></canvas>
+
+    }
+
+  </script>
   <body>
     <div class="main-menu">
       <canvas width="2000" height="1000" id="canvas"></canvas>
       <div class="menu-text">
           <h1 class="breathe"> PYTHNX </h1>
           <h2> <button onclick="myFunction()">START</button></h2>
-          <h2> <a href="/"> LEADERBOARD </a> </h2>
-          <h2> <a href="/"> OPTIONS </a> </h2>
+          <h2> <button onclick="showLeaders()">LEADERBOARD</button></h2>
+          <h2> <button onclick="showOptions()">OPTIONS</button></h2>
         </div>
       </div>
     </body>

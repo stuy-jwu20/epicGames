@@ -37,3 +37,7 @@ jesseX -- 2022-05-26 22:19
   - Updated project description to include details about shop and leaderboard
   - Revised template to include leaderboard submission prompt
   - Added link and reference to HMart guide for ajax/jquery
+
+josephineL -- 2022-05-27 09:19
+- Made functions for showing leaderboard and options via the home page
+- Created leaderboard and user database

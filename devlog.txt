@@ -7,7 +7,7 @@ jonathanW -- 2022-05-18 17:34
 - Created repo and initial setup of repo.
 
 jesseX -- 2022-05-18 18:00
-- Added teamflag
+- Added teamflag.
 
 jonathanW -- 2022-05-20 21:23
 - Updated things accordingly and added the ducky name for William.
@@ -24,3 +24,16 @@ jonathanW -- 2022-05-25 00:45
 josephineL -- 2022-05-25 09:08
 - Created popup input box for username.
 - Added launch codes.
+
+jesseX -- 2022-05-25 09:22
+- Added outline for snake and snake segment classes in js.
+
+jesseX -- 2022-05-25 10:37
+- Added canvas to display snake as it moves.
+- Snake properly moves and rotates for one segment.
+
+jesseX -- 2022-05-26 22:19
+- Updated design document
+  - Updated project description to include details about shop and leaderboard
+  - Revised template to include leaderboard submission prompt
+  - Added link and reference to HMart guide for ajax/jquery

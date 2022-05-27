@@ -33,9 +33,9 @@ class SnakeSegment {
     this.color = color ;
     this.x = x ;
     this.y = y ;
-    this.lastX = x ;
-    this.lastY = y ;
+    this.turningPoints = [] ;
     this.hp = hp ;
+    this.angle = 0 ;
   }
   getXY() {
     return [this.x,this.y] ;
@@ -47,49 +47,71 @@ class SnakeSegment {
 }
 
 class Snake {
-  constructor(snakeSegment,angle,speed) {
+  constructor(snakeSegment,speed) {
     this.segments = [snakeSegment] ;
-    this.angle = angle ;
     this.speed = speed ;
   }
   addSegment(snakeSegment) {
     this.segments.push(snakeSegment) ;
   }
   moveSnake() {
+
     for(var i=0; i<this.segments.length;i++) {
-      this.segments[i].lastX = this.segments[i].x ;
-      this.segments[i].lastY = this.segments[i].y ;
-    }
-    var xy = this.segments[0].getXY() ;
-    this.segments[0].move(xy[0]+Math.cos(this.angle*(Math.PI/180)),xy[1]+Math.sin(this.angle*(Math.PI/180))) ;
-    for(var i=1; i<this.segments.length;i++) {
-      this.segments[i].move(this.segments[i-1].lastX,this.segments[i-1].lastY) ;
+        var angle = this.segments[i].angle ;
+        var xy = this.segments[i].getXY() ;
+        this.segments[i].move(xy[0]+this.speed*Math.cos(angle*(Math.PI/180)),xy[1]+this.speed*Math.sin(angle*(Math.PI/180))) ;
     }
   }
   updateAngle() {
-    this.angle += angleChange ;
+    if (angleChange != 0) {
+      this.segments[0].angle += angleChange ;
+      if (this.segments.length > 1) {
+        this.segments[1].turningPoints.push([this.segments[0].x,this.segments[0].y,this.segments[0].angle]) ;
+      }
+    }
+    if (this.segments.length > 1) {
+      for(var i=1; i<this.segments.length;i++) {
+        var segment = this.segments[i] ;
+        if (segment.turningPoints.length > 0) {
+          if ((segment.turningPoints[0][0] == segment.x) & (segment.turningPoints[0][1] == segment.y)) {
+
+            var temp = segment.turningPoints.shift() ;
+            if (i != this.segments.length-1) {
+              this.segments[i+1].turningPoints.push(temp) ;
+            }
+            this.segments[i].angle = temp[2] ;
+          }
+        }
+      }
+    }
+
   }
   displaySnake() {
     for(var i=0; i<this.segments.length;i++) {
       var segment = this.segments[i] ;
       ctx.beginPath();
-      ctx.arc(segment.x, segment.y, 50, 0, 2 * Math.PI);
+      ctx.arc(segment.x, segment.y, 30, 0, 2 * Math.PI);
       ctx.fillStyle = segment.color ;
       ctx.fill();
+      ctx.stroke();
     }
   }
 
 
 }
-let first = new SnakeSegment('bill','nye','green',100,100,100) ;
-let second = new SnakeSegment('bill','nye','blue',75,100,100) ;
-let snake = new Snake(first,0,2) ;
+let first = new SnakeSegment('bill','nye','LawnGreen',200,100,100) ;
+let second = new SnakeSegment('bill','nye','MediumTurquoise',140,100,100) ;
+let third = new SnakeSegment('bill','nye','LightSalmon',80,100,100) ;
+let snake = new Snake(first,2) ;
 snake.addSegment(second) ;
+snake.addSegment(third) ;
+
 
 function display() {
   ctx.clearRect(0,0,2000,1000) ;
   snake.updateAngle() ;
   snake.moveSnake() ;
   snake.displaySnake() ;
+
 }
 setInterval(display, 10);

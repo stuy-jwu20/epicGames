@@ -1,6 +1,9 @@
 var c = document.querySelector('canvas'); // GET CANVAS
 var ctx = c.getContext('2d');
 
+ctx.canvas.width = window.innerWidth-10;
+ctx.canvas.height = window.innerHeight-10;
+
 angleChange = 0
 
 function keyDown(e) {

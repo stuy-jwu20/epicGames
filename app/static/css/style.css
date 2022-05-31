@@ -78,6 +78,11 @@ h2:hover {
   margin: auto;
 }
 
+canvas {
+  position: absolute;
+  border: none;
+}
+
 /* Animations */
 
 .breathe {

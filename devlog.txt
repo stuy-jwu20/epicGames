@@ -44,3 +44,6 @@ josephineL -- 2022-05-27 09:19
 
 josephineL -- 2022-05-31 09:11
 - Created score database functions
+
+jonathanW -- 2022-05-31 9:25
+- Made the canvas fit to screen size. 

@@ -7,15 +7,16 @@
 from flask import Flask, render_template, request, redirect
 import sqlite3
 import html
+import db
 from sqlite3.dbapi2 import IntegrityError
 
 app = Flask(__name__)
 
-#db.create_tables()
+db.create_tables()
 
 @app.route("/")
 def pythnx():
-    #db.create_tables()
+    db.create_tables()
     return render_template("index.html")
 
 if __name__ == "__main__":

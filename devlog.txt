@@ -41,3 +41,6 @@ jesseX -- 2022-05-26 22:19
 josephineL -- 2022-05-27 09:19
 - Made functions for showing leaderboard and options via the home page
 - Created leaderboard and user database
+
+josephineL -- 2022-05-31 09:11
+- Created score database functions

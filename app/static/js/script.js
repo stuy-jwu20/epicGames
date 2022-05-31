@@ -63,9 +63,9 @@ class Snake {
     }
   }
   updateAngle() {
-    
+
     if (angleChange != 0) {
-      console.log(this.segments[0].angle) ;
+
       this.segments[0].angle += angleChange ;
       if (this.segments[0].angle >= 360) {
         this.segments[0].angle -= 360 ;
@@ -78,6 +78,27 @@ class Snake {
         this.segments[1].turningPoints.push([this.segments[0].x,this.segments[0].y,this.segments[0].angle]) ;
       }
     }
+
+    if ((this.segments[0].x < 30) | (this.segments[0].x > 1870)) {
+      console.log(this.segments[0].angle) ;
+      var angle = this.segments[0].angle ;
+      var x = -1 * Math.cos(angle*(Math.PI/180)) ;
+      var y = Math.sin(angle*(Math.PI/180)) ;
+      var tan = y / x ;
+      angle = Math.atan(tan)*(180/Math.PI) % 360;
+      if ((this.segments[0].angle < 90) | (this.segments[0].angle > 270)) {
+        angle += 180 ;
+      }
+      this.segments[0].angle = angle ;
+      if (this.segments[0].angle < 0) {
+        this.segments[0].angle += 360 ;
+      }
+      console.log(this.segments[0].angle) ;
+      if (this.segments.length > 1) {
+        this.segments[1].turningPoints.push([this.segments[0].x,this.segments[0].y,this.segments[0].angle]) ;
+      }
+    }
+
     if (this.segments.length > 1) {
       for(var i=1; i<this.segments.length;i++) {
         var segment = this.segments[i] ;

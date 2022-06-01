@@ -128,7 +128,9 @@ class Snake {
     if (this.segments.length > 1) {
       for(var i=1; i<this.segments.length;i++) {
         var segment = this.segments[i] ;
-        if (segment.turningPoints.length > 0) {
+
+        if (segment.turningPoints.length > 1) {
+
           if ((segment.turningPoints[0][0] == segment.x) & (segment.turningPoints[0][1] == segment.y)) {
 
             var temp = segment.turningPoints.shift() ;
@@ -137,7 +139,22 @@ class Snake {
             }
             this.segments[i].angle = temp[2] ;
           }
+
         }
+
+        if (segment.turningPoints.length > 0) {
+
+          if ((segment.turningPoints[0][0] == segment.x) & (segment.turningPoints[0][1] == segment.y)) {
+
+            var temp = segment.turningPoints.shift() ;
+            if (i != this.segments.length-1) {
+              this.segments[i+1].turningPoints.push(temp) ;
+            }
+            this.segments[i].angle = temp[2] ;
+          }
+
+        }
+
       }
     }
 

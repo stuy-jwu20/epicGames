@@ -82,7 +82,7 @@ class Snake {
       }
     }
 
-    if ((this.segments[0].x < 30) | (this.segments[0].x > window.innerWidth-30)) {
+    if ((this.segments[0].x < 30) | (this.segments[0].x > canvas.width-30)) {
       var angle = this.segments[0].angle ;
       var x = -1 * Math.cos(angle*(Math.PI/180)) ;
       var y = Math.sin(angle*(Math.PI/180)) ;
@@ -104,7 +104,7 @@ class Snake {
       }
     }
 
-    if ((this.segments[0].y < 30) | (this.segments[0].y > window.innerHeight-30)) {
+    if ((this.segments[0].y < 30) | (this.segments[0].y > canvas.height-30)) {
       var angle = this.segments[0].angle ;
       var x = Math.cos(angle*(Math.PI/180)) ;
       var y = -1 * Math.sin(angle*(Math.PI/180)) ;

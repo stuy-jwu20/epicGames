@@ -65,3 +65,5 @@ jesseX -- 2022-05-31 14:46
 jonathanW -- 2022-05-31 20:22
 - Added droplet site at http://104.131.14.12/
 
+josephineL -- 2022-06-01 09:21
+- Started implementing leaderboard and options in home page.

@@ -1,8 +1,8 @@
 var c = document.querySelector('canvas'); // GET CANVAS
 var ctx = c.getContext('2d');
-
-ctx.canvas.width = window.innerWidth-10;
-ctx.canvas.height = window.innerHeight-10;
+var parent = document.getElementById("parent");
+canvas.width = parent.offsetWidth;
+canvas.height = window.innerHeight - (1.6 * parent.offsetHeight);
 
 angleChange = 0
 

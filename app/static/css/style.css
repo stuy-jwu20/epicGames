@@ -80,7 +80,7 @@ h2:hover {
 
 canvas {
   position: absolute;
-  border: none;
+  border: 0px none black;
 }
 
 /* Animations */

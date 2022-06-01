@@ -52,3 +52,5 @@ $ git clone https://github.com/stuy-jwu20/epicGames
 Go to http://127.0.0.1:5000/ in your browser.
 
 ##  Droplet Site
+
+Go to http://104.131.14.12/ in your browser.

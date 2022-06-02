@@ -24,7 +24,8 @@ P04 -- SoftDev Project 2021-22
     } else {
       text = "Hello " + person + "!";
     }
-    document.getElementById("demo").innerHTML = text;
+    document.getElementById("mm").style.display = "none";
+    document.getElementById("body").classList.add("transition");
   }
   </script>
   <script>
@@ -62,8 +63,8 @@ P04 -- SoftDev Project 2021-22
   <div class="hide" id="options">
 
   </div>-->
-  <body>
-    <div class="main-menu">
+  <body id="body">
+    <div class="main-menu" id="mm">
       <canvas width=window.innerWidth height=window.innerHeight; id="game"></canvas>
       <canvas width=window.innerWidth height=window.innerHeight; id="shop"></canvas>
       <div class="menu-text">

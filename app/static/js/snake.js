@@ -1,5 +1,5 @@
 export class SnakeSegment {
-  constructor(name,type,color,x,y,hp) {
+  constructor(name,type,color,x,y,hp,atk) {
     this.name = name ;
     this.type = type ;
     this.color = color ;
@@ -7,6 +7,7 @@ export class SnakeSegment {
     this.y = y ;
     this.turningPoints = [] ;
     this.hp = hp ;
+    this.atk = atk;
     this.angle = 0 ;
   }
   getXY() {
@@ -19,6 +20,10 @@ export class SnakeSegment {
 }
 
 export class Snake {
+  var classes = {
+    speedsters: 0
+  };
+
   constructor(snakeSegment,speed) {
     this.segments = [snakeSegment] ;
     this.speed = speed ;
@@ -35,6 +40,20 @@ export class Snake {
     }
 
   }
+
+  partySyn(){
+    for classes
+    for (const seg in this.segments) {
+      classes[seg.type] += 1;
+    }
+  }
+
+  checkBuff(){
+    if (classes[speedsters] > 0) {
+      this.speed =
+    }
+  }
+
   updateAngle() {
 
     if (this.angleChange != 0) {

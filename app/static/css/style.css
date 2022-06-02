@@ -80,7 +80,7 @@ h2:hover {
 
 canvas {
   position: absolute;
-  
+
 }
 
 /* Animations */
@@ -111,10 +111,18 @@ canvas {
   }
 }
 
-#canvas {
+#game {
     position: absolute;
     text-align: center;
     border-style: solid;
     border-color: white ;
     z-index: -10;
+}
+
+#shop {
+    position: absolute;
+    text-align: center;
+    border-style: solid;
+    border-color: white ;
+    z-index: -9;
 }

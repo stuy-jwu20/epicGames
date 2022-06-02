@@ -80,7 +80,7 @@ h2:hover {
 
 canvas {
   position: absolute;
-  
+
 }
 
 /* Animations */
@@ -108,6 +108,24 @@ canvas {
   100% {
     font-size: 3rem;
     color: #749ecf;
+  }
+}
+
+.transition {
+  animation-name: transition;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0;
+  animation-fill-mode: forwards;
+}
+
+@keyframes transition {
+  0% {
+    background: #2e2d2d;
+  }
+
+  100% {
+    background: white;
   }
 }
 

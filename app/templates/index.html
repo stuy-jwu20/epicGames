@@ -24,8 +24,12 @@ P04 -- SoftDev Project 2021-22
     } else {
       text = "Hello " + person + "!";
     }
-    document.getElementById("mm").style.display = "none";
+    document.getElementById("game").style.display = "none";
+    document.getElementById("shop").style.display = "flex";
+    document.getElementById("mt").style.display = "none";
     document.getElementById("body").classList.add("transition");
+    localStorage.setItem('active','shop') ;
+
   }
   </script>
   <script>
@@ -67,7 +71,7 @@ P04 -- SoftDev Project 2021-22
     <div class="main-menu" id="mm">
       <canvas width=window.innerWidth height=window.innerHeight; id="game"></canvas>
       <canvas width=window.innerWidth height=window.innerHeight; id="shop"></canvas>
-      <div class="menu-text">
+      <div class="menu-text" id="mt">
           <h1 class="breathe" id="parent"> PYTHNX </h1>
           <h2> <button onclick="myFunction()">START</button></h2>
           <h2> <button onclick="showOptions()">OPTIONS</button></h2>
@@ -79,6 +83,7 @@ P04 -- SoftDev Project 2021-22
               <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
         </div>
       </div>
+    </div>
     </body>
     <script>
       function openForm() {

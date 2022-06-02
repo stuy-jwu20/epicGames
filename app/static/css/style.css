@@ -141,6 +141,7 @@ canvas {
     position: absolute;
     text-align: center;
     border-style: solid;
-    border-color: white ;
+    border-color: gray ;
     z-index: -9;
+    display: none ;
 }

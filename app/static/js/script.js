@@ -1,10 +1,10 @@
 import { SnakeSegment, Snake } from './snake.js';
 
-var c = document.querySelector('canvas'); // GET CANVAS
+var c = document.getElementById('game'); // GET CANVAS
 var ctx = c.getContext('2d');
 var parent = document.getElementById("parent");
-canvas.width = parent.offsetWidth;
-canvas.height = window.innerHeight - (1.6 * parent.offsetHeight);
+c.width = parent.offsetWidth;
+c.height = window.innerHeight - (1.6 * parent.offsetHeight);
 
 
 let first = new SnakeSegment('bill','nye','LawnGreen',200,100,100) ;

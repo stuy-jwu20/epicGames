@@ -45,7 +45,7 @@ josephineL -- 2022-05-27 09:19
 jesseX -- 2022-05-27 10:11
 - Added ability to turn snake head, with segments following
   - Implemented turningPoints array to capture points at which the snake segments would turn
-  
+
 jesseX -- 2022-05-27 13:18
 - Slight changes to keep angle between 0 and 360
 
@@ -56,7 +56,7 @@ jesseX -- 2022-05-31 09:23
 - Added math for snake to reflect off of vertical walls
 
 jonathanW -- 2022-05-31 09:25
-- Made the canvas fit to screen size. 
+- Made the canvas fit to screen size.
 
 jesseX -- 2022-05-31 14:46
 - Added math for snake to reflect off of horizontal walls
@@ -70,3 +70,6 @@ josephineL -- 2022-06-01 09:21
 
 josephineL -- 2022-06-02 09:23
 - Made functions for showing and hiding the leaderboard.
+
+jonathanW -- 2022-06-02 09:24
+- Starting making the transition screen after clicking the start button.

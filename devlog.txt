@@ -70,3 +70,7 @@ josephineL -- 2022-06-01 09:21
 
 josephineL -- 2022-06-02 09:23
 - Made functions for showing and hiding the leaderboard.
+
+josephineL -- 2022-06-03 09:07
+- Made functions for showing and hiding the options menu.
+- Made music volume slider for options.

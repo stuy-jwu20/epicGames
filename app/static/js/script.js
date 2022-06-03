@@ -12,7 +12,8 @@ localStorage.setItem('active','game') ;
 let first = new SnakeSegment('bill','nye','LawnGreen',200,100,100) ;
 let second = new SnakeSegment('bill','nye','MediumTurquoise',140,100,100) ;
 let third = new SnakeSegment('bill','nye','LightSalmon',80,100,100) ;
-let snake = new Snake(first,2) ;
+let snake = new Snake(2) ;
+snake.addSegment(first) ;
 snake.addSegment(second) ;
 snake.addSegment(third) ;
 

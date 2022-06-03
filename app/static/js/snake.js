@@ -1,8 +1,9 @@
 export class SnakeSegment {
-  constructor(name,type,color,x,y,hp) {
+  constructor(name,type,color,level,x,y,hp) {
     this.name = name ;
     this.type = type ;
     this.color = color ;
+    this.level = 1 ;
     this.x = x ;
     this.y = y ;
     this.turningPoints = [] ;
@@ -19,8 +20,8 @@ export class SnakeSegment {
 }
 
 export class Snake {
-  constructor(snakeSegment,speed) {
-    this.segments = [snakeSegment] ;
+  constructor(speed) {
+    this.segments = [] ;
     this.speed = speed ;
     this.angleChange = 0;
   }

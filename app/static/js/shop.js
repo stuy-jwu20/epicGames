@@ -78,6 +78,7 @@ function go() {
   localStorage.setItem('gold',gold) ;
   document.getElementById("shop").style.display = "none";
   document.getElementById("game").style.display = "flex";
+  localStorage.setItem('update',true) ;
 }
 
 var one = document.getElementById("one");

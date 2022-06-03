@@ -54,6 +54,10 @@ document.addEventListener("keydown",keyDown);
 document.addEventListener("keyup",keyUp);
 
 function display() {
+  if (localStorage.getItem('update') == true) {
+    snake = snakeGenerate() ;
+    localStorage.setItem('update',false) ;
+  }
   if (localStorage.getItem('active') == 'game') {
     ctx.clearRect(0,0,2000,1000) ;
     snake.updateAngle() ;

@@ -49,3 +49,10 @@ function display() {
 
 }
 setInterval(display,10);
+
+let audio = new Audio("http://21273.live.streamtheworld.com/LOS40_DANCE.mp3");
+
+let volume = document.querySelector("#volume-control");
+volume.addEventListener("change", function(e) {
+audio.volume = e.currentTarget.value / 100;
+})

@@ -80,12 +80,22 @@ P04 -- SoftDev Project 2021-22
       <div class="menu-text" id="mt">
           <h1 class="breathe" id="parent"> PYTHNX </h1>
           <h2> <button onclick="myFunction()">START</button></h2>
-          <h2> <button onclick="showOptions()">OPTIONS</button></h2>
+          <h2><button class="open-button" onclick="openForm2()">OPTIONS</button></h2>
+          <div class="form-popup" id="myForm2">
+            <!--<form action="/action_page.php" class="form-container"> <!-- This will change to the redirect stuff -->
+            <p> MUSIC VOLUME
+            </p>
+            <input type="range" id="volume-control">
+            <br>
+
+            <button type="button" class="btn cancel" onclick="closeForm2()">Close</button>
+        </div>
           <h2><button class="open-button" onclick="openForm()">LEADERBOARD</button></h2>
           <div class="form-popup" id="myForm">
-            <form action="/action_page.php" class="form-container"> <!-- This will change to the redirect stuff -->
+            <!--<form action="/action_page.php" class="form-container"> <!-- This will change to the redirect stuff -->
               <p> [PLACEHOLDER]
               </p>
+              <br>
               <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
         </div>
       </div>
@@ -98,6 +108,13 @@ P04 -- SoftDev Project 2021-22
 
       function closeForm() {
         document.getElementById("myForm").style.display = "none";
+      }
+      function openForm2() {
+        document.getElementById("myForm2").style.display = "block";
+      }
+
+      function closeForm2() {
+        document.getElementById("myForm2").style.display = "none";
       }
     </script>
     <script src="/static/js/script.js" type="module"></script>

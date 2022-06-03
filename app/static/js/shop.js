@@ -39,10 +39,12 @@ var error = document.getElementById("error");
 function purchaseSegment(number) {
   if (gold < shopSegments[number][2]) {
     error.innerHTML = "you're too broke to afford that snake idiot" ;
+    return false ;
   }
   else if (shopSegments[number][0] in snakeStorage) {
     if (snakeStorage[shopSegments[number][0]]["count"] == [3]) {
       error.innerHTML = "that snake is already maxed out idiot" ;
+      return false ;
     }
     else {
       gold =- shopSegments[number][2]
@@ -59,6 +61,8 @@ function purchaseSegment(number) {
         snakeStorage[shopSegments[number][0]]["count"].pop() ;
         snakeStorage[shopSegments[number][0]]["count"].push(3)
       }
+      shopSegments[number] = randomSegment() ;
+      return true ;
     }
   }
   else if (snakeStorage.length < maxPartySize) {
@@ -67,9 +71,12 @@ function purchaseSegment(number) {
     snakeStorage[shopSegments[number][0]]["class"] = shopSegments[number][1]
     snakeStorage[shopSegments[number][0]]["color"] = shopSegments[number][2]
     snakeStorage[shopSegments[number][0]]["count"] = [1] ;
+    shopSegments[number] = randomSegment() ;
+    return true ;
   }
   else {
     error.innerHTML = "you have no party space for more snakes idiot" ;
+    return false ;
   }
 }
 
@@ -82,13 +89,31 @@ function go() {
 }
 
 var one = document.getElementById("one");
-one.addEventListener("click",function(){purchaseSegment(0)}) ;
+one.addEventListener("click",function(){
+                                if (purchaseSegment(0)) {
+                                  one.innerHTML = "Name: " + shopSegments[0][0]
+                                  + "  Class: " + shopSegments[0][1] + "  Cost: " + shopSegments[0][3];
+                                  one.setAttribute("color",shopSegments[0][2]) ;
+                                  } ;
+                                }) ;
 
 var two = document.getElementById("two");
-one.addEventListener("click",function(){purchaseSegment(1)}) ;
+one.addEventListener("click",function(){
+                                if (purchaseSegment(1)) {
+                                  one.innerHTML = "Name: " + shopSegments[1][0]
+                                  + "  Class: " + shopSegments[1][1] + "  Cost: " + shopSegments[1][3];
+                                  one.setAttribute("color",shopSegments[1][2]) ;
+                                  } ;
+                                }) ;
 
 var three = document.getElementById("three");
-one.addEventListener("click",function(){purchaseSegment(2)}) ;
+one.addEventListener("click",function(){
+                                if (purchaseSegment(2)) {
+                                  one.innerHTML = "Name: " + shopSegments[2][0]
+                                  + "  Class: " + shopSegments[2][1] + "  Cost: " + shopSegments[2][3];
+                                  one.setAttribute("color",shopSegments[2][2]) ;
+                                  } ;
+                                }) ;
 
 var goButton = document.getElementById("go");
 goButton.addEventListener("click",go) ;

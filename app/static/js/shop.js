@@ -8,7 +8,7 @@ var gold = localStorage.getItem('gold') ;
 var rand1 = randomSegment() ;
 var rand2 = randomSegment() ;
 var rand3 = randomSegment() ;
-var shopSegments = [[rand1[0],rand1[1],rand1[2],5],[rand2[0],rand2[1],rand2[2],5],[rand3[0],rand3[1],rand3[2],5]] ;
+var shopSegments = [rand1,rand2,rand3] ;
 
 function counter(array,value) {
   var number = 0 ;
@@ -21,16 +21,16 @@ function counter(array,value) {
 function randomSegment() {
   let rand = (Math.random() * 4) ;
   if (rand == 0) {
-    return ['Ranger','Green','LawnGreen'] ;
+    return ['Ranger','Green','LawnGreen',3] ;
   }
   if (rand == 1) {
-    return ['Rogue','Orange','LightSalmon'] ;
+    return ['Rogue','Orange','LightSalmon',3] ;
   }
   if (rand == 2) {
-    return ['Warrior','Yellow','Gold'] ;
+    return ['Warrior','Yellow','Gold',3] ;
   }
   if (rand == 3) {
-    return ['Mage','Blue','CornflowerBlue'] ;
+    return ['Mage','Blue','CornflowerBlue',3] ;
   }
 
 }

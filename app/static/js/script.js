@@ -5,6 +5,8 @@ var ctx = c.getContext('2d');
 var parent = document.getElementById("parent");
 c.width = parent.offsetWidth;
 c.height = window.innerHeight - (1.6 * parent.offsetHeight);
+var waveNumber = 0 ;
+localStorage.setItem('active','game') ;
 
 
 let first = new SnakeSegment('bill','nye','LawnGreen',200,100,100) ;
@@ -38,10 +40,12 @@ document.addEventListener("keydown",keyDown);
 document.addEventListener("keyup",keyUp);
 
 function display() {
-  ctx.clearRect(0,0,2000,1000) ;
-  snake.updateAngle() ;
-  snake.moveSnake() ;
+  if (localStorage.getItem('active') == 'game') {
+    ctx.clearRect(0,0,2000,1000) ;
+    snake.updateAngle() ;
+    snake.moveSnake() ;
+  }
   snake.displaySnake() ;
 
 }
-setInterval(display, 10);
+setInterval(display,10);

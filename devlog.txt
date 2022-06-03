@@ -73,3 +73,6 @@ josephineL -- 2022-06-02 09:23
 
 jonathanW -- 2022-06-02 09:24
 - Starting making the transition screen after clicking the start button.
+
+jonathanW -- 2022-06-03 09:20
+- Complete loading screen...

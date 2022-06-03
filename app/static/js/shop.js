@@ -1,54 +1,93 @@
 import { SnakeSegment, Snake } from './snake.js';
 
-var c2 = document.getElementById('shop'); // GET CANVAS
-var ctx2 = c2.getContext('2d');
-var parent = document.getElementById("parent");
-c2.width = parent.offsetWidth;
-c2.height = window.innerHeight - (1.6 * parent.offsetHeight);
-
 var snakeStorage = JSON.parse(localStorage.getItem('snakes')) ;
-var partySize = localStorage.getItem('partySize') ;
+var maxPartySize = localStorage.getItem('maxPartySize') ;
+var gold = localStorage.getItem('gold') ;
 
 
 var rand1 = randomSegment() ;
 var rand2 = randomSegment() ;
 var rand3 = randomSegment() ;
-var shopSegments = [[rand1[0],rand1[1],5],[rand2[0],rand2[1],5],[rand3[0],rand3[1],5]] ;
+var shopSegments = [[rand1[0],rand1[1],rand1[2],5],[rand2[0],rand2[1],rand2[2],5],[rand3[0],rand3[1],rand3[2],5]] ;
+
+function counter(array,value) {
+  var number = 0 ;
+  for(var i=0;i<array.length;i++) {
+    if (array[i] == value) number++ ;
+  }
+  return number ;
+}
 
 function randomSegment() {
   let rand = (Math.random() * 4) ;
   if (rand == 0) {
-    return ['Ranger','LawnGreen'] ;
+    return ['Ranger','Green','LawnGreen'] ;
   }
   if (rand == 1) {
-    return ['Rogue','LightSalmon'] ;
+    return ['Rogue','Orange','LightSalmon'] ;
   }
   if (rand == 2) {
-    return ['Warrior','Gold'] ;
+    return ['Warrior','Yellow','Gold'] ;
   }
   if (rand == 3) {
-    return ['Mage','CornflowerBlue'] ;
+    return ['Mage','Blue','CornflowerBlue'] ;
   }
 
+}
+var error = document.getElementById("error");
+
+function purchaseSegment(number) {
+  if (gold < shopSegments[number][2]) {
+    error.innerHTML = "you're too broke to afford that snake idiot" ;
+  }
+  else if (shopSegments[number][0] in snakeStorage) {
+    if (snakeStorage[shopSegments[number][0]]["count"] == [3]) {
+      error.innerHTML = "that snake is already maxed out idiot" ;
+    }
+    else {
+      gold =- shopSegments[number][2]
+      snakeStorage[shopSegments[number][0]]["count"].push(1) ;
+      if (counter(snakeStorage[shopSegments[number][0]]["count"],1) == 3) {
+        snakeStorage[shopSegments[number][0]]["count"].pop() ;
+        snakeStorage[shopSegments[number][0]]["count"].pop() ;
+        snakeStorage[shopSegments[number][0]]["count"].pop() ;
+        snakeStorage[shopSegments[number][0]]["count"].push(2)
+      }
+      if (counter(snakeStorage[shopSegments[0]]["count"],2) == 3) {
+        snakeStorage[shopSegments[number][0]]["count"].pop() ;
+        snakeStorage[shopSegments[number][0]]["count"].pop() ;
+        snakeStorage[shopSegments[number][0]]["count"].pop() ;
+        snakeStorage[shopSegments[number][0]]["count"].push(3)
+      }
+    }
+  }
+  else if (snakeStorage.length < maxPartySize) {
+    gold =- shopSegments[number][2]
+    snakeStorage[shopSegments[number][0]]["name"] = shopSegments[number][0]
+    snakeStorage[shopSegments[number][0]]["class"] = shopSegments[number][1]
+    snakeStorage[shopSegments[number][0]]["color"] = shopSegments[number][2]
+    snakeStorage[shopSegments[number][0]]["count"] = [1] ;
+  }
+  else {
+    error.innerHTML = "you have no party space for more snakes idiot" ;
+  }
+}
+
+function go() {
+  localStorage.setItem('snakes',JSON.stringify(snakeStorage)) ;
+  localStorage.setItem('gold',gold) ;
+  document.getElementById("shop").style.display = "none";
+  document.getElementById("game").style.display = "flex";
 }
 
 var one = document.getElementById("one");
-function purchaseSegment1() {
-  if (shopSegments[1][0] in snakeStorage) {
+one.addEventListener("click",function(){purchaseSegment(0)}) ;
 
-  }
-  else if (snakeStorage.length < partySize) {
-    snakeStorage
-  }
-}
+var two = document.getElementById("two");
+one.addEventListener("click",function(){purchaseSegment(1)}) ;
 
+var three = document.getElementById("three");
+one.addEventListener("click",function(){purchaseSegment(2)}) ;
 
-
-
-function display() {
-  if (localStorage.getItem('active') == 'shop') {
-    ctx2.font = "30px Arial";
-    ctx2.fillText("test shop",100,100);
-  }
-}
-setInterval(display,10);
+var goButton = document.getElementById("go");
+goButton.addEventListener("click",go) ;

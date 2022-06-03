@@ -25,7 +25,12 @@ P04 -- SoftDev Project 2021-22
       text = "Hello " + person + "!";
     }
     document.getElementById("game").style.display = "none";
-    document.getElementById("shop").style.display = "flex";
+    setTimeout(() => {
+      document.getElementById("shop").style.display = "flex";
+      document.getElementById("shop").classList.add("transitionShop");
+    }, "1500")
+    document.getElementById("loadText").style.display = "block";
+    document.getElementById("loadText").classList.add("transitionLoad");
     document.getElementById("mt").style.display = "none";
     document.getElementById("body").classList.add("transition");
     localStorage.setItem('active','shop') ;
@@ -71,6 +76,7 @@ P04 -- SoftDev Project 2021-22
     <div class="main-menu" id="mm">
       <canvas width=window.innerWidth height=window.innerHeight; id="game"></canvas>
       <canvas width=window.innerWidth height=window.innerHeight; id="shop"></canvas>
+      <p id="loadText"> Loading... </p>
       <div class="menu-text" id="mt">
           <h1 class="breathe" id="parent"> PYTHNX </h1>
           <h2> <button onclick="myFunction()">START</button></h2>

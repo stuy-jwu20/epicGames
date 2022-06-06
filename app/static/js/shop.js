@@ -10,19 +10,6 @@ var rand2 = randomSegment() ;
 var rand3 = randomSegment() ;
 var shopSegments = [rand1,rand2,rand3] ;
 
-one.innerHTML = "Name: " + shopSegments[0][0]
-+ "  Class: " + shopSegments[0][1] + "  Cost: " + shopSegments[0][3];
-one.setAttribute("color",shopSegments[0][2]) ;
-
-two.innerHTML = "Name: " + shopSegments[1][0]
-+ "  Class: " + shopSegments[1][1] + "  Cost: " + shopSegments[1][3];
-two.setAttribute("color",shopSegments[1][2]) ;
-
-three.innerHTML = "Name: " + shopSegments[2][0]
-+ "  Class: " + shopSegments[2][1] + "  Cost: " + shopSegments[2][3];
-three.setAttribute("color",shopSegments[2][2]) ;
-
-
 function counter(array,value) {
   var number = 0 ;
   for(var i=0;i<array.length;i++) {
@@ -32,7 +19,7 @@ function counter(array,value) {
 }
 
 function randomSegment() {
-  let rand = (Math.random() * 4) ;
+  let rand = (Math.floor(Math.random() * 4)) ;
   if (rand == 0) {
     return ['Ranger','Green','LawnGreen',3] ;
   }
@@ -146,6 +133,18 @@ three.addEventListener("click",function(){
                                   three.setAttribute("color",shopSegments[2][2]) ;
                                   } ;
                                 }) ;
+
+one.innerHTML = "Name: " + shopSegments[0][0]
++ "  Class: " + shopSegments[0][1] + "  Cost: " + shopSegments[0][3];
+one.setAttribute("color",shopSegments[0][2]) ;
+
+two.innerHTML = "Name: " + shopSegments[1][0]
++ "  Class: " + shopSegments[1][1] + "  Cost: " + shopSegments[1][3];
+two.setAttribute("color",shopSegments[1][2]) ;
+
+three.innerHTML = "Name: " + shopSegments[2][0]
++ "  Class: " + shopSegments[2][1] + "  Cost: " + shopSegments[2][3];
+three.setAttribute("color",shopSegments[2][2]) ;
 
 var rerollButton = document.getElementById("reroll");
 rerollButton.addEventListener("click",reroll);

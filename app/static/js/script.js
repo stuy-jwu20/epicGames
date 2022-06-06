@@ -74,7 +74,7 @@ function endWave() {
   document.getElementById("game").style.display = "none";
 }
 
-let audio = new Audio("http://21273.live.streamtheworld.com/LOS40_DANCE.mp3");
+let audio = new Audio("../static/assets/music/Trailer - Ember.ogg");
 
 let volume = document.querySelector("#volume-control");
 volume.addEventListener("change", function(e) {

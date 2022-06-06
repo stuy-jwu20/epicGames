@@ -28,6 +28,8 @@ P04 -- SoftDev Project 2021-22
     setTimeout(() => {
       document.getElementById("shop").style.display = "flex";
       document.getElementById("shop").classList.add("transitionShop");
+      document.getElementById("goldVar").style.display = "block";
+      document.getElementById("goldVar").classList.add("transitionShop");
     }, "1500")
     document.getElementById("loadText").style.display = "block";
     document.getElementById("loadText").classList.add("transitionLoad");
@@ -78,8 +80,13 @@ P04 -- SoftDev Project 2021-22
   <body id="body">
     <div class="main-menu" id="mm">
       <canvas width=window.innerWidth height=window.innerHeight; id="game"></canvas>
-      <canvas width=window.innerWidth height=window.innerHeight; id="shop"></canvas>
       <p id="loadText"> Loading... </p>
+      <div class="shop" id="shop">
+        <p id="goldVar"> Shop - Gold: 3 </p> <br>
+        <h2> <button id="one"> one </button> </h2>
+        <h2> <button id="two"> two </button> </h2>
+        <h2> <button id="three"> three </button> </h2>
+      </div>
       <div class="menu-text" id="mt">
           <h1 class="breathe" id="parent"> PYTHNX </h1>
           <h2> <button onclick="myFunction()">START</button></h2>

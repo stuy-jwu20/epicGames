@@ -108,3 +108,6 @@ jesseX -- 2022-06-03 14:19
 - Added code to game file to update snake after buying from shop
 - Added code to edit buttons with new random snakes in the shop in eventlistener
 
+josephineL -- 2022-06-06 09:25
+- Closed menus on home page by default
+- Started adding music

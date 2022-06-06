@@ -21,6 +21,7 @@ export class SnakeSegment {
 }
 
 export class Snake {
+<<<<<<< HEAD
   var classes = {
     speedsters: 0,
     supporters: 0,
@@ -28,6 +29,11 @@ export class Snake {
     fighters: 0,
     nukers: 0
   };
+=======
+  // var classes = {
+  //   speedsters: 0;
+  // };
+>>>>>>> 4e8fecf555e6f604432f25e00550f2270881dcbc
 
   constructor(speed) {
     this.segments = [] ;
@@ -52,9 +58,13 @@ export class Snake {
   }
 
   partySyn(){
+<<<<<<< HEAD
     for key in classes.keys() {
       classes[key] = 0;
     }
+=======
+    // for classes
+>>>>>>> 4e8fecf555e6f604432f25e00550f2270881dcbc
     for (const seg in this.segments) {
       classes[seg.type] += 1;
     }

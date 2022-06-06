@@ -90,6 +90,15 @@ canvas {
   position: absolute;
 }
 
+#goldVar {
+  display: none;
+}
+
+#one {
+  width: 20vw;
+  height: 5vh;
+}
+
 /* Animations */
 
 .breathe {
@@ -192,11 +201,11 @@ canvas {
     z-index: -10;
 }
 
-#shop {
-    position: absolute;
-    text-align: center;
-    border-style: solid;
-    border-color: gray ;
-    z-index: -9;
-    display: none ;
+
+#myForm2 {
+    display: none;
+}
+
+#myForm {
+    display: none;
 }

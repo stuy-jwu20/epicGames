@@ -68,7 +68,13 @@ function display() {
 }
 setInterval(display,10);
 
-let audio = new Audio("http://21273.live.streamtheworld.com/LOS40_DANCE.mp3");
+function endWave() {
+  localStorage.setItem('active','shop') ;
+  document.getElementById("shop").style.display = "flex";
+  document.getElementById("game").style.display = "none";
+}
+
+let audio = new Audio("../static/assets/music/Trailer - Ember.ogg");
 
 let volume = document.querySelector("#volume-control");
 volume.addEventListener("change", function(e) {

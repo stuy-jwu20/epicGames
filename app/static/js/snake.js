@@ -21,9 +21,9 @@ export class SnakeSegment {
 }
 
 export class Snake {
-  var classes = {
-    speedsters: 0
-  };
+  // var classes = {
+  //   speedsters: 0;
+  // };
 
   constructor(speed) {
     this.segments = [] ;
@@ -44,7 +44,7 @@ export class Snake {
   }
 
   partySyn(){
-    for classes
+    // for classes
     for (const seg in this.segments) {
       classes[seg.type] += 1;
     }

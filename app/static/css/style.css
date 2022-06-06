@@ -90,6 +90,10 @@ canvas {
   position: absolute;
 }
 
+#goldVar {
+  display: none;
+}
+
 /* Animations */
 
 .breathe {

@@ -94,6 +94,11 @@ canvas {
   display: none;
 }
 
+#one {
+  width: 20vw;
+  height: 5vh;
+}
+
 /* Animations */
 
 .breathe {

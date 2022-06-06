@@ -98,20 +98,20 @@ one.addEventListener("click",function(){
                                 }) ;
 
 var two = document.getElementById("two");
-one.addEventListener("click",function(){
+two.addEventListener("click",function(){
                                 if (purchaseSegment(1)) {
-                                  one.innerHTML = "Name: " + shopSegments[1][0]
+                                  two.innerHTML = "Name: " + shopSegments[1][0]
                                   + "  Class: " + shopSegments[1][1] + "  Cost: " + shopSegments[1][3];
-                                  one.setAttribute("color",shopSegments[1][2]) ;
+                                  two.setAttribute("color",shopSegments[1][2]) ;
                                   } ;
                                 }) ;
 
 var three = document.getElementById("three");
-one.addEventListener("click",function(){
+three.addEventListener("click",function(){
                                 if (purchaseSegment(2)) {
-                                  one.innerHTML = "Name: " + shopSegments[2][0]
+                                  three.innerHTML = "Name: " + shopSegments[2][0]
                                   + "  Class: " + shopSegments[2][1] + "  Cost: " + shopSegments[2][3];
-                                  one.setAttribute("color",shopSegments[2][2]) ;
+                                  three.setAttribute("color",shopSegments[2][2]) ;
                                   } ;
                                 }) ;
 

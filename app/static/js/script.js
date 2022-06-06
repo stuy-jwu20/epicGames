@@ -68,6 +68,12 @@ function display() {
 }
 setInterval(display,10);
 
+function endWave() {
+  localStorage.setItem('active','shop') ;
+  document.getElementById("shop").style.display = "flex";
+  document.getElementById("game").style.display = "none";
+}
+
 let audio = new Audio("http://21273.live.streamtheworld.com/LOS40_DANCE.mp3");
 
 let volume = document.querySelector("#volume-control");

@@ -30,7 +30,7 @@ export class Snake {
     this.speed = speed ;
     this.angleChange = 0;
   }
-  
+
   addSegment(snakeSegment) {
     this.segments.push(snakeSegment) ;
   }
@@ -52,7 +52,7 @@ export class Snake {
 
   checkBuff(){
     if (classes[speedsters] > 0) {
-      this.speed =
+      this.speed += 1;
     }
   }
 

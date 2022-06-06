@@ -21,19 +21,7 @@ export class SnakeSegment {
 }
 
 export class Snake {
-<<<<<<< HEAD
-  var classes = {
-    speedsters: 0,
-    supporters: 0,
-    rangers: 0,
-    fighters: 0,
-    nukers: 0
-  };
-=======
-  // var classes = {
-  //   speedsters: 0;
-  // };
->>>>>>> 4e8fecf555e6f604432f25e00550f2270881dcbc
+  // var classes =
 
   constructor(speed) {
     this.segments = [] ;
@@ -42,7 +30,12 @@ export class Snake {
     this.healthBuff = 0;
     this.atkBuff = 0;
     this.atkSpeedBuff = 0;
-    this.classes = classes;
+    this.classes = { speedsters: 0,
+                     supporters: 0,
+                     rangers: 0,
+                     fighters: 0,
+                     nukers: 0
+                   };
   }
 
   addSegment(snakeSegment) {
@@ -57,19 +50,15 @@ export class Snake {
 
   }
 
-  partySyn(){
-<<<<<<< HEAD
-    for key in classes.keys() {
-      classes[key] = 0;
-    }
-=======
-    // for classes
->>>>>>> 4e8fecf555e6f604432f25e00550f2270881dcbc
-    for (const seg in this.segments) {
-      classes[seg.type] += 1;
-    }
-  }
-;
+  partySyn() {
+     for (key in classes.keys()) {
+       classes[key] = 0;
+     }
+     for (const seg in this.segments) {
+       classes[seg.type] += 1;
+     }
+   }
+
   checkBuff(){
     this.speed = 2;
     this.healthBuff = 0;
@@ -84,7 +73,6 @@ export class Snake {
     if (this.classes[supporters] > 2) {
       this.healthBuff = 50;
     }
-    if (this.classes[rangers]
   }
 
   updateAngle() {

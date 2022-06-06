@@ -61,7 +61,6 @@ function purchaseSegment(number) {
         snakeStorage[shopSegments[number][0]]["count"].pop() ;
         snakeStorage[shopSegments[number][0]]["count"].push(3)
       }
-      shopSegments[number] = randomSegment() ;
       return true ;
     }
   }
@@ -80,6 +79,23 @@ function purchaseSegment(number) {
   }
 }
 
+function reroll() {
+  shopSegments[0] = randomSegment() ;
+  one.innerHTML = "Name: " + shopSegments[0][0]
+  + "  Class: " + shopSegments[0][1] + "  Cost: " + shopSegments[0][3];
+  one.setAttribute("color",shopSegments[0][2]) ;
+
+  shopSegments[1] = randomSegment() ;
+  two.innerHTML = "Name: " + shopSegments[1][0]
+  + "  Class: " + shopSegments[1][1] + "  Cost: " + shopSegments[1][3];
+  two.setAttribute("color",shopSegments[1][2]) ;
+
+  shopSegments[2] = randomSegment() ;
+  three.innerHTML = "Name: " + shopSegments[2][0]
+  + "  Class: " + shopSegments[2][1] + "  Cost: " + shopSegments[2][3];
+  three.setAttribute("color",shopSegments[2][2]) ;
+}
+
 function go() {
   localStorage.setItem('snakes',JSON.stringify(snakeStorage)) ;
   localStorage.setItem('gold',gold) ;
@@ -91,6 +107,7 @@ function go() {
 var one = document.getElementById("one");
 one.addEventListener("click",function(){
                                 if (purchaseSegment(0)) {
+                                  shopSegments[0] = randomSegment() ;
                                   one.innerHTML = "Name: " + shopSegments[0][0]
                                   + "  Class: " + shopSegments[0][1] + "  Cost: " + shopSegments[0][3];
                                   one.setAttribute("color",shopSegments[0][2]) ;
@@ -100,6 +117,7 @@ one.addEventListener("click",function(){
 var two = document.getElementById("two");
 two.addEventListener("click",function(){
                                 if (purchaseSegment(1)) {
+                                  shopSegments[1] = randomSegment() ;
                                   two.innerHTML = "Name: " + shopSegments[1][0]
                                   + "  Class: " + shopSegments[1][1] + "  Cost: " + shopSegments[1][3];
                                   two.setAttribute("color",shopSegments[1][2]) ;
@@ -109,11 +127,16 @@ two.addEventListener("click",function(){
 var three = document.getElementById("three");
 three.addEventListener("click",function(){
                                 if (purchaseSegment(2)) {
+                                  shopSegments[2] = randomSegment() ;
                                   three.innerHTML = "Name: " + shopSegments[2][0]
                                   + "  Class: " + shopSegments[2][1] + "  Cost: " + shopSegments[2][3];
                                   three.setAttribute("color",shopSegments[2][2]) ;
                                   } ;
                                 }) ;
+
+var rerollButton = document.getElementById("reroll");
+rerollButton.addEventListener("click",reroll);
+
 
 var goButton = document.getElementById("go");
 goButton.addEventListener("click",go) ;

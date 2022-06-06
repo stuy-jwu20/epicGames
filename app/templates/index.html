@@ -24,8 +24,20 @@ P04 -- SoftDev Project 2021-22
     } else {
       text = "Hello " + person + "!";
     }
-    document.getElementById("mm").style.display = "none";
+    document.getElementById("game").style.display = "none";
+    setTimeout(() => {
+      document.getElementById("shop").style.display = "flex";
+      document.getElementById("shop").classList.add("transitionShop");
+    }, "1500")
+    document.getElementById("loadText").style.display = "block";
+    document.getElementById("loadText").classList.add("transitionLoad");
+    document.getElementById("mt").style.display = "none";
     document.getElementById("body").classList.add("transition");
+    localStorage.setItem('active','shop') ;
+    localStorage.setItem('snakes',{}) ;
+    localStorage.setItem('maxPartySize',3) ;
+    localStorage.setItem('gold',3) ;
+
   }
   </script>
   <script>
@@ -67,18 +79,30 @@ P04 -- SoftDev Project 2021-22
     <div class="main-menu" id="mm">
       <canvas width=window.innerWidth height=window.innerHeight; id="game"></canvas>
       <canvas width=window.innerWidth height=window.innerHeight; id="shop"></canvas>
-      <div class="menu-text">
+      <p id="loadText"> Loading... </p>
+      <div class="menu-text" id="mt">
           <h1 class="breathe" id="parent"> PYTHNX </h1>
           <h2> <button onclick="myFunction()">START</button></h2>
-          <h2> <button onclick="showOptions()">OPTIONS</button></h2>
+          <h2><button class="open-button" onclick="openForm2()">OPTIONS</button></h2>
+          <div class="form-popup" id="myForm2">
+            <!--<form action="/action_page.php" class="form-container"> <!-- This will change to the redirect stuff -->
+            <p> MUSIC VOLUME
+            </p>
+            <input type="range" id="volume-control">
+            <br>
+
+            <button type="button" class="btn cancel" onclick="closeForm2()">Close</button>
+        </div>
           <h2><button class="open-button" onclick="openForm()">LEADERBOARD</button></h2>
           <div class="form-popup" id="myForm">
-            <form action="/action_page.php" class="form-container"> <!-- This will change to the redirect stuff -->
+            <!--<form action="/action_page.php" class="form-container"> <!-- This will change to the redirect stuff -->
               <p> [PLACEHOLDER]
               </p>
+              <br>
               <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
         </div>
       </div>
+    </div>
     </body>
     <script>
       function openForm() {
@@ -88,6 +112,14 @@ P04 -- SoftDev Project 2021-22
       function closeForm() {
         document.getElementById("myForm").style.display = "none";
       }
+      function openForm2() {
+        document.getElementById("myForm2").style.display = "block";
+      }
+
+      function closeForm2() {
+        document.getElementById("myForm2").style.display = "none";
+      }
     </script>
     <script src="/static/js/script.js" type="module"></script>
+    <script src="/static/js/shop.js" type="module"></script>
 </html>

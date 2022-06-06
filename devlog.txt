@@ -45,7 +45,7 @@ josephineL -- 2022-05-27 09:19
 jesseX -- 2022-05-27 10:11
 - Added ability to turn snake head, with segments following
   - Implemented turningPoints array to capture points at which the snake segments would turn
-  
+
 jesseX -- 2022-05-27 13:18
 - Slight changes to keep angle between 0 and 360
 
@@ -56,7 +56,7 @@ jesseX -- 2022-05-31 09:23
 - Added math for snake to reflect off of vertical walls
 
 jonathanW -- 2022-05-31 09:25
-- Made the canvas fit to screen size. 
+- Made the canvas fit to screen size.
 
 jesseX -- 2022-05-31 14:46
 - Added math for snake to reflect off of horizontal walls
@@ -65,8 +65,46 @@ jesseX -- 2022-05-31 14:46
 jonathanW -- 2022-05-31 20:22
 - Added droplet site at http://104.131.14.12/
 
+jesseX -- 2022-06-01 08:57
+- Fixed error with not bouncing when holding down rotate key
+
 josephineL -- 2022-06-01 09:21
 - Started implementing leaderboard and options in home page.
 
+jesseX -- 2022-06-02 09:20
+- Moved snake related class code to seperate snake.js file, with export and import 
+- Added canvas for shop 
+
 josephineL -- 2022-06-02 09:23
 - Made functions for showing and hiding the leaderboard.
+
+jonathanW -- 2022-06-02 09:24
+- Starting making the transition screen after clicking the start button.
+
+jesseX -- 2022-06-02 14:24
+- Added random snake segment generation for shop
+- Added toggle display to game and shop parts of page when pressing play
+
+josephineL -- 2022-06-03 09:07
+- Made functions for showing and hiding the options menu.
+- Made music volume slider for options.
+
+jonathanW -- 2022-06-03 09:20
+- Complete loading screen...
+
+jesseX -- 2022-06-03 09:22
+- Continued working on shop code
+- Parses local storage for snake segments that have already been purchased in shop
+- Added level attribute to snake segments
+- Minor revisions to snake class structure
+
+jesseX -- 2022-06-03 13:41
+- Added code to purchase segments and update snake accordingly
+- Added error messages when not enouhg gold, space, etc
+- Updated random snake generation a bit
+- Added eventlisteners for future buttons
+
+jesseX -- 2022-06-03 14:19
+- Added code to game file to update snake after buying from shop
+- Added code to edit buttons with new random snakes in the shop in eventlistener
+

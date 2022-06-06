@@ -1,8 +1,9 @@
 export class SnakeSegment {
-  constructor(name,type,color,x,y,hp,atk) {
+  constructor(name,type,color,level,x,y,hp,atk) {
     this.name = name ;
     this.type = type ;
     this.color = color ;
+    this.level = 1 ;
     this.x = x ;
     this.y = y ;
     this.turningPoints = [] ;
@@ -24,11 +25,12 @@ export class Snake {
     speedsters: 0
   };
 
-  constructor(snakeSegment,speed) {
-    this.segments = [snakeSegment] ;
+  constructor(speed) {
+    this.segments = [] ;
     this.speed = speed ;
     this.angleChange = 0;
   }
+  
   addSegment(snakeSegment) {
     this.segments.push(snakeSegment) ;
   }
@@ -70,8 +72,8 @@ export class Snake {
         this.segments[1].turningPoints.push([this.segments[0].x,this.segments[0].y,this.segments[0].angle]) ;
       }
     }
-
-    if ((this.segments[0].x < 30) | (this.segments[0].x > canvas.width-30)) {
+    var c = document.getElementById('game');
+    if ((this.segments[0].x < 30) | (this.segments[0].x > c.width-30)) {
       var angle = this.segments[0].angle ;
       var x = -1 * Math.cos(angle*(Math.PI/180)) ;
       var y = Math.sin(angle*(Math.PI/180)) ;
@@ -93,7 +95,7 @@ export class Snake {
       }
     }
 
-    if ((this.segments[0].y < 30) | (this.segments[0].y > canvas.height-30)) {
+    if ((this.segments[0].y < 30) | (this.segments[0].y > c.height-30)) {
       var angle = this.segments[0].angle ;
       var x = Math.cos(angle*(Math.PI/180)) ;
       var y = -1 * Math.sin(angle*(Math.PI/180)) ;
@@ -149,7 +151,7 @@ export class Snake {
 
   }
   displaySnake() {
-    var c = document.querySelector('canvas'); // GET CANVAS
+    var c = document.getElementById('game'); // GET CANVAS
     var ctx = c.getContext('2d');
     for(var i=0; i<this.segments.length;i++) {
       var segment = this.segments[i] ;

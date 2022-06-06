@@ -200,3 +200,11 @@ canvas {
     z-index: -9;
     display: none ;
 }
+
+#myForm2 {
+    display: none;
+}
+
+#myForm {
+    display: none;
+}

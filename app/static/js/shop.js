@@ -7,7 +7,6 @@ var gold = localStorage.getItem('gold') ;
 var goldVar = document.getElementById("goldVar");
 goldVar.innerHTML = "Shop - Gold: " + gold ;
 party.innerHTML = "Party: "+Object.keys(snakeStorage).length+"/"+maxPartySize ;
-console.log('test');
 
 var rand1 = randomSegment() ;
 var rand2 = randomSegment() ;
@@ -51,7 +50,7 @@ function purchaseSegment(number) {
       return false ;
     }
     else {
-      gold =- shopSegments[number][3] ;
+      gold -= shopSegments[number][3] ;
       goldVar.innerHTML = "Shop - Gold: " + gold ;
       snakeStorage[shopSegments[number][0]]["count"].push(1) ;
       if (counter(snakeStorage[shopSegments[number][0]]["count"],1) == 3) {
@@ -70,7 +69,7 @@ function purchaseSegment(number) {
     }
   }
   else if (Object.keys(snakeStorage).length < maxPartySize) {
-    gold =- shopSegments[number][2] ;
+    gold -= shopSegments[number][3] ;
     goldVar.innerHTML = "Shop - Gold: " + gold ;
     snakeStorage[shopSegments[number][0]] = {} ;
     snakeStorage[shopSegments[number][0]]["name"] = shopSegments[number][0] ;

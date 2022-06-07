@@ -50,6 +50,21 @@ P04 -- SoftDev Project 2021-22
   }
   </script>
   <script>
+    function transition2() {
+      document.getElementById("body").classList.remove("transition");
+      document.getElementById("shop").style.display = "none";
+      document.getElementById("goldVar").style.display = "none";
+      document.getElementById("reroll").style.display = "none";
+      document.getElementById("lock").style.display = "none";
+      document.getElementById("party").style.display = "none";
+      document.getElementById("go").style.display = "none";
+      setTimeout(() => {
+        document.getElementById("body").classList.add("transition");
+        document.getElementById("game").style.display = "flex";
+      }, "100")
+    }
+  </script>
+  <script>
     function showLeaders(){
       <canvas width="1000" height="800" id="leadersCanvas"></canvas>
 
@@ -93,7 +108,7 @@ P04 -- SoftDev Project 2021-22
         <p> <button id="reroll"> Reroll: 2 </button> </p>
         <p> <button id="lock"> Lock </button> </p>
         <p id="party"> Party: 0/5 </p> <br>
-        <p> <button id="go"> Go </button> </p> <br>
+        <p> <button id="go" onclick="transition2()"> Go </button> </p> <br>
         <!-- <h2> <button id="one"> one </button> </h2>
         <h2> <button id="two"> two </button> </h2>
         <h2> <button id="three"> three </button> </h2> -->

@@ -108,11 +108,26 @@ jesseX -- 2022-06-03 14:19
 - Added code to game file to update snake after buying from shop
 - Added code to edit buttons with new random snakes in the shop in eventlistener
 
+jesseX -- 2022-06-06 09:07
+- Added endWave method for game
+- Removed unnecessary shop canvas
+
 josephineL -- 2022-06-06 09:25
 - Closed menus on home page by default
 - Started adding music
 
-jonathanW -- 2022-06-07 12:44
+jesseX -- 2022-06-06 09:46
+- Fixed error with shop not updating correctly on load
+- Fixed error with rounding in random segment generation
+- Fixed error with snake segment loading and parsing on game load
+
+jesseX -- 2022-06-06 23:01
+- Gold and party elemented update appropriately when segment is purchased
+- Added error text element
+- Fixed error with snakesegment js object creation in shop
+- Edited go function to require at least one segment to start
+
+jonathanW -- 2022-06-07 00:44
 - Added transition screens
 - Added shop buttons and stuff
 - Started on the actual arena things.

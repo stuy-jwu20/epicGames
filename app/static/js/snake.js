@@ -3,7 +3,7 @@ export class SnakeSegment {
     this.name = name ;
     this.type = type ;
     this.color = color ;
-    this.level = 1 ;
+    this.level = level ;
     this.x = x ;
     this.y = y ;
     this.turningPoints = [] ;
@@ -63,15 +63,42 @@ export class Snake {
     this.speed = 2;
     this.healthBuff = 0;
     this.atkBuff = 0;
+    this.atkSpeedBuff = 0;
     if (this.classes[speedsters] > 0) {
-      this.speed = 2
-      this.speed += 1;
+      this.atkSpeedBuff = 4;
+      this.speed = 3;
+    }
+    if (this.classes[speedsters] > 2) {
+      this.atkSpeedBuff = 8;
+      this.speed = 5;
     }
     if (this.classes[supporters] > 0) {
       this.healthBuff = 20;
     }
     if (this.classes[supporters] > 2) {
       this.healthBuff = 50;
+    }
+    if (this.classes[rangers] > 0) {
+      this.atkSpeedBuff = 3;
+      this.atkBuff = 5;
+    }
+    if (this.classes[rangers] > 2) {
+      this.atkSpeedBuff = 4;
+      this.atkBuff = 15;
+    }
+    if (this.classes[fighters] > 0) {
+      this.healthBuff = 10;
+      this.atkBuff = 5;
+    }
+    if (this.classes[fighters] > 2) {
+      this.healthBuff = 25;
+      this.atkBuff = 15;
+    }
+    if (this.classes[nukers] > 0) {
+      this.atkBuff = 10;
+    }
+    if (this.classes[nukers] > 2) {
+      this.atkBuff = 25;
     }
   }
 

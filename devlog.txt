@@ -72,8 +72,8 @@ josephineL -- 2022-06-01 09:21
 - Started implementing leaderboard and options in home page.
 
 jesseX -- 2022-06-02 09:20
-- Moved snake related class code to seperate snake.js file, with export and import 
-- Added canvas for shop 
+- Moved snake related class code to seperate snake.js file, with export and import
+- Added canvas for shop
 
 josephineL -- 2022-06-02 09:23
 - Made functions for showing and hiding the leaderboard.
@@ -111,3 +111,8 @@ jesseX -- 2022-06-03 14:19
 josephineL -- 2022-06-06 09:25
 - Closed menus on home page by default
 - Started adding music
+
+jonathanW -- 2022-06-07 12:44
+- Added transition screens
+- Added shop buttons and stuff
+- Started on the actual arena things.

@@ -7,6 +7,7 @@ var gold = localStorage.getItem('gold') ;
 var goldVar = document.getElementById("goldVar");
 goldVar.innerHTML = "Shop - Gold: " + gold ;
 party.innerHTML = "Party: "+Object.keys(snakeStorage).length+"/"+maxPartySize ;
+console.log('test');
 
 var rand1 = randomSegment() ;
 var rand2 = randomSegment() ;
@@ -155,7 +156,7 @@ two.innerHTML = "Name: " + shopSegments[1][0]
 + "  Class: " + shopSegments[1][1] + "  Cost: " + shopSegments[1][3];
 two.setAttribute("color",shopSegments[1][2]) ;
 
-three.innerHTML = "Name: " + shopSegments[2][0] 
+three.innerHTML = "Name: " + shopSegments[2][0]
 + "  Class: " + shopSegments[2][1] + "  Cost: " + shopSegments[2][3];
 three.setAttribute("color",shopSegments[2][2]) ;
 

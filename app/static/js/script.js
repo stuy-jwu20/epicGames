@@ -33,7 +33,7 @@ function snakeGenerate() {
   var x = 600 ;
   for(var i in snakes) {
     var data = snakes[i] ;
-    var temp = new SnakeSegment(data["name"],data["class"],data["color"],data["count"][0],x,500,100,10) ;
+    var temp = new SnakeSegment(data["name"],data["class"],data["color"],data["count"][0],x,100,100,10) ;
     x -= 60 ;
     newSnake.addSegment(temp) ;
   }
@@ -57,14 +57,15 @@ document.addEventListener("keyup",keyUp);
 
 function display() {
   if (localStorage.getItem('update') == "true") {
-    console.log("dasdasd")
+    console.log("dasdasd") ;
     snake = snakeGenerate() ;
-    localStorage.setItem('update',false) ;
+    localStorage.setItem('update',"false") ;
   }
-  if (localStorage.getItem('active') == 'game') {
+  if (localStorage.getItem('active') == "game") {
     ctx.clearRect(0,0,2000,1000) ;
     snake.updateAngle() ;
     snake.moveSnake() ;
+    console.log("weqeqq") ;
   }
   snake.displaySnake() ;
 

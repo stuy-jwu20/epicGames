@@ -16,6 +16,10 @@ P04 -- SoftDev Project 2021-22
     <title>PYTHNX</title>
   </head>
   <script>
+  localStorage.clear();
+  localStorage.setItem('snakes',JSON.stringify({})) ;
+  localStorage.setItem('maxPartySize',3) ;
+  localStorage.setItem('gold',3) ;
   function myFunction() {
     let text;
     let person = prompt("Please create a username:", "");
@@ -24,9 +28,7 @@ P04 -- SoftDev Project 2021-22
     } else {
       text = "Hello " + person + "!";
     }
-    localStorage.clear();
     document.getElementById("game").style.display = "none";
-    document.getElementById("game").style.opacity = "0%";
     setTimeout(() => {
       document.getElementById("shop").style.display = "flex";
       document.getElementById("shop").classList.add("transitionShop");
@@ -52,9 +54,9 @@ P04 -- SoftDev Project 2021-22
     document.getElementById("mt").style.display = "none";
     document.getElementById("body").classList.add("transition");
     localStorage.setItem('active','shop') ;
-    localStorage.setItem('snakes',JSON.stringify({})) ;
-    localStorage.setItem('maxPartySize',3) ;
-    localStorage.setItem('gold',3) ;
+    var gold = localStorage.getItem('gold') ;
+    var goldVar = document.getElementById("goldVar");
+    goldVar.innerHTML = "Shop - Gold: " + gold ;
   }
   </script>
   <script>

@@ -25,6 +25,7 @@ P04 -- SoftDev Project 2021-22
       text = "Hello " + person + "!";
     }
     document.getElementById("game").style.display = "none";
+    document.getElementById("game").style.opacity = "0%";
     setTimeout(() => {
       document.getElementById("shop").style.display = "flex";
       document.getElementById("shop").classList.add("transitionShop");
@@ -38,6 +39,12 @@ P04 -- SoftDev Project 2021-22
       document.getElementById("party").classList.add("transitionShop");
       document.getElementById("go").style.display = "block";
       document.getElementById("go").classList.add("transitionShop");
+      document.getElementById("one").style.display = "block";
+      document.getElementById("one").classList.add("transitionShop");
+      document.getElementById("two").style.display = "block";
+      document.getElementById("two").classList.add("transitionShop");
+      document.getElementById("three").style.display = "block";
+      document.getElementById("three").classList.add("transitionShop");
     }, "1500")
     document.getElementById("loadText").style.display = "block";
     document.getElementById("loadText").classList.add("transitionLoad");
@@ -52,6 +59,8 @@ P04 -- SoftDev Project 2021-22
   <script>
     function transition2() {
       document.getElementById("body").classList.remove("transition");
+      document.getElementById("loadText").classList.remove("transitionLoad");
+      document.getElementById("loadText").style.display = "none";
       document.getElementById("shop").style.display = "none";
       document.getElementById("goldVar").style.display = "none";
       document.getElementById("reroll").style.display = "none";
@@ -60,7 +69,12 @@ P04 -- SoftDev Project 2021-22
       document.getElementById("go").style.display = "none";
       setTimeout(() => {
         document.getElementById("body").classList.add("transition");
+        document.getElementById("loadText").style.display = "block";
+        document.getElementById("loadText").classList.add("transitionLoad");
+        document.getElementById("arena").style.display = "flex";
+        document.getElementById("waveText").classList.add("transitionArena");
         document.getElementById("game").style.display = "flex";
+        document.getElementById("game").classList.add("transitionCanvas");
       }, "100")
     }
   </script>
@@ -103,15 +117,20 @@ P04 -- SoftDev Project 2021-22
     <div class="main-menu" id="mm">
       <canvas width=window.innerWidth height=window.innerHeight; id="game"></canvas>
       <p id="loadText"> Loading... </p>
+      <div class="arena" id="arena">
+        <p id="waveText"> Wave 1/5 </p>
+      </div>
       <div class="shop" id="shop">
         <p id="goldVar"> Shop - Gold: 3 </p> <br>
         <p> <button id="reroll"> Reroll: 2 </button> </p>
         <p> <button id="lock"> Lock </button> </p>
         <p id="party"> Party: 0/5 </p> <br>
         <p> <button id="go" onclick="transition2()"> Go </button> </p> <br>
-        <!-- <h2> <button id="one"> one </button> </h2>
-        <h2> <button id="two"> two </button> </h2>
-        <h2> <button id="three"> three </button> </h2> -->
+        <div id="shopItems">
+          <button id="one"> one </button>
+          <button id="two"> two </button>
+          <button id="three"> three </button>
+        </div>
       </div>
       <div class="menu-text" id="mt">
           <h1 class="breathe" id="parent"> PYTHNX </h1>
@@ -119,19 +138,19 @@ P04 -- SoftDev Project 2021-22
           <h2><button class="open-button" onclick="openForm2()">OPTIONS</button></h2>
           <div class="form-popup" id="myForm2">
             <!--<form action="/action_page.php" class="form-container"> <!-- This will change to the redirect stuff -->
-            <p> MUSIC VOLUME
+            <p id="volume"> MUSIC VOLUME
             </p>
             <input type="range" id="volume-control">
             <br>
-            <button type="button" class="btn cancel" onclick="closeForm2()">Close</button>
+            <button type="button" class="btn cancel" onclick="closeForm2()" id="close">Close</button>
         </div>
           <h2><button class="open-button" onclick="openForm()">LEADERBOARD</button></h2>
           <div class="form-popup" id="myForm">
             <!--<form action="/action_page.php" class="form-container"> <!-- This will change to the redirect stuff -->
-              <p> [PLACEHOLDER]
+              <p id="scores"> [PLACEHOLDER]
               </p>
               <br>
-              <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+              <button type="button" class="btn cancel" onclick="closeForm()" id="close">Close</button>
         </div>
       </div>
     </div>

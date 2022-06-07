@@ -1,5 +1,5 @@
 export class SnakeSegment {
-  constructor(name,type,color,level,x,y,hp,atk) {
+  constructor(name,type,color,level,x,y,hp,atk,atkSpeed) {
     this.name = name ;
     this.type = type ;
     this.color = color ;
@@ -9,6 +9,7 @@ export class SnakeSegment {
     this.turningPoints = [] ;
     this.hp = hp ;
     this.atk = atk;
+    this.atkSpeed = atkSpeed;
     this.angle = 0 ;
   }
   getXY() {
@@ -29,7 +30,6 @@ export class Snake {
     this.angleChange = 0;
     this.healthBuff = 0;
     this.atkBuff = 0;
-    this.atkSpeedBuff = 0;
     this.classes = { speedsters: 0,
                      supporters: 0,
                      rangers: 0,
@@ -63,13 +63,13 @@ export class Snake {
     this.speed = 2;
     this.healthBuff = 0;
     this.atkBuff = 0;
-    this.atkSpeedBuff = 0;
+    this.atkSpeed = 0;
     if (this.classes[speedsters] > 0) {
-      this.atkSpeedBuff = 4;
+      this.atkSpeed = 4;
       this.speed = 3;
     }
     if (this.classes[speedsters] > 2) {
-      this.atkSpeedBuff = 8;
+      this.atkSpeed = 8;
       this.speed = 5;
     }
     if (this.classes[supporters] > 0) {
@@ -79,11 +79,11 @@ export class Snake {
       this.healthBuff = 50;
     }
     if (this.classes[rangers] > 0) {
-      this.atkSpeedBuff = 3;
+      this.atkSpeed = 3;
       this.atkBuff = 5;
     }
     if (this.classes[rangers] > 2) {
-      this.atkSpeedBuff = 4;
+      this.atkSpeed = 4;
       this.atkBuff = 15;
     }
     if (this.classes[fighters] > 0) {

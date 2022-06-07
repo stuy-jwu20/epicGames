@@ -92,7 +92,6 @@ canvas {
 }
 
 #goldVar, #one, #two, #three, #reroll, #lock, #party, #go {
-  display: none;
   padding-top: 20px;
 }
 

@@ -1,9 +1,12 @@
 import { SnakeSegment, Snake } from './snake.js';
 
 var snakeStorage = JSON.parse(localStorage.getItem('snakes')) ;
+var party = document.getElementById("party");
 var maxPartySize = localStorage.getItem('maxPartySize') ;
 var gold = localStorage.getItem('gold') ;
-
+var goldVar = document.getElementById("goldVar");
+goldVar.innerHTML = "Shop - Gold: " + gold ;
+party.innerHTML = "Party: "+Object.keys(snakeStorage).length+"/"+maxPartySize ;
 
 var rand1 = randomSegment() ;
 var rand2 = randomSegment() ;
@@ -37,7 +40,7 @@ function randomSegment() {
 var error = document.getElementById("error");
 
 function purchaseSegment(number) {
-  if (gold < shopSegments[number][2]) {
+  if (gold < shopSegments[number][3]) {
     error.innerHTML = "you're too broke to afford that snake idiot" ;
     return false ;
   }
@@ -47,7 +50,8 @@ function purchaseSegment(number) {
       return false ;
     }
     else {
-      gold =- shopSegments[number][2]
+      gold =- shopSegments[number][3] ;
+      goldVar.innerHTML = "Shop - Gold: " + gold ;
       snakeStorage[shopSegments[number][0]]["count"].push(1) ;
       if (counter(snakeStorage[shopSegments[number][0]]["count"],1) == 3) {
         snakeStorage[shopSegments[number][0]]["count"].pop() ;
@@ -64,13 +68,16 @@ function purchaseSegment(number) {
       return true ;
     }
   }
-  else if (snakeStorage.length < maxPartySize) {
-    gold =- shopSegments[number][2]
-    snakeStorage[shopSegments[number][0]]["name"] = shopSegments[number][0]
-    snakeStorage[shopSegments[number][0]]["class"] = shopSegments[number][1]
-    snakeStorage[shopSegments[number][0]]["color"] = shopSegments[number][2]
+  else if (Object.keys(snakeStorage).length < maxPartySize) {
+    gold =- shopSegments[number][2] ;
+    goldVar.innerHTML = "Shop - Gold: " + gold ;
+    snakeStorage[shopSegments[number][0]] = {} ;
+    snakeStorage[shopSegments[number][0]]["name"] = shopSegments[number][0] ;
+    snakeStorage[shopSegments[number][0]]["class"] = shopSegments[number][1] ;
+    snakeStorage[shopSegments[number][0]]["color"] = shopSegments[number][2] ;
     snakeStorage[shopSegments[number][0]]["count"] = [1] ;
     shopSegments[number] = randomSegment() ;
+    party.innerHTML = "Party: "+Object.keys(snakeStorage).length+"/"+maxPartySize ;
     return true ;
   }
   else {
@@ -97,11 +104,16 @@ function reroll() {
 }
 
 function go() {
-  localStorage.setItem('snakes',JSON.stringify(snakeStorage)) ;
-  localStorage.setItem('gold',gold) ;
-  document.getElementById("shop").style.display = "none";
-  document.getElementById("game").style.display = "flex";
-  localStorage.setItem('update',true) ;
+  if (snakeStorage.length > 0) {
+    localStorage.setItem('snakes',JSON.stringify(snakeStorage)) ;
+    localStorage.setItem('gold',gold) ;
+    document.getElementById("shop").style.display = "none";
+    document.getElementById("game").style.display = "flex";
+    localStorage.setItem('update',true) ;
+  }
+  else {
+    error.innerHTML = "you need at least one snake idiot" ;
+  }
 }
 
 var one = document.getElementById("one");
@@ -134,15 +146,15 @@ three.addEventListener("click",function(){
                                   } ;
                                 }) ;
 
-one.innerHTML = "Name: " + shopSegments[0][0]
+one.innerHTML = "Name: " + shopSegments[0][0] ;
 + "  Class: " + shopSegments[0][1] + "  Cost: " + shopSegments[0][3];
 one.setAttribute("color",shopSegments[0][2]) ;
 
-two.innerHTML = "Name: " + shopSegments[1][0]
+two.innerHTML = "Name: " + shopSegments[1][0] ;
 + "  Class: " + shopSegments[1][1] + "  Cost: " + shopSegments[1][3];
 two.setAttribute("color",shopSegments[1][2]) ;
 
-three.innerHTML = "Name: " + shopSegments[2][0]
+three.innerHTML = "Name: " + shopSegments[2][0] ;
 + "  Class: " + shopSegments[2][1] + "  Cost: " + shopSegments[2][3];
 three.setAttribute("color",shopSegments[2][2]) ;
 

@@ -24,16 +24,16 @@ function counter(array,value) {
 function randomSegment() {
   let rand = (Math.floor(Math.random() * 4)) ;
   if (rand == 0) {
-    return ['Ranger','Green','LawnGreen',3] ;
+    return ['Ranger','Green','LawnGreen',1] ;
   }
   if (rand == 1) {
-    return ['Rogue','Orange','LightSalmon',3] ;
+    return ['Rogue','Orange','LightSalmon',1] ;
   }
   if (rand == 2) {
-    return ['Warrior','Yellow','Gold',3] ;
+    return ['Warrior','Yellow','Gold',1] ;
   }
   if (rand == 3) {
-    return ['Mage','Blue','CornflowerBlue',3] ;
+    return ['Mage','Blue','CornflowerBlue',1] ;
   }
 
 }

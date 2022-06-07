@@ -10,8 +10,8 @@ localStorage.setItem('active','game') ;
 
 
 let first = new SnakeSegment('bill','nye','LawnGreen',1,200,100,100,10) ;
-let second = new SnakeSegment('bill','nye','MediumTurquoise',1,140,100,100,10) ;
-let third = new SnakeSegment('bill','nye','LightSalmon',1,80,100,100,10) ;
+let second = new SnakeSegment('bill','nye','MediumTurquoise',1,160,100,100,10) ;
+let third = new SnakeSegment('bill','nye','LightSalmon',1,120,100,100,10) ;
 let snake = new Snake(2) ;
 snake.addSegment(first) ;
 snake.addSegment(second) ;
@@ -34,7 +34,7 @@ function snakeGenerate() {
   for(var i in snakes) {
     var data = snakes[i] ;
     var temp = new SnakeSegment(data["name"],data["class"],data["color"],data["count"][0],x,100,100,10) ;
-    x -= 60 ;
+    x -= 40 ;
     newSnake.addSegment(temp) ;
   }
   console.log(newSnake);
@@ -65,7 +65,6 @@ function display() {
     ctx.clearRect(0,0,2000,1000) ;
     snake.updateAngle() ;
     snake.moveSnake() ;
-    console.log("weqeqq") ;
   }
   snake.displaySnake() ;
 

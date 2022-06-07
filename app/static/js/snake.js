@@ -119,7 +119,7 @@ export class Snake {
       }
     }
     var c = document.getElementById('game');
-    if ((this.segments[0].x < 30) | (this.segments[0].x > c.width-30)) {
+    if ((this.segments[0].x < 20) | (this.segments[0].x > c.width-20)) {
       var angle = this.segments[0].angle ;
       var x = -1 * Math.cos(angle*(Math.PI/180)) ;
       var y = Math.sin(angle*(Math.PI/180)) ;
@@ -141,7 +141,7 @@ export class Snake {
       }
     }
 
-    if ((this.segments[0].y < 30) | (this.segments[0].y > c.height-30)) {
+    if ((this.segments[0].y < 20) | (this.segments[0].y > c.height-20)) {
       var angle = this.segments[0].angle ;
       var x = Math.cos(angle*(Math.PI/180)) ;
       var y = -1 * Math.sin(angle*(Math.PI/180)) ;
@@ -202,7 +202,7 @@ export class Snake {
     for(var i=0; i<this.segments.length;i++) {
       var segment = this.segments[i] ;
       ctx.beginPath();
-      ctx.arc(segment.x, segment.y, 30, 0, 2 * Math.PI);
+      ctx.arc(segment.x, segment.y, 20, 0, 2 * Math.PI);
       ctx.fillStyle = segment.color ;
       ctx.fill();
       ctx.stroke();
@@ -210,7 +210,6 @@ export class Snake {
     // debug
     ctx.fillStyle = 'white';
     ctx.font = "30px Arial";
-    ctx.fillText(this.segments[0].angle,this.segments[0].x,this.segments[0].y);
   }
 
 

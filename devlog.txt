@@ -131,3 +131,6 @@ jonathanW -- 2022-06-07 00:44
 - Added transition screens
 - Added shop buttons and stuff
 - Started on the actual arena things.
+
+josephineL -- 2022-06-07 09:12
+- Got music and music toggle to work.

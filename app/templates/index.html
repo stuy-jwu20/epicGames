@@ -142,9 +142,10 @@ P04 -- SoftDev Project 2021-22
           <h2><button class="open-button" onclick="openForm2()">OPTIONS</button></h2>
           <div class="form-popup" id="myForm2">
             <!--<form action="/action_page.php" class="form-container"> <!-- This will change to the redirect stuff -->
-            <p id="volume"> MUSIC VOLUME
+            <p id="music"><button type="button" onclick="toggleSound()">TOGGLE SOUND</button>
             </p>
-            <input type="range" id="volume-control">
+            <br>
+            <br>
             <br>
             <button type="button" class="btn cancel" onclick="closeForm2()" id="close">Close</button>
         </div>
@@ -159,7 +160,13 @@ P04 -- SoftDev Project 2021-22
       </div>
     </div>
     </body>
+    <audio autoplay loop id="music">
+      <source src="../static/assets/music/Ember.ogg" type="audio/ogg">
+    </audio>
     <script>
+      var key = new Audio();
+      key.src = "../static/assets/music/key.ogg";
+      key.play();
       function openForm() {
         document.getElementById("myForm").style.display = "block";
       }
@@ -173,6 +180,10 @@ P04 -- SoftDev Project 2021-22
 
       function closeForm2() {
         document.getElementById("myForm2").style.display = "none";
+      }
+      function toggleSound() {
+        var elements = document.getElementsByTagName('audio');
+        for(var e = 0; e < elements.length; elements[e].muted = !elements[e].muted, e++);
       }
     </script>
     <script src="/static/js/script.js" type="module"></script>

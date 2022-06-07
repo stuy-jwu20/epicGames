@@ -126,9 +126,10 @@ canvas {
 #game {
     position: absolute;
     text-align: center;
-    border-style: solid;
+    border-style: none;
     border-color: white ;
     z-index: -10;
+    opacity: 50%;
 }
 
 #myForm2 {
@@ -148,6 +149,38 @@ canvas {
   display: none;
 }
 
+#volume, #scores, #volume-control {
+  font-size: 1.25vh;
+  color: #dcde8c;
+  margin-left: 15px;
+}
+
+#close {
+  font-size: 1.25vh;
+  color: #749ecf;
+  margin-top: -25px;
+}
+
+#shopItems {
+  position: fixed;
+  left: 10vw;
+  top: 5%;
+  padding: 20px;
+}
+
+#arena {
+  display: none;
+  width: 100%;
+  height: 100%;
+}
+
+#waveText {
+  display: fixed;
+  height: 10%;
+  left: 10vw;
+  top: 0px;
+  padding: 22px;
+}
 /* Animations */
 
 .breathe {
@@ -239,5 +272,51 @@ canvas {
 
   100% {
     opacity: 0%;
+  }
+}
+
+.transitionCanvas {
+  animation-name: transitionCanvas;
+  animation-duration: 2.5s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0;
+  animation-fill-mode: forwards;
+}
+
+@keyframes transitionCanvas {
+  0% {
+    opacity: 0%;
+    border: none;
+  }
+
+  80% {
+    opacity: 0%;
+  }
+
+  100% {
+    opacity: 100%;
+    border: solid;
+  }
+}
+
+.transitionArena {
+  animation-name: transitionArena;
+  animation-duration: 2.5s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0;
+  animation-fill-mode: forwards;
+}
+
+@keyframes transitionArena {
+  0% {
+    opacity: 0%;
+  }
+
+  80% {
+    opacity: 0%;
+  }
+
+  100% {
+    opacity: 100%;
   }
 }

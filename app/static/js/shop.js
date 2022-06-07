@@ -104,12 +104,13 @@ function reroll() {
 }
 
 function go() {
-  if (snakeStorage.length > 0) {
+  if (Object.keys(snakeStorage).length > 0) {
     localStorage.setItem('snakes',JSON.stringify(snakeStorage)) ;
     localStorage.setItem('gold',gold) ;
     document.getElementById("shop").style.display = "none";
     document.getElementById("game").style.display = "flex";
-    localStorage.setItem('update',true) ;
+    localStorage.setItem('update',"true") ;
+    localStorage.setItem('active','game') ;
   }
   else {
     error.innerHTML = "you need at least one snake idiot" ;
@@ -146,15 +147,15 @@ three.addEventListener("click",function(){
                                   } ;
                                 }) ;
 
-one.innerHTML = "Name: " + shopSegments[0][0] ;
+one.innerHTML = "Name: " + shopSegments[0][0]
 + "  Class: " + shopSegments[0][1] + "  Cost: " + shopSegments[0][3];
 one.setAttribute("color",shopSegments[0][2]) ;
 
-two.innerHTML = "Name: " + shopSegments[1][0] ;
+two.innerHTML = "Name: " + shopSegments[1][0]
 + "  Class: " + shopSegments[1][1] + "  Cost: " + shopSegments[1][3];
 two.setAttribute("color",shopSegments[1][2]) ;
 
-three.innerHTML = "Name: " + shopSegments[2][0] ;
+three.innerHTML = "Name: " + shopSegments[2][0] 
 + "  Class: " + shopSegments[2][1] + "  Cost: " + shopSegments[2][3];
 three.setAttribute("color",shopSegments[2][2]) ;
 

@@ -9,9 +9,9 @@ var waveNumber = 0 ;
 localStorage.setItem('active','game') ;
 
 
-let first = new SnakeSegment('bill','nye','LawnGreen',1,200,100,100) ;
-let second = new SnakeSegment('bill','nye','MediumTurquoise',1,140,100,100) ;
-let third = new SnakeSegment('bill','nye','LightSalmon',1,80,100,100) ;
+let first = new SnakeSegment('bill','nye','LawnGreen',1,200,100,100,10) ;
+let second = new SnakeSegment('bill','nye','MediumTurquoise',1,140,100,100,10) ;
+let third = new SnakeSegment('bill','nye','LightSalmon',1,80,100,100,10) ;
 let snake = new Snake(2) ;
 snake.addSegment(first) ;
 snake.addSegment(second) ;
@@ -29,15 +29,17 @@ function keyDown(e) {
 
 function snakeGenerate() {
   let newSnake = new Snake(2) ;
-  snakes = JSON.parse(localStorage.getItem('snakes')) ;
+  var snakes = JSON.parse(localStorage.getItem('snakes')) ;
   var x = 600 ;
   for(var i in snakes) {
     var data = snakes[i] ;
-    var temp = new SnakeSegment(data["name"],data["class"],data["color"],data["count"][0],x,500) ;
+    var temp = new SnakeSegment(data["name"],data["class"],data["color"],data["count"][0],x,500,100,10) ;
     x -= 60 ;
     newSnake.addSegment(temp) ;
   }
+  console.log(newSnake);
   return newSnake ;
+
 }
 
 function keyUp(e) {
@@ -54,7 +56,8 @@ document.addEventListener("keydown",keyDown);
 document.addEventListener("keyup",keyUp);
 
 function display() {
-  if (localStorage.getItem('update') == true) {
+  if (localStorage.getItem('update') == "true") {
+    console.log("dasdasd")
     snake = snakeGenerate() ;
     localStorage.setItem('update',false) ;
   }

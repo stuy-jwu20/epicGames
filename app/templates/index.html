@@ -134,7 +134,14 @@ P04 -- SoftDev Project 2021-22
           <h2> <button id="one"> one </button> </h2>
           <h2> <button id="two"> two </button> </h2>
           <h2> <button id="three"> three </button> </h2>
-          <p id="error"></p>
+          <p id="error" onclick="errorDisplay()"></p><br>
+          <div id="displayParty">
+            <p> Party Members:
+            <p id="s1">a</p>
+            <!-- <p id="s2">b</p>
+            <p id="s3">c</p>
+            <p id="s4">d</p> -->
+          </div>
         </div>
       </div>
       <div class="menu-text" id="mt">
@@ -143,11 +150,8 @@ P04 -- SoftDev Project 2021-22
           <h2><button class="open-button" onclick="openForm2()">OPTIONS</button></h2>
           <div class="form-popup" id="myForm2">
             <!--<form action="/action_page.php" class="form-container"> <!-- This will change to the redirect stuff -->
-            <p id="music"><button type="button" onclick="toggleSound()">TOGGLE SOUND</button>
+            <p ><button type="button" onclick="toggleSound()" id="music">TOGGLE SOUND</button>
             </p>
-            <br>
-            <br>
-            <br>
             <button type="button" class="btn cancel" onclick="closeForm2()" id="close">Close</button>
         </div>
           <h2><button class="open-button" onclick="openForm()">LEADERBOARD</button></h2>

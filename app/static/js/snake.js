@@ -72,7 +72,7 @@ export class Snake {
       this.atkSpeed = 8;
       this.speed = 5;
     }
-    if (this.classes[supporters] > 0) {
+    if (this.classes[supporters] > 1) {
       this.healthBuff = 20;
     }
     if (this.classes[supporters] > 2) {
@@ -100,6 +100,7 @@ export class Snake {
     if (this.classes[nukers] > 2) {
       this.atkBuff = 25;
     }
+    this.healthBuff += 20 * classes[supporters];
   }
 
   updateAngle() {

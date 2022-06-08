@@ -77,6 +77,8 @@ function purchaseSegment(number) {
     snakeStorage[shopSegments[number][0]]["color"] = shopSegments[number][2] ;
     snakeStorage[shopSegments[number][0]]["count"] = [1] ;
     shopSegments[number] = randomSegment() ;
+    var s1 = document.getElementById("s1");
+    s1.innerHTML = (Object.keys(snakeStorage)[0]);
     party.innerHTML = "Party: "+Object.keys(snakeStorage).length+"/"+maxPartySize ;
     return true ;
   }
@@ -91,16 +93,19 @@ function reroll() {
   one.innerHTML = "Name: " + shopSegments[0][0]
   + "  Class: " + shopSegments[0][1] + "  Cost: " + shopSegments[0][3];
   one.setAttribute("color",shopSegments[0][2]) ;
+  one.style.color = shopSegments[0][1];
 
   shopSegments[1] = randomSegment() ;
   two.innerHTML = "Name: " + shopSegments[1][0]
   + "  Class: " + shopSegments[1][1] + "  Cost: " + shopSegments[1][3];
   two.setAttribute("color",shopSegments[1][2]) ;
+  two.style.color = shopSegments[1][1];
 
   shopSegments[2] = randomSegment() ;
   three.innerHTML = "Name: " + shopSegments[2][0]
   + "  Class: " + shopSegments[2][1] + "  Cost: " + shopSegments[2][3];
   three.setAttribute("color",shopSegments[2][2]) ;
+  three.style.color = shopSegments[2][1];
 }
 
 function go() {
@@ -126,6 +131,7 @@ one.addEventListener("click",function(){
                                   one.setAttribute("color",shopSegments[0][2]) ;
                                   } ;
                                 }) ;
+one.style.color = rand1[1];
 
 var two = document.getElementById("two");
 two.addEventListener("click",function(){
@@ -136,6 +142,7 @@ two.addEventListener("click",function(){
                                   two.setAttribute("color",shopSegments[1][2]) ;
                                   } ;
                                 }) ;
+two.style.color = rand2[1];
 
 var three = document.getElementById("three");
 three.addEventListener("click",function(){
@@ -146,6 +153,7 @@ three.addEventListener("click",function(){
                                   three.setAttribute("color",shopSegments[2][2]) ;
                                   } ;
                                 }) ;
+three.style.color = rand3[1];
 
 one.innerHTML = "Name: " + shopSegments[0][0]
 + "  Class: " + shopSegments[0][1] + "  Cost: " + shopSegments[0][3];

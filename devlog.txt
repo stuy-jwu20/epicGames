@@ -134,3 +134,8 @@ jonathanW -- 2022-06-07 00:44
 
 josephineL -- 2022-06-07 09:12
 - Got music and music toggle to work.
+
+josephineL -- 2022-06-08 09:25
+- Started connecting username to database using jQuery
+- Fixed blank username input
+- Worked more on leaderboard

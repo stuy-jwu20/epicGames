@@ -76,9 +76,12 @@ function purchaseSegment(number) {
     snakeStorage[shopSegments[number][0]]["class"] = shopSegments[number][1] ;
     snakeStorage[shopSegments[number][0]]["color"] = shopSegments[number][2] ;
     snakeStorage[shopSegments[number][0]]["count"] = [1] ;
-    shopSegments[number] = randomSegment() ;
     var s1 = document.getElementById("s1");
-    s1.innerHTML = (Object.keys(snakeStorage)[0]);
+    console.log(shopSegments) ;
+    console.log(shopSegments[number][0]) ;
+    console.log(snakeStorage) ;
+    s1.innerHTML += (snakeStorage[shopSegments[number][0]]["name"] + ": "+snakeStorage[shopSegments[number][0]]["count"]) + "<br>";
+    shopSegments[number] = randomSegment() ;
     party.innerHTML = "Party: "+Object.keys(snakeStorage).length+"/"+maxPartySize ;
     return true ;
   }
@@ -92,20 +95,17 @@ function reroll() {
   shopSegments[0] = randomSegment() ;
   one.innerHTML = "Name: " + shopSegments[0][0]
   + "  Class: " + shopSegments[0][1] + "  Cost: " + shopSegments[0][3];
-  one.setAttribute("color",shopSegments[0][2]) ;
-  one.style.color = shopSegments[0][1];
+  one.style.color = shopSegments[0][2];
 
   shopSegments[1] = randomSegment() ;
   two.innerHTML = "Name: " + shopSegments[1][0]
   + "  Class: " + shopSegments[1][1] + "  Cost: " + shopSegments[1][3];
-  two.setAttribute("color",shopSegments[1][2]) ;
-  two.style.color = shopSegments[1][1];
+  two.style.color = shopSegments[1][2];
 
   shopSegments[2] = randomSegment() ;
   three.innerHTML = "Name: " + shopSegments[2][0]
   + "  Class: " + shopSegments[2][1] + "  Cost: " + shopSegments[2][3];
-  three.setAttribute("color",shopSegments[2][2]) ;
-  three.style.color = shopSegments[2][1];
+  three.style.color = shopSegments[2][2];
 }
 
 function go() {
@@ -128,7 +128,7 @@ one.addEventListener("click",function(){
                                   shopSegments[0] = randomSegment() ;
                                   one.innerHTML = "Name: " + shopSegments[0][0]
                                   + "  Class: " + shopSegments[0][1] + "  Cost: " + shopSegments[0][3];
-                                  one.setAttribute("color",shopSegments[0][2]) ;
+                                  one.style.color = shopSegments[0][2];
                                   } ;
                                 }) ;
 one.style.color = rand1[1];
@@ -139,7 +139,7 @@ two.addEventListener("click",function(){
                                   shopSegments[1] = randomSegment() ;
                                   two.innerHTML = "Name: " + shopSegments[1][0]
                                   + "  Class: " + shopSegments[1][1] + "  Cost: " + shopSegments[1][3];
-                                  two.setAttribute("color",shopSegments[1][2]) ;
+                                  two.style.color = shopSegments[1][2];
                                   } ;
                                 }) ;
 two.style.color = rand2[1];
@@ -151,21 +151,22 @@ three.addEventListener("click",function(){
                                   three.innerHTML = "Name: " + shopSegments[2][0]
                                   + "  Class: " + shopSegments[2][1] + "  Cost: " + shopSegments[2][3];
                                   three.setAttribute("color",shopSegments[2][2]) ;
+                                  three.style.color = shopSegments[2][2];
                                   } ;
                                 }) ;
 three.style.color = rand3[1];
 
 one.innerHTML = "Name: " + shopSegments[0][0]
 + "  Class: " + shopSegments[0][1] + "  Cost: " + shopSegments[0][3];
-one.setAttribute("color",shopSegments[0][2]) ;
+one.style.color = shopSegments[0][2];
 
 two.innerHTML = "Name: " + shopSegments[1][0]
 + "  Class: " + shopSegments[1][1] + "  Cost: " + shopSegments[1][3];
-two.setAttribute("color",shopSegments[1][2]) ;
+two.style.color = shopSegments[1][2];
 
 three.innerHTML = "Name: " + shopSegments[2][0]
 + "  Class: " + shopSegments[2][1] + "  Cost: " + shopSegments[2][3];
-three.setAttribute("color",shopSegments[2][2]) ;
+three.style.color = shopSegments[2][2];
 
 var rerollButton = document.getElementById("reroll");
 rerollButton.addEventListener("click",reroll);

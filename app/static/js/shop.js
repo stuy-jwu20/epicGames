@@ -76,11 +76,9 @@ function purchaseSegment(number) {
     snakeStorage[shopSegments[number][0]]["class"] = shopSegments[number][1] ;
     snakeStorage[shopSegments[number][0]]["color"] = shopSegments[number][2] ;
     snakeStorage[shopSegments[number][0]]["count"] = [1] ;
-    var s1 = document.getElementById("s1");
-    console.log(shopSegments) ;
-    console.log(shopSegments[number][0]) ;
-    console.log(snakeStorage) ;
-    s1.innerHTML += (snakeStorage[shopSegments[number][0]]["name"] + ": "+snakeStorage[shopSegments[number][0]]["count"]) + "<br>";
+
+    var temp = document.getElementById("s"+Object.keys(snakeStorage).length);
+    temp.innerHTML = (snakeStorage[shopSegments[number][0]]["name"] + ": "+snakeStorage[shopSegments[number][0]]["count"]) ;
     shopSegments[number] = randomSegment() ;
     party.innerHTML = "Party: "+Object.keys(snakeStorage).length+"/"+maxPartySize ;
     return true ;

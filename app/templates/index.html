@@ -23,11 +23,9 @@ P04 -- SoftDev Project 2021-22
   function myFunction() {
     let text;
     let person = prompt("Please create a username:", "");
-    if (person == null || person == "") {
-      text = "";
-    } else {
-      text = "Hello " + person + "!";
-    }
+    while (person == null || person == "") {
+      person = prompt("Please enter a non-blank username:", "")
+    } 
     document.getElementById("game").style.display = "none";
     document.getElementById("game").style.opacity = "0%";
     setTimeout(() => {

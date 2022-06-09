@@ -164,7 +164,7 @@ function purchaseSegment(number) {
 }
 
 function reroll() {
-  if (gold > 2) {
+  if (gold >= 2) {
     shopSegments[0] = randomSegment() ;
     one.innerHTML = "Name: " + shopSegments[0][0]
     + "  Class: " + shopSegments[0][1] + "  Cost: " + shopSegments[0][3];
@@ -262,6 +262,7 @@ function transition() {
     document.getElementById("loadText").classList.add("transitionLoad");
     document.getElementById("arena").style.display = "flex";
     document.getElementById("waveText").classList.add("transitionArena");
+    document.getElementById("snakeHP").classList.add("transitionArena");
     document.getElementById("game").style.display = "flex";
     document.getElementById("game").classList.add("transitionCanvas");
   }, "100")

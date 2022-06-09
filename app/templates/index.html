@@ -21,6 +21,7 @@ P04 -- SoftDev Project 2021-22
   localStorage.setItem('snakes',JSON.stringify({})) ;
   localStorage.setItem('maxPartySize',3) ;
   localStorage.setItem('gold',3) ;
+  localStorage.setItem('level',1) ;
   function myFunction() {
     let text;
     let person = prompt("Please create a username:", "");
@@ -117,10 +118,10 @@ P04 -- SoftDev Project 2021-22
           <p id="error" onclick="errorDisplay()"></p><br>
           <div id="displayParty">
             <p> Party Members:
-            <p id="s1"></p>
-            <p id="s2"></p>
-            <p id="s3"></p>
-            <p id="s4"></p>
+            <p id="s1" style="margin-bottom: 0px"></p>
+            <p id="s2" style="margin-bottom: 0px"></p>
+            <p id="s3" style="margin-bottom: 0px"></p>
+            <p id="s4" style="margin-bottom: 0px"></p>
           </div>
         </div>
       </div>

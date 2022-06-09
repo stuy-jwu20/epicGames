@@ -55,20 +55,52 @@ function purchaseSegment(number) {
       gold -= shopSegments[number][3] ;
       goldVar.innerHTML = "Shop - Gold: " + gold ;
       snakeStorage[shopSegments[number][0]]["count"].push(1) ;
+      var index = (Object.keys(snakeStorage).indexOf(snakeStorage[shopSegments[number][0]]["name"])+1) ;
       if (counter(snakeStorage[shopSegments[number][0]]["count"],1) == 3) {
+        var temp = document.getElementById("s"+index);
         snakeStorage[shopSegments[number][0]]["count"].pop() ;
+        temp.removeChild(temp.lastChild);
         snakeStorage[shopSegments[number][0]]["count"].pop() ;
+        temp.removeChild(temp.lastChild);
         snakeStorage[shopSegments[number][0]]["count"].pop() ;
-        snakeStorage[shopSegments[number][0]]["count"].push(2)
+        snakeStorage[shopSegments[number][0]]["count"].push(2);
+        var buttonTemp = document.createElement("button") ;
+        buttonTemp.id = "s"+index+snakeStorage[shopSegments[number][0]]["count"].length ;
+        buttonTemp.innerHTML = snakeStorage[shopSegments[number][0]]["count"][0] ;
+        buttonTemp.style.color = snakeStorage[shopSegments[number][0]]["color"];
+        buttonTemp.style.paddingRight = "15px";
+        temp.appendChild(buttonTemp);
+        buttonTemp.addEventListener("click",sell) ;
+
+        if (counter(snakeStorage[shopSegments[number][0]]["count"],2) == 3) {
+          snakeStorage[shopSegments[number][0]]["count"].pop() ;
+          temp.removeChild(temp.lastChild);
+          snakeStorage[shopSegments[number][0]]["count"].pop() ;
+          temp.removeChild(temp.lastChild);
+          snakeStorage[shopSegments[number][0]]["count"].pop() ;
+          temp.removeChild(temp.lastChild);
+          snakeStorage[shopSegments[number][0]]["count"].push(3);
+          buttonTemp = document.createElement("button") ;
+          buttonTemp.id = "s"+index+snakeStorage[shopSegments[number][0]]["count"].length ;
+          buttonTemp.innerHTML = snakeStorage[shopSegments[number][0]]["count"][0] ;
+          buttonTemp.style.color = snakeStorage[shopSegments[number][0]]["color"];
+          buttonTemp.style.paddingRight = "15px";
+          temp.appendChild(buttonTemp);
+          buttonTemp.addEventListener("click",sell) ;
+        }
+
       }
-      if (counter(snakeStorage[shopSegments[number][0]]["count"],2) == 3) {
-        snakeStorage[shopSegments[number][0]]["count"].pop() ;
-        snakeStorage[shopSegments[number][0]]["count"].pop() ;
-        snakeStorage[shopSegments[number][0]]["count"].pop() ;
-        snakeStorage[shopSegments[number][0]]["count"].push(3)
+
+      else {
+        var temp = document.getElementById("s"+index);
+        var buttonTemp = document.createElement("button") ;
+        buttonTemp.id = "s"+index+snakeStorage[shopSegments[number][0]]["count"].length ;
+        buttonTemp.innerHTML = 1 ;
+        buttonTemp.style.color = snakeStorage[shopSegments[number][0]]["color"];
+        buttonTemp.style.paddingRight = "15px";
+        temp.appendChild(buttonTemp);
+        buttonTemp.addEventListener("click",sell) ;
       }
-      var temp = document.getElementById("s"+(Object.keys(snakeStorage).indexOf(snakeStorage[shopSegments[number][0]]["name"])+1));
-      temp.innerHTML = (snakeStorage[shopSegments[number][0]]["name"] + ": "+snakeStorage[shopSegments[number][0]]["count"]) ;
       return true ;
     }
   }
@@ -82,8 +114,15 @@ function purchaseSegment(number) {
     snakeStorage[shopSegments[number][0]]["count"] = [1] ;
 
     var temp = document.getElementById("s"+Object.keys(snakeStorage).length);
-    temp.innerHTML = (snakeStorage[shopSegments[number][0]]["name"] + ": "+snakeStorage[shopSegments[number][0]]["count"]) ;
-    temp.style.color = snakeStorage[shopSegments[number][0]]["color"];
+    var buttonTemp = document.createElement("button");
+    buttonTemp.id = ("s"+Object.keys(snakeStorage).length+snakeStorage[shopSegments[number][0]]["count"].length)
+    temp.innerHTML = snakeStorage[shopSegments[number][0]]["name"] + ": " ;
+    buttonTemp.innerHTML = snakeStorage[shopSegments[number][0]]["count"] ;
+    buttonTemp.style.color = snakeStorage[shopSegments[number][0]]["color"];
+    buttonTemp.style.paddingRight = "15px";
+    buttonTemp.addEventListener("click",sell) ;
+    temp.appendChild(buttonTemp);
+
     shopSegments[number] = randomSegment() ;
     party.innerHTML = "Party: "+Object.keys(snakeStorage).length+"/"+maxPartySize ;
     return true ;
@@ -127,6 +166,10 @@ function lock() {
     locked = true ;
     document.getElementById("lock").style.color = "#3c597a" ;
   }
+}
+
+function sell() {
+  console.log("test");
 }
 
 function transition() {
@@ -224,6 +267,9 @@ two.style.color = shopSegments[1][2];
 three.innerHTML = "Name: " + shopSegments[2][0]
 + "  Class: " + shopSegments[2][1] + "  Cost: " + shopSegments[2][3];
 three.style.color = shopSegments[2][2];
+
+var stage = document.getElementById("stageLevel");
+stage.innerHTML = "Stage "+localStorage.getItem("level") ;
 
 var rerollButton = document.getElementById("reroll");
 rerollButton.addEventListener("click",reroll);

@@ -79,6 +79,9 @@ function display() {
   }
   if (localStorage.getItem('active') == "game") {
     ctx.clearRect(0,0,2000,1000) ;
+    ctx.fillStyle= "#3b3a3a";
+    ctx.rect(0,0,2000,1000) ;
+    ctx.fill();
     snake.updateAngle() ;
     snake.moveSnake() ;
   }
@@ -118,7 +121,7 @@ function endLevel() {
   }, "1500")
   document.getElementById("mt").style.display = "none";
   document.getElementById("arena").style.opacity = 1;
-
+  localStorage.setItem('gold',parseInt(localStorage.getItem('gold'))+level+2-(Math.floor(Math.random() * Math.floor(level/2))))
   localStorage.setItem('active','shop') ;
 
 }

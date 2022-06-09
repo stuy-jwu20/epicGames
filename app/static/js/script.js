@@ -51,7 +51,10 @@ function snakeGenerate() {
     x -= 40 ;
     newSnake.addSegment(temp) ;
   }
-  console.log(newSnake);
+  var snakes = JSON.parse(localStorage.getItem('snakes')) ;
+  console.log(snakes);
+  var hp = document.getElementById("snakeHP");
+  hp.innerHTML = newSnake.segments[0]["name"] + ": " + newSnake.segments[0]["hp"];
   return newSnake ;
 
 }
@@ -92,6 +95,7 @@ function endLevel() {
   document.getElementById("arena").style.opacity = "0%";
   document.getElementById("body").classList.remove("transition");
   document.getElementById("waveText").classList.remove("transitionArena");
+  document.getElementById("snakeHP").classList.remove("transitionArena");
   setTimeout(() => {
     document.getElementById("shop").style.display = "flex";
     document.getElementById("shop").classList.add("transitionShop");

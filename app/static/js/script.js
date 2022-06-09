@@ -106,6 +106,8 @@ function endLevel() {
   document.getElementById("body").classList.remove("transition");
   document.getElementById("waveText").classList.remove("transitionArena");
   document.getElementById("snakeHP").classList.remove("transitionArena");
+  document.getElementById("restartText").style.display = "block";
+  document.getElementById("restartText").classList.add("transitionRestart");
   setTimeout(() => {
     document.getElementById("shop").style.display = "flex";
     document.getElementById("shop").classList.add("transitionShop");

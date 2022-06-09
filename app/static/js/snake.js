@@ -30,11 +30,11 @@ export class Snake {
     this.angleChange = 0;
     this.healthBuff = 0;
     this.atkBuff = 0;
-    this.classes = { speedsters: 0,
-                     supporters: 0,
-                     rangers: 0,
-                     fighters: 0,
-                     nukers: 0
+    this.classes = { blue: 0,
+                     purple: 0,
+                     green: 0,
+                     yellow: 0,
+                     orange: 0
                    };
   }
 
@@ -64,43 +64,43 @@ export class Snake {
     this.healthBuff = 0;
     this.atkBuff = 0;
     this.atkSpeed = 0;
-    if (this.classes[speedsters] > 0) {
+    if (this.classes[blue] > 0) {
       this.atkSpeed = 4;
       this.speed = 3;
     }
-    if (this.classes[speedsters] > 2) {
+    if (this.classes[blue] > 2) {
       this.atkSpeed = 8;
       this.speed = 5;
     }
-    if (this.classes[supporters] > 1) {
+    if (this.classes[purple] > 1) {
       this.healthBuff = 20;
     }
-    if (this.classes[supporters] > 2) {
+    if (this.classes[purple] > 2) {
       this.healthBuff = 50;
     }
-    if (this.classes[rangers] > 0) {
+    if (this.classes[greens] > 0) {
       this.atkSpeed = 3;
       this.atkBuff = 5;
     }
-    if (this.classes[rangers] > 2) {
+    if (this.classes[greens] > 2) {
       this.atkSpeed = 4;
       this.atkBuff = 15;
     }
-    if (this.classes[fighters] > 0) {
+    if (this.classes[yellow] > 0) {
       this.healthBuff = 10;
       this.atkBuff = 5;
     }
-    if (this.classes[fighters] > 2) {
+    if (this.classes[yellow] > 2) {
       this.healthBuff = 25;
       this.atkBuff = 15;
     }
-    if (this.classes[nukers] > 0) {
+    if (this.classes[orange] > 0) {
       this.atkBuff = 10;
     }
-    if (this.classes[nukers] > 2) {
+    if (this.classes[orange] > 2) {
       this.atkBuff = 25;
     }
-    this.healthBuff += 20 * classes[supporters];
+    this.healthBuff += 20 * classes[purple];
   }
 
   updateAngle() {

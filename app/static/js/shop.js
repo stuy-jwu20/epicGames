@@ -53,18 +53,21 @@ function counter(array,value) {
 }
 
 function randomSegment() {
-  let rand = (Math.floor(Math.random() * 4)) ;
+  let rand = (Math.floor(Math.random() * 5)) ;
   if (rand == 0) {
     return ['Ranger','Green','LawnGreen',1] ;
   }
   if (rand == 1) {
-    return ['Rogue','Orange','LightSalmon',1] ;
+    return ['Nuker','Orange','LightSalmon',1] ;
   }
   if (rand == 2) {
-    return ['Warrior','Yellow','Gold',1] ;
+    return ['Fighter','Yellow','Gold',1] ;
   }
   if (rand == 3) {
-    return ['Mage','Blue','CornflowerBlue',1] ;
+    return ['Speedster','Blue','CornflowerBlue',1] ;
+  }
+  if (rand == 4) {
+    return ['Supporter','Purple','MediumOrchid',1] ;
   }
 
 }

@@ -126,6 +126,14 @@ canvas {
   font-size: 2vh;
 }
 
+#stageLevel {
+  position: fixed;
+  padding-bottom: 20px;
+  bottom: 5%;
+  left: 10vw;
+  font-size: 2vh;
+}
+
 #reroll:hover, #lock:hover, #go:hover {
   color: #dcde8c !important;
   transition: 0.9s ease all;

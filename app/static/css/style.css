@@ -87,6 +87,12 @@ h2:hover {
   display: none;
 }
 
+#restartText {
+  color: #749ecf;
+  position: fixed;
+  display: none;
+}
+
 canvas {
   position: absolute;
 }
@@ -301,6 +307,32 @@ canvas {
 }
 
 @keyframes transitionLoad {
+  0% {
+    opacity: 0%;
+  }
+
+  20% {
+    opacity: 100%;
+  }
+
+  80% {
+    opacity: 100%;
+  }
+
+  100% {
+    opacity: 0%;
+  }
+}
+
+.transitionRestart {
+  animation-name: transitionRestart;
+  animation-duration: 1.7s;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0;
+  animation-fill-mode: forwards;
+}
+
+@keyframes transitionRestart {
   0% {
     opacity: 0%;
   }

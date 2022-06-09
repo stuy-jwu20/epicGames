@@ -5,6 +5,7 @@ var party = document.getElementById("party");
 var maxPartySize = localStorage.getItem('maxPartySize') ;
 var gold = localStorage.getItem('gold') ;
 var goldVar = document.getElementById("goldVar");
+var locked = false ;
 goldVar.innerHTML = "Shop - Gold: " + gold ;
 party.innerHTML = "Party: "+Object.keys(snakeStorage).length+"/"+maxPartySize ;
 
@@ -45,7 +46,8 @@ function purchaseSegment(number) {
     return false ;
   }
   else if (shopSegments[number][0] in snakeStorage) {
-    if (snakeStorage[shopSegments[number][0]]["count"] == [3]) {
+
+    if (counter(snakeStorage[shopSegments[number][0]]["count"],3) >= 1) {
       error.innerHTML = "that snake is already maxed out idiot" ;
       return false ;
     }
@@ -59,12 +61,14 @@ function purchaseSegment(number) {
         snakeStorage[shopSegments[number][0]]["count"].pop() ;
         snakeStorage[shopSegments[number][0]]["count"].push(2)
       }
-      if (counter(snakeStorage[shopSegments[0]]["count"],2) == 3) {
+      if (counter(snakeStorage[shopSegments[number][0]]["count"],2) == 3) {
         snakeStorage[shopSegments[number][0]]["count"].pop() ;
         snakeStorage[shopSegments[number][0]]["count"].pop() ;
         snakeStorage[shopSegments[number][0]]["count"].pop() ;
         snakeStorage[shopSegments[number][0]]["count"].push(3)
       }
+      var temp = document.getElementById("s"+(Object.keys(snakeStorage).indexOf(snakeStorage[shopSegments[number][0]]["name"])+1));
+      temp.innerHTML = (snakeStorage[shopSegments[number][0]]["name"] + ": "+snakeStorage[shopSegments[number][0]]["count"]) ;
       return true ;
     }
   }
@@ -90,20 +94,58 @@ function purchaseSegment(number) {
 }
 
 function reroll() {
-  shopSegments[0] = randomSegment() ;
-  one.innerHTML = "Name: " + shopSegments[0][0]
-  + "  Class: " + shopSegments[0][1] + "  Cost: " + shopSegments[0][3];
-  one.style.color = shopSegments[0][2];
+  if (gold > 2) {
+    shopSegments[0] = randomSegment() ;
+    one.innerHTML = "Name: " + shopSegments[0][0]
+    + "  Class: " + shopSegments[0][1] + "  Cost: " + shopSegments[0][3];
+    one.style.color = shopSegments[0][2];
 
-  shopSegments[1] = randomSegment() ;
-  two.innerHTML = "Name: " + shopSegments[1][0]
-  + "  Class: " + shopSegments[1][1] + "  Cost: " + shopSegments[1][3];
-  two.style.color = shopSegments[1][2];
+    shopSegments[1] = randomSegment() ;
+    two.innerHTML = "Name: " + shopSegments[1][0]
+    + "  Class: " + shopSegments[1][1] + "  Cost: " + shopSegments[1][3];
+    two.style.color = shopSegments[1][2];
 
-  shopSegments[2] = randomSegment() ;
-  three.innerHTML = "Name: " + shopSegments[2][0]
-  + "  Class: " + shopSegments[2][1] + "  Cost: " + shopSegments[2][3];
-  three.style.color = shopSegments[2][2];
+    shopSegments[2] = randomSegment() ;
+    three.innerHTML = "Name: " + shopSegments[2][0]
+    + "  Class: " + shopSegments[2][1] + "  Cost: " + shopSegments[2][3];
+    three.style.color = shopSegments[2][2];
+    gold -= 2;
+  }
+  else {
+    error.innerHTML = "you're too broke to refresh the shop idiot" ;
+  }
+}
+
+function lock() {
+  if (locked) {
+    locked = false ;
+    document.getElementById("lock").style.color = "#749ecf" ;
+  }
+  else {
+    locked = true ;
+    document.getElementById("lock").style.color = "#3c597a" ;
+  }
+}
+
+function transition() {
+  document.getElementById("body").classList.remove("transition");
+  document.getElementById("loadText").classList.remove("transitionLoad");
+  document.getElementById("loadText").style.display = "none";
+  document.getElementById("shop").style.display = "none";
+  document.getElementById("goldVar").style.display = "none";
+  document.getElementById("reroll").style.display = "none";
+  document.getElementById("lock").style.display = "none";
+  document.getElementById("party").style.display = "none";
+  document.getElementById("go").style.display = "none";
+  setTimeout(() => {
+    document.getElementById("body").classList.add("transition");
+    document.getElementById("loadText").style.display = "block";
+    document.getElementById("loadText").classList.add("transitionLoad");
+    document.getElementById("arena").style.display = "flex";
+    document.getElementById("waveText").classList.add("transitionArena");
+    document.getElementById("game").style.display = "flex";
+    document.getElementById("game").classList.add("transitionCanvas");
+  }, "100")
 }
 
 function go() {
@@ -114,8 +156,26 @@ function go() {
     document.getElementById("game").style.display = "flex";
     localStorage.setItem('update',"true") ;
     localStorage.setItem('active','game') ;
+    if (!(locked)) {
+      shopSegments[0] = randomSegment() ;
+      one.innerHTML = "Name: " + shopSegments[0][0]
+      + "  Class: " + shopSegments[0][1] + "  Cost: " + shopSegments[0][3];
+      one.style.color = shopSegments[0][2];
+
+      shopSegments[1] = randomSegment() ;
+      two.innerHTML = "Name: " + shopSegments[1][0]
+      + "  Class: " + shopSegments[1][1] + "  Cost: " + shopSegments[1][3];
+      two.style.color = shopSegments[1][2];
+
+      shopSegments[2] = randomSegment() ;
+      three.innerHTML = "Name: " + shopSegments[2][0]
+      + "  Class: " + shopSegments[2][1] + "  Cost: " + shopSegments[2][3];
+      three.style.color = shopSegments[2][2];
+    }
+    transition();
   }
   else {
+    console.log("yes")
     error.innerHTML = "you need at least one snake idiot" ;
   }
 }
@@ -129,7 +189,6 @@ one.addEventListener("click",function(){
                                   one.style.color = shopSegments[0][2];
                                   } ;
                                 }) ;
-one.style.color = rand1[1];
 
 var two = document.getElementById("two");
 two.addEventListener("click",function(){
@@ -140,7 +199,6 @@ two.addEventListener("click",function(){
                                   two.style.color = shopSegments[1][2];
                                   } ;
                                 }) ;
-two.style.color = rand2[1];
 
 var three = document.getElementById("three");
 three.addEventListener("click",function(){
@@ -152,7 +210,6 @@ three.addEventListener("click",function(){
                                   three.style.color = shopSegments[2][2];
                                   } ;
                                 }) ;
-three.style.color = rand3[1];
 
 one.innerHTML = "Name: " + shopSegments[0][0]
 + "  Class: " + shopSegments[0][1] + "  Cost: " + shopSegments[0][3];
@@ -169,6 +226,8 @@ three.style.color = shopSegments[2][2];
 var rerollButton = document.getElementById("reroll");
 rerollButton.addEventListener("click",reroll);
 
+var lockButton = document.getElementById("lock");
+lockButton.addEventListener("click",lock);
 
 var goButton = document.getElementById("go");
 goButton.addEventListener("click",go) ;

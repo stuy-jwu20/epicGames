@@ -6,6 +6,7 @@ var parent = document.getElementById("parent");
 c.width = parent.offsetWidth;
 c.height = window.innerHeight - (1.6 * parent.offsetHeight);
 var waveNumber = 0 ;
+var level = localStorage.getItem("level") ;
 localStorage.setItem('active','game') ;
 
 
@@ -71,7 +72,8 @@ function display() {
 }
 setInterval(display,10);
 
-function endWave() {
+function endLevel() {
+  localStorage.setItem("level",level+1) ;
   localStorage.setItem('active','shop') ;
   document.getElementById("shop").style.display = "flex";
   document.getElementById("game").style.display = "none";

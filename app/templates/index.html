@@ -59,28 +59,7 @@ P04 -- SoftDev Project 2021-22
     goldVar.innerHTML = "Shop - Gold: " + gold ;
   }
   </script>
-  <script>
-    function transition2() {
-      document.getElementById("body").classList.remove("transition");
-      document.getElementById("loadText").classList.remove("transitionLoad");
-      document.getElementById("loadText").style.display = "none";
-      document.getElementById("shop").style.display = "none";
-      document.getElementById("goldVar").style.display = "none";
-      document.getElementById("reroll").style.display = "none";
-      document.getElementById("lock").style.display = "none";
-      document.getElementById("party").style.display = "none";
-      document.getElementById("go").style.display = "none";
-      setTimeout(() => {
-        document.getElementById("body").classList.add("transition");
-        document.getElementById("loadText").style.display = "block";
-        document.getElementById("loadText").classList.add("transitionLoad");
-        document.getElementById("arena").style.display = "flex";
-        document.getElementById("waveText").classList.add("transitionArena");
-        document.getElementById("game").style.display = "flex";
-        document.getElementById("game").classList.add("transitionCanvas");
-      }, "100")
-    }
-  </script>
+
   <script>
     function showLeaders(){
       <canvas width="1000" height="800" id="leadersCanvas"></canvas>
@@ -128,7 +107,7 @@ P04 -- SoftDev Project 2021-22
         <p> <button id="reroll"> Reroll: 2 </button> </p>
         <p> <button id="lock"> Lock </button> </p>
         <p id="party"> Party: 0/5 </p> <br>
-        <p> <button id="go" onclick="transition2()"> Go </button> </p> <br>
+        <p> <button id="go"> Go </button> </p> <br>
         <div id="shopItems">
           <h2> <button id="one"> one </button> </h2>
           <h2> <button id="two"> two </button> </h2>

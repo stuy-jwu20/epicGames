@@ -110,6 +110,7 @@ function reroll() {
     + "  Class: " + shopSegments[2][1] + "  Cost: " + shopSegments[2][3];
     three.style.color = shopSegments[2][2];
     gold -= 2;
+    goldVar.innerHTML = "Shop - Gold: " + gold ;
   }
   else {
     error.innerHTML = "you're too broke to refresh the shop idiot" ;

@@ -25,7 +25,6 @@ if (snake.segments[0].angle < 0) {
 }
 snake.segments[1].turningPoints.push([snake.segments[0].x,snake.segments[0].y,snake.segments[0].angle]) ;
 
-console.log(snake);
 function keyDown(e) {
   var key = e.keyCode ;
   if (key == 82) {
@@ -129,7 +128,7 @@ function endLevel() {
   }, "1500")
   document.getElementById("mt").style.display = "none";
   document.getElementById("arena").style.opacity = 1;
-  localStorage.setItem('gold',parseInt(localStorage.getItem('gold'))+level+2-(Math.floor(Math.random() * Math.floor(level/2))))
+  localStorage.setItem('gold',Math.floor(parseInt(localStorage.getItem('gold'))/5)+parseInt(localStorage.getItem('gold'))+level+2-(Math.floor(Math.random() * Math.floor(level/2))))
   localStorage.setItem('active','shop') ;
 
 }

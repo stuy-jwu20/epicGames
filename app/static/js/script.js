@@ -8,7 +8,7 @@ c.height = window.innerHeight - (1.6 * parent.offsetHeight);
 var waveNumber = 0 ;
 var level = parseInt(localStorage.getItem("level")) ;
 localStorage.setItem('active','game') ;
-
+var playSnakes;
 
 let snake = new Snake(2) ;
 
@@ -50,6 +50,7 @@ function keyDown(e) {
 
 function snakeGenerate() {
   let newSnake = new Snake(2) ;
+  playSnakes = newSnake;
   var snakes = JSON.parse(localStorage.getItem('snakes')) ;
   var x = 600 ;
   for(var i in snakes) {
@@ -58,10 +59,6 @@ function snakeGenerate() {
     x -= 40 ;
     newSnake.addSegment(temp) ;
   }
-  var snakes = JSON.parse(localStorage.getItem('snakes')) ;
-  console.log(snakes);
-  var hp = document.getElementById("snakeHP");
-  hp.innerHTML = newSnake.segments[0]["name"] + ": " + newSnake.segments[0]["hp"];
   return newSnake ;
 
 }
@@ -93,7 +90,11 @@ function display() {
     snake.moveSnake() ;
   }
   snake.displaySnake() ;
-
+  var hp = document.getElementById("snakeHP");
+  hp.innerHTML = "";
+  for (var i = 0; i < playSnakes.segments.length; i++) {
+    hp.innerHTML += playSnakes.segments[i]["name"] + ": " + playSnakes.segments[i]["hp"] + " ";
+  }
 }
 setInterval(display,10);
 

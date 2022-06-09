@@ -10,14 +10,22 @@ var level = parseInt(localStorage.getItem("level")) ;
 localStorage.setItem('active','game') ;
 
 
-let first = new SnakeSegment('bill','nye','LawnGreen',1,200,100,100,10) ;
-let second = new SnakeSegment('bill','nye','MediumTurquoise',1,160,100,100,10) ;
-let third = new SnakeSegment('bill','nye','LightSalmon',1,120,100,100,10) ;
 let snake = new Snake(2) ;
-snake.addSegment(first) ;
-snake.addSegment(second) ;
-snake.addSegment(third) ;
 
+let colors = ['LawnGreen','LightSalmon','Gold','CornflowerBlue','MediumOrchid'] ;
+var tempX = 600 ;
+for(var i=0;i<(Math.floor(Math.random() * 5))+3;i++) {
+  let temp = new SnakeSegment('epic','games',colors[(Math.floor(Math.random() * 5))],1,tempX,100,100,10) ;
+  snake.addSegment(temp) ;
+  tempX -= 40 ;
+}
+snake.segments[0].angle = 45 - Math.floor(Math.random() * 90)
+if (snake.segments[0].angle < 0) {
+  snake.segments[0].angle += 360 ;
+}
+snake.segments[1].turningPoints.push([snake.segments[0].x,snake.segments[0].y,snake.segments[0].angle]) ;
+
+console.log(snake);
 function keyDown(e) {
   var key = e.keyCode ;
   if (key == 82) {

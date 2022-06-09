@@ -134,7 +134,7 @@ canvas {
   font-size: 2vh;
 }
 
-#reroll:hover, #lock:hover, #go:hover {
+#reroll:hover, #lock:hover, #go:hover, #rerun:hover {
   color: #dcde8c !important;
   transition: 0.9s ease all;
 }

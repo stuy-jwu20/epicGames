@@ -1,18 +1,48 @@
 import { SnakeSegment, Snake } from './snake.js';
 
-var snakeStorage = JSON.parse(localStorage.getItem('snakes')) ;
-var party = document.getElementById("party");
-var maxPartySize = parseInt(localStorage.getItem('maxPartySize')) ;
-var gold = parseInt(localStorage.getItem('gold')) ;
-var goldVar = document.getElementById("goldVar");
-var locked = false ;
-goldVar.innerHTML = "Shop - Gold: " + gold ;
-party.innerHTML = "Party: "+Object.keys(snakeStorage).length+"/"+maxPartySize ;
+var snakeStorage ;
+var party ;
+var maxPartySize ;
+var gold ;
+var goldVar ;
+var locked ;
+var stage ;
+var shopSegments = [] ;
 
-var rand1 = randomSegment() ;
-var rand2 = randomSegment() ;
-var rand3 = randomSegment() ;
-var shopSegments = [rand1,rand2,rand3] ;
+function update(){
+  if (localStorage.getItem("shopUpdate") == 'true') {
+    snakeStorage = JSON.parse(localStorage.getItem('snakes')) ;
+    party = document.getElementById("party") ;
+    maxPartySize = parseInt(localStorage.getItem('maxPartySize')) ;
+    gold = parseInt(localStorage.getItem('gold')) ;
+    goldVar = document.getElementById("goldVar") ;
+    locked = false ;
+    document.getElementById("lock").style.color = "#749ecf" ;
+    stage = document.getElementById("stageLevel");
+    error.innerHTML = '' ;
+    stage.innerHTML = "Stage "+localStorage.getItem("level") ;
+    goldVar.innerHTML = "Shop - Gold: " + gold ;
+    party.innerHTML = "Party: "+Object.keys(snakeStorage).length+"/"+maxPartySize ;
+
+    shopSegments[0] = randomSegment() ;
+    one.innerHTML = "Name: " + shopSegments[0][0]
+    + "  Class: " + shopSegments[0][1] + "  Cost: " + shopSegments[0][3];
+    one.style.color = shopSegments[0][2];
+
+    shopSegments[1] = randomSegment() ;
+    two.innerHTML = "Name: " + shopSegments[1][0]
+    + "  Class: " + shopSegments[1][1] + "  Cost: " + shopSegments[1][3];
+    two.style.color = shopSegments[1][2];
+
+    shopSegments[2] = randomSegment() ;
+    three.innerHTML = "Name: " + shopSegments[2][0]
+    + "  Class: " + shopSegments[2][1] + "  Cost: " + shopSegments[2][3];
+    three.style.color = shopSegments[2][2];
+
+    localStorage.setItem("shopUpdate",'false') ;
+  }
+}
+setInterval(update,10);
 
 function counter(array,value) {
   var number = 0 ;
@@ -238,12 +268,13 @@ function transition() {
 }
 
 function go() {
+  console.log("yes")
   if (Object.keys(snakeStorage).length > 0) {
     localStorage.setItem('snakes',JSON.stringify(snakeStorage)) ;
     localStorage.setItem('gold',gold) ;
     document.getElementById("shop").style.display = "none";
     document.getElementById("game").style.display = "flex";
-    localStorage.setItem('update',"true") ;
+    localStorage.setItem('gameUpdate',"true") ;
     localStorage.setItem('active','game') ;
     if (!(locked)) {
       shopSegments[0] = randomSegment() ;
@@ -264,7 +295,6 @@ function go() {
     transition();
   }
   else {
-    console.log("yes")
     error.innerHTML = "you need at least one snake idiot" ;
   }
 }
@@ -299,21 +329,6 @@ three.addEventListener("click",function(){
                                   three.style.color = shopSegments[2][2];
                                   } ;
                                 }) ;
-
-one.innerHTML = "Name: " + shopSegments[0][0]
-+ "  Class: " + shopSegments[0][1] + "  Cost: " + shopSegments[0][3];
-one.style.color = shopSegments[0][2];
-
-two.innerHTML = "Name: " + shopSegments[1][0]
-+ "  Class: " + shopSegments[1][1] + "  Cost: " + shopSegments[1][3];
-two.style.color = shopSegments[1][2];
-
-three.innerHTML = "Name: " + shopSegments[2][0]
-+ "  Class: " + shopSegments[2][1] + "  Cost: " + shopSegments[2][3];
-three.style.color = shopSegments[2][2];
-
-var stage = document.getElementById("stageLevel");
-stage.innerHTML = "Stage "+localStorage.getItem("level") ;
 
 var rerollButton = document.getElementById("reroll");
 rerollButton.addEventListener("click",reroll);

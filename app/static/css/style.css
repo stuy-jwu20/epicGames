@@ -112,7 +112,7 @@ canvas {
   padding-right: 15px;
 }
 
-#lock, #go, #rerun {
+#lock, #go {
   padding-left: 15px;
   padding-right: 15px;
   color: #749ecf;
@@ -134,7 +134,7 @@ canvas {
   font-size: 2vh;
 }
 
-#reroll:hover, #lock:hover, #go:hover, #rerun:hover {
+#reroll:hover, #lock:hover, #go:hover {
   color: #dcde8c !important;
   transition: 0.9s ease all;
 }

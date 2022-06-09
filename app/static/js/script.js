@@ -90,6 +90,8 @@ function endLevel() {
   document.getElementById("game").style.opacity = "0%";
   document.getElementById("arena").style.display = "none";
   document.getElementById("arena").style.opacity = "0%";
+  document.getElementById("body").classList.remove("transition");
+  document.getElementById("waveText").classList.remove("transitionArena");
   setTimeout(() => {
     document.getElementById("shop").style.display = "flex";
     document.getElementById("shop").classList.add("transitionShop");
@@ -110,10 +112,9 @@ function endLevel() {
     document.getElementById("three").style.display = "block";
     document.getElementById("three").classList.add("transitionShop");
   }, "1500")
-  document.getElementById("loadText").style.display = "block";
-  document.getElementById("loadText").classList.add("transitionLoad");
   document.getElementById("mt").style.display = "none";
-  document.getElementById("body").classList.add("transition");
+  document.getElementById("arena").style.opacity = 1;
+
   localStorage.setItem('active','shop') ;
 
 }

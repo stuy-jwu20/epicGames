@@ -83,6 +83,7 @@ function purchaseSegment(number) {
 
     var temp = document.getElementById("s"+Object.keys(snakeStorage).length);
     temp.innerHTML = (snakeStorage[shopSegments[number][0]]["name"] + ": "+snakeStorage[shopSegments[number][0]]["count"]) ;
+    temp.style.color = snakeStorage[shopSegments[number][0]]["color"];
     shopSegments[number] = randomSegment() ;
     party.innerHTML = "Party: "+Object.keys(snakeStorage).length+"/"+maxPartySize ;
     return true ;

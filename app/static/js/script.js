@@ -6,7 +6,7 @@ var parent = document.getElementById("parent");
 c.width = parent.offsetWidth;
 c.height = window.innerHeight - (1.6 * parent.offsetHeight);
 var waveNumber = 0 ;
-var level = localStorage.getItem("level") ;
+var level = parseInt(localStorage.getItem("level")) ;
 localStorage.setItem('active','game') ;
 
 

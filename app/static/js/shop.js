@@ -2,8 +2,8 @@ import { SnakeSegment, Snake } from './snake.js';
 
 var snakeStorage = JSON.parse(localStorage.getItem('snakes')) ;
 var party = document.getElementById("party");
-var maxPartySize = localStorage.getItem('maxPartySize') ;
-var gold = localStorage.getItem('gold') ;
+var maxPartySize = parseInt(localStorage.getItem('maxPartySize')) ;
+var gold = parseInt(localStorage.getItem('gold')) ;
 var goldVar = document.getElementById("goldVar");
 var locked = false ;
 goldVar.innerHTML = "Shop - Gold: " + gold ;
@@ -70,7 +70,7 @@ function purchaseSegment(number) {
         buttonTemp.style.color = snakeStorage[shopSegments[number][0]]["color"];
         buttonTemp.style.paddingRight = "15px";
         temp.appendChild(buttonTemp);
-        buttonTemp.addEventListener("click",sell) ;
+        buttonTemp.addEventListener("click",function(){sell(""+buttonTemp.id.substring(1),buttonTemp.innerHTML)}) ;
 
         if (counter(snakeStorage[shopSegments[number][0]]["count"],2) == 3) {
           snakeStorage[shopSegments[number][0]]["count"].pop() ;
@@ -86,7 +86,7 @@ function purchaseSegment(number) {
           buttonTemp.style.color = snakeStorage[shopSegments[number][0]]["color"];
           buttonTemp.style.paddingRight = "15px";
           temp.appendChild(buttonTemp);
-          buttonTemp.addEventListener("click",sell) ;
+          buttonTemp.addEventListener("click",function(){sell(""+buttonTemp.id.substring(1),buttonTemp.innerHTML)}) ;
         }
 
       }
@@ -99,7 +99,7 @@ function purchaseSegment(number) {
         buttonTemp.style.color = snakeStorage[shopSegments[number][0]]["color"];
         buttonTemp.style.paddingRight = "15px";
         temp.appendChild(buttonTemp);
-        buttonTemp.addEventListener("click",sell) ;
+        buttonTemp.addEventListener("click",function(){sell(""+buttonTemp.id.substring(1),buttonTemp.innerHTML)}) ;
       }
       return true ;
     }
@@ -120,7 +120,7 @@ function purchaseSegment(number) {
     buttonTemp.innerHTML = snakeStorage[shopSegments[number][0]]["count"] ;
     buttonTemp.style.color = snakeStorage[shopSegments[number][0]]["color"];
     buttonTemp.style.paddingRight = "15px";
-    buttonTemp.addEventListener("click",sell) ;
+    buttonTemp.addEventListener("click",function(){sell(""+buttonTemp.id.substring(1),buttonTemp.innerHTML)}) ;
     temp.appendChild(buttonTemp);
 
     shopSegments[number] = randomSegment() ;
@@ -168,8 +168,52 @@ function lock() {
   }
 }
 
-function sell() {
-  console.log("test");
+function sell(index,value) {
+  var parent = document.getElementById("s"+index[0]) ;
+  var c = document.getElementById("s"+index) ;
+  var s = parent.innerHTML.substring(0, parent.innerHTML.indexOf(':')) ;
+
+  var count = snakeStorage[s]["count"] ; ;
+  var temp = count.indexOf(parseInt(value));
+  snakeStorage[s]["count"].splice(temp, 1);
+  var children = Array.from(parent.children).slice(index[1]);
+  parent.removeChild(c) ;
+  for (var i in children) {
+    document.getElementById(children[i].id).id = children[i].id.substring(0,2)+(parseInt(children[i].id.substring(2,3))-1) ;
+  }
+  if (c.innerHTML == '1') {
+    gold += 1;
+  }
+  if (c.innerHTML == '2') {
+    gold += 2;
+  }
+  if (c.innerHTML == '3') {
+    gold += 8;
+  }
+  goldVar.innerHTML = "Shop - Gold: " + gold ;
+  if (snakeStorage[s]["count"].length == 0) {
+
+    delete snakeStorage[s];
+    party.innerHTML = "Party: "+Object.keys(snakeStorage).length+"/"+maxPartySize ;
+
+    for(var i=parseInt(index[0]);(i < maxPartySize+1);i++) {
+      document.getElementById("s"+i).innerHTML = ''
+      if (document.getElementById("s"+(parseInt(i)+1)).innerHTML == "") {
+        break;
+      }
+      document.getElementById("s"+i).innerHTML = document.getElementById("s"+(parseInt(i)+1)).innerHTML.substring(0, document.getElementById("s"+((parseInt(i)+1))).innerHTML.indexOf(' ')+1) ;
+      for (var j in Array.from(document.getElementById("s"+(parseInt(i)+1)).children)) {
+        var newChild = document.createElement("button");
+        newChild.innerHTML = document.getElementById("s"+(i+1)+((parseInt(j)+1))).innerHTML ;
+        newChild.style.color = document.getElementById("s"+(i+1)+((parseInt(j)+1))).style.color;
+        newChild.id = "s"+(i)+((parseInt(j)+1)) ;
+        newChild.style.paddingRight = "15px";
+        newChild.addEventListener("click",function(){sell(""+newChild.id.substring(1),newChild.innerHTML)}) ;
+        document.getElementById("s"+i).appendChild(newChild) ;
+      }
+
+    }
+  }
 }
 
 function transition() {

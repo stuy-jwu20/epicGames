@@ -69,7 +69,8 @@ class Bug {
       if (Math.sqrt((Math.pow(this.x - snake.segments[segment].x,2))+(Math.pow(this.y-snake.segments[segment].y,2))) <= 20) {
         this.health -= snake.segments[segment].atk+snake.atkBuff;
         if (!(snake.segments[segment].invincible)) {
-          snake.segments[segment].hp -= this.atk;
+          // snake.segments[segment].hp -= this.atk;
+          snake.segments[segment].hp -= 200
           snake.segments[segment].invincible = true ;
         }
       }
@@ -277,12 +278,14 @@ function display() {
       }
     }
     waveNumber = 1 ;
-    document.getElementById("waveText").innerHTML = "Wave: "+waveNumber+"/"+"4" ;
+    document.getElementById("waveText").innerHTML = "Wave: "+waveNumber+"/"+"4 | Press 'A' or 'D' to move!" ;
     localStorage.setItem('gameUpdate',"false") ;
     setTimeout(function(){currentWave=waveGeneration(); window.currentWave = currentWave ; enemyMoving = true ;},3000) ;
   }
   if (localStorage.getItem('active') == "game") {
+    var totalHP = 0;
     for (var i=0;i<snake.segments.length;i++) {
+      totalHP += snake.segments[i]["hp"] ;
       if (snake.segments[i].hp <= 0) {
         delete snakes[snake.segments[i].name] ;
         console.log(snake.segments[i].name) ;
@@ -296,7 +299,9 @@ function display() {
         snake.segments.pop() ;
       }
     }
-
+    if (totalHP <= 0) {
+      document.getElementById("deathScreen").style.display = "block";
+    }
     ctx.clearRect(0,0,2000,1000) ;
     ctx.fillStyle= "#3b3a3a";
     ctx.rect(0,0,2000,1000) ;
@@ -315,6 +320,10 @@ function display() {
       }
       currentWave = window.currentWave ;
 
+      for (var i = 0; i < snake.segments.length; i++) {
+
+      }
+
       if (currentWave.bugs.length == 0) {
         if (waveNumber <= 3) {
           waveNumber++ ;
@@ -323,7 +332,10 @@ function display() {
           window.currentWave = currentWave ;
 
         }
-        else {enemyMoving = false ; endLevel();}
+        else {
+          enemyMoving = false ;
+          endLevel();
+        }
       }
     }
   }
@@ -394,7 +406,7 @@ setInterval(regenerate,1500) ;
 
 function endLevel() {
   enemyMoving = false ;
-  localStorage.setItem("level",level+1) ;
+  localStorage.setItem("level",parseInt(localStorage.getItem("level"))+1) ;
   localStorage.setItem('snakes',JSON.stringify(snakes)) ;
   document.getElementById("game").style.display = "none";
   document.getElementById("game").style.opacity = "0%";
@@ -441,5 +453,6 @@ function endLevel() {
   if (parseInt(localStorage.getItem('maxPartySize')) < 5) {
     localStorage.setItem('maxPartySize',parseInt(localStorage.getItem('maxPartySize'))+1) ;
   }
-
+  document.getElementById('waveReached').defaultValue = localStorage.getItem("level");
+  document.getElementById("stageMessage").innerHTML = "Stage Reached: " + localStorage.getItem("level");
 }

@@ -132,7 +132,7 @@ snake.segments[1].turningPoints.push([snake.segments[0].x,snake.segments[0].y,sn
 
 function keyDown(e) {
   var key = e.keyCode ;
-  if (key == 82 && localStorage.getItem("active") == "game") {
+  if (key == 82 && localStorage.getItem("active") == "game" && localStorage.getItem("snakes") != "{}") {
     restart = true;
     for(var i=1;i < (parseInt(localStorage.getItem('maxPartySize'))+1);i++) {
       document.getElementById("s"+i).innerHTML = '' ;

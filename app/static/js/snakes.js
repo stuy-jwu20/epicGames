@@ -7,20 +7,34 @@ function dist(x1, y1, x2, y2){
 
 class speedsters extends snakeSegment{
   constructor(level,x,y,hp,atk,atkSpeed) {
-    super("speedster", "speedsters", "FFFF33", level, x, y, 80 + hp, 20 + atk, 4 - atkSpeed);
+    super("speedster", "speedsters", "FFFF33", level, x, y, 80 + hp, 20 + atk, 3000 - atkSpeed);
   }
 
   function shoot(){
+    var c = document.getElementById('game');
+    var ctx = c.getContext('2d');
+    ctx.strokeStyle = this.color;
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.moveTo(this.x, this.y);
+    ctx.lineTo(wave.bugs[0].x, wave.bugs[0].y);
     wave.bugs[0].health -= atk;
   }
 }
 
 class rangers extends snakeSegment{
   constructor(level, x, y, hp, atk, atkSpeed){
-    super("ranger", "rangers", "2C9200", level, x, y, 85 + hp, 15 + atk, 6 - atkSpeed);
+    super("ranger", "rangers", "2C9200", level, x, y, 85 + hp, 15 + atk, 5000 - atkSpeed);
   }
 
   function shoot(){
+    var c = document.getElementById('game');
+    var ctx = c.getContext('2d');
+    ctx.strokeStyle = this.color;
+    ctx.lineWidth = 4;
+    ctx.beginPath();
+    ctx.moveTo(this.x, this.y);
+    ctx.lineTo(wave.bugs[0].x, wave.bugs[0].y);
     wave.bugs[0].health -= atk;
   }
 }

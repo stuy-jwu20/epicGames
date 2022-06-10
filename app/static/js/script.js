@@ -12,6 +12,7 @@ localStorage.setItem('active','game') ;
 var currentWave ;
 var restart = false ;
 var enemyMoving = false ;
+var snakes ;
 
 class Wave {
   constructor(){
@@ -32,7 +33,6 @@ function waveGeneration() {
     var tempBug = new Bug('bug',40,10,2,7,'LightCoral',locations[rand][0]-30+Math.floor(Math.random() * 60),locations[rand][1]-20+Math.floor(Math.random() * 40),level) ;
     tempWave.addBug(tempBug) ;
   }
-  console.log(tempWave);
   return tempWave ;
 }
 
@@ -50,9 +50,8 @@ class Bug {
   }
 
   move() {
-    var target = snake.segments[(Math.floor(Math.random() * (snake.segments.length-1)))] ;
-    console.log()
-    var angle = Math.atan2( this.y - target.y, this.x - target.x ) * ( 180 / Math.PI ) - 180 ;
+    var targetSegment = snake.segments[(Math.floor(Math.random() * (snake.segments.length-1)))] ;
+    var angle = Math.atan2( this.y - targetSegment.y, this.x - targetSegment.x ) * ( 180 / Math.PI ) - 180 ;
     if (angle < 0) {
       angle += 360 ;
     }
@@ -62,10 +61,13 @@ class Bug {
   }
 
   collide() {
-    for(segment in snake.segments) {
-      if(Math.sqrt((Math.pow(this.x - segment.x,2))+(Math.pow(this.y-segment.y,2))) <= this.size){
-        this.health -= segment.atk;
-        segment.health -= this.atk;
+    for(var segment in snake.segments) {
+      if (Math.sqrt((Math.pow(this.x - snake.segments[segment].x,2))+(Math.pow(this.y-snake.segments[segment].y,2))) <= 20) {
+        this.health -= snake.segments[segment].atk;
+        if (!(snake.segments[segment].invincible)) {
+          snake.segments[segment].hp -= this.atk;
+          snake.segments[segment].invincible = true ;
+        }
       }
     }
   }
@@ -135,7 +137,7 @@ snake.segments[1].turningPoints.push([snake.segments[0].x,snake.segments[0].y,sn
 
 function keyDown(e) {
   var key = e.keyCode ;
-  if (key == 82 && localStorage.getItem("active") == "game") {
+  if (key == 82 && localStorage.getItem("active") == "game" && localStorage.getItem("snakes") != "{}") {
     restart = true;
     for(var i=1;i < (parseInt(localStorage.getItem('maxPartySize'))+1);i++) {
       document.getElementById("s"+i).innerHTML = '' ;
@@ -195,12 +197,30 @@ document.addEventListener("keyup",keyUp);
 
 function display() {
   if (localStorage.getItem('gameUpdate') == "true") {
+    snakes = JSON.parse(localStorage.getItem('snakes')) ;
+
     snake = snakeGenerate() ;
     waveNumber = 1 ;
+    document.getElementById("waveText").innerHTML = "Wave: "+waveNumber+"/"+"4" ;
     localStorage.setItem('gameUpdate',"false") ;
     setTimeout(function(){currentWave=waveGeneration(); enemyMoving = true ;},3000) ;
   }
   if (localStorage.getItem('active') == "game") {
+    for (var i=0;i<snake.segments.length;i++) {
+      if (snake.segments[i].hp <= 0) {
+        delete snakes[snake.segments[i].name] ;
+        console.log(snake.segments[i].name) ;
+        for (var j=i;j<snake.segments.length-1;j++) {
+          var tempX = snake.segments[j].x ;
+          var tempY = snake.segments[j].y ;
+          snake.segments[i] = snake.segments[i+1] ;
+          snake.segments[i].x = tempX ;
+          snake.segments[i].y = tempY ;
+        }
+        snake.segments.pop() ;
+      }
+    }
+
     ctx.clearRect(0,0,2000,1000) ;
     ctx.fillStyle= "#3b3a3a";
     ctx.rect(0,0,2000,1000) ;
@@ -210,15 +230,16 @@ function display() {
     if (enemyMoving) {
       for (var bug=0;bug<currentWave.bugs.length;bug++) {
         currentWave.bugs[bug].displayBug();
-        if (currentWave.bugs[bug].hp <= 0) {
+        if (currentWave.bugs[bug].health <= 0) {
           currentWave.bugs.splice(bug,1) ;
           bug-- ;
         }
       }
       if (currentWave.bugs.length == 0) {
         if (waveNumber <= 3) {
-          wave++ ;
-          currentWave=waveGeneration();
+          waveNumber++ ;
+          document.getElementById("waveText").innerHTML = "Wave: "+waveNumber+"/"+"4" ;
+          currentWave = waveGeneration();
         }
         else {enemyMoving = false ; endLevel();}
       }
@@ -259,9 +280,39 @@ function spit(){
 
 setInterval(spit, 5000);
 
+function enemyCollide() {
+
+  if (enemyMoving) {
+    for (var i=0; i<snake.segments.length; i++) {
+      if (snake.segments[i].invincible) {
+        snake.segments[i].invincible = false ;
+      }
+    }
+    for (var bug=0;bug<currentWave.bugs.length;bug++) {
+      currentWave.bugs[bug].collide();
+    }
+
+  }
+}
+
+setInterval(enemyCollide,500);
+
+function regenerate() {
+  if (enemyMoving) {
+    for (var i=0; i<snake.segments.length; i++) {
+      if (snake.segments[i].hp  < 100) {
+        snake.segments[i].hp += 2 ;
+      }
+    }
+  }
+}
+
+setInterval(regenerate,1000) ;
+
 function endLevel() {
   enemyMoving = false ;
   localStorage.setItem("level",level+1) ;
+  localStorage.setItem('snakes',JSON.stringify(snakes)) ;
   document.getElementById("game").style.display = "none";
   document.getElementById("game").style.opacity = "0%";
   document.getElementById("arena").style.display = "none";
@@ -303,5 +354,9 @@ function endLevel() {
   document.getElementById("arena").style.opacity = 1;
   localStorage.setItem('gold',Math.floor(parseInt(localStorage.getItem('gold'))/5)+parseInt(localStorage.getItem('gold'))+level+2-(Math.floor(Math.random() * Math.floor(level/2))))
   localStorage.setItem('active','shop') ;
+  localStorage.setItem("shopUpdate", 'true') ;
+  if (parseInt(localStorage.getItem('maxPartySize')) < 5) {
+    localStorage.setItem('maxPartySize',parseInt(localStorage.getItem('maxPartySize'))+1) ;
+  }
 
 }

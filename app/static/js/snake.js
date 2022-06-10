@@ -11,6 +11,7 @@ export class SnakeSegment {
     this.atk = atk;
     this.atkSpeed = atkSpeed;
     this.angle = 0 ;
+    this.invincible = false ;
   }
   getXY() {
     return [this.x,this.y] ;
@@ -205,6 +206,9 @@ export class Snake {
       ctx.beginPath();
       ctx.arc(segment.x, segment.y, 20, 0, 2 * Math.PI);
       ctx.fillStyle = segment.color ;
+      if (segment.invincible) {
+        ctx.fillStyle = 'white' ;
+      }
       ctx.fill();
       ctx.stroke();
     }

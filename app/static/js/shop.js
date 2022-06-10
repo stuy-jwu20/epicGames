@@ -39,6 +39,26 @@ function update(){
     + "  Class: " + shopSegments[2][1] + "  Cost: " + shopSegments[2][3];
     three.style.color = shopSegments[2][2];
 
+    for (var i=1;i<Object.keys(snakeStorage).length+1;i++) {
+      var temp = document.getElementById("s"+i);
+      temp.innerHTML = snakeStorage[Object.keys(snakeStorage)[i-1]]["name"] + ": " ;
+      for(var j=0; j<snakeStorage[Object.keys(snakeStorage)[i-1]]["count"].length;j++) {
+
+        var buttonTemp = document.createElement("button") ;
+        buttonTemp.id = "s"+i+(j+1) ;
+        console.log(buttonTemp.id)
+
+        buttonTemp.innerHTML = snakeStorage[Object.keys(snakeStorage)[i-1]]["count"][j] ;
+        buttonTemp.style.color = snakeStorage[Object.keys(snakeStorage)[i-1]]["color"] ;
+        buttonTemp.style.paddingRight = "15px";
+        temp.appendChild(buttonTemp);
+        buttonTemp.addEventListener("click",function(){sell(""+buttonTemp.id.substring(1),buttonTemp.innerHTML)}) ;
+      }
+    }
+    for (var i=Object.keys(snakeStorage).length+1;i<=5;i++) {
+      var temp = document.getElementById("s"+i);
+      temp.innerHTML = [] ;
+    }
     localStorage.setItem("shopUpdate",'false') ;
     localStorage.setItem("active", "shop");
   }

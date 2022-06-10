@@ -55,8 +55,8 @@ class Bug {
     if (angle < 0) {
       angle += 360 ;
     }
-    this.x += Math.cos((angle-60+Math.floor(Math.random()*120))*(Math.PI/180))*this.speed*0.7 ;
-    this.y += Math.sin((angle-60+Math.floor(Math.random()*120))*(Math.PI/180))*this.speed*0.7 ;
+    this.x += Math.cos((angle-60+Math.floor(Math.random()*120))*(Math.PI/180))*this.speed * 1.2 ;
+    this.y += Math.sin((angle-60+Math.floor(Math.random()*120))*(Math.PI/180))*this.speed * 1.2 ;
 
   }
 
@@ -206,7 +206,6 @@ function display() {
     snake.moveSnake() ;
     if (enemyMoving) {
       for (var bug=0;bug<currentWave.bugs.length;bug++) {
-        currentWave.bugs[bug].move();
         currentWave.bugs[bug].displayBug();
         if (currentWave.bugs[bug].hp <= 0) {
           currentWave.bugs.splice(bug,1) ;
@@ -230,6 +229,16 @@ function display() {
   }
 }
 setInterval(display,10);
+
+function enemyMove() {
+  if (enemyMoving) {
+    for (var bug=0;bug<currentWave.bugs.length;bug++) {
+      currentWave.bugs[bug].move();
+    }
+  }
+}
+
+setInterval(enemyMove,30);
 
 
 

@@ -8,6 +8,7 @@ export class SnakeSegment {
     this.y = y ;
     this.turningPoints = [] ;
     this.hp = hp ;
+    this.maxhp = hp ;
     this.atk = atk;
     this.atkSpeed = atkSpeed;
     this.angle = 0 ;

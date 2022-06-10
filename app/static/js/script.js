@@ -1,5 +1,5 @@
 import { SnakeSegment, Snake } from './snake.js';
-import * as hero from './snakes.js';
+import { Speedster, Fighter, Nuker, Ranger, Supporter} from './snakes.js';
 
 var c = document.getElementById('game'); // GET CANVAS
 var ctx = c.getContext('2d');
@@ -9,7 +9,7 @@ c.height = window.innerHeight - (1.6 * parent.offsetHeight);
 var waveNumber = 0 ;
 var level = parseInt(localStorage.getItem("level")) ;
 localStorage.setItem('active','game') ;
-var currentWave ;
+var currentWave = window.currentWave;
 var restart = false ;
 var enemyMoving = false ;
 var snakes ;
@@ -30,8 +30,12 @@ function waveGeneration() {
   var locations = [[50,30],[50,c.height-30],[c.width-50,30],[c.width-50,c.height-30]] ;
   for(var i=0;i<level*2+10;i++) {
     var rand = Math.floor(Math.random() * 4) ;
-    var tempBug = new Bug('bug',40,10,2,7,'LightCoral',locations[rand][0]-30+Math.floor(Math.random() * 60),locations[rand][1]-20+Math.floor(Math.random() * 40),level) ;
+    var tempBug = new Bug('bug',40+(level*20),10+(level*2),2,7,'LightCoral',locations[rand][0]-30+Math.floor(Math.random() * 60),locations[rand][1]-20+Math.floor(Math.random() * 40),level) ;
     tempWave.addBug(tempBug) ;
+    if (level > 1 && (Math.floor(Math.random() * 4) == 0)) {
+      var temp = new Spitter(locations[rand][0]-30+Math.floor(Math.random() * 60),locations[rand][1]-20+Math.floor(Math.random() * 40),level) ;
+      tempWave.addBug(temp) ;
+    }
   }
   return tempWave ;
 }
@@ -63,7 +67,7 @@ class Bug {
   collide() {
     for(var segment in snake.segments) {
       if (Math.sqrt((Math.pow(this.x - snake.segments[segment].x,2))+(Math.pow(this.y-snake.segments[segment].y,2))) <= 20) {
-        this.health -= snake.segments[segment].atk;
+        this.health -= snake.segments[segment].atk+snake.atkBuff;
         if (!(snake.segments[segment].invincible)) {
           snake.segments[segment].hp -= this.atk;
           snake.segments[segment].invincible = true ;
@@ -112,10 +116,11 @@ class Spitter extends Bug {
   };
 
   shoot() {
-    pellet = new roach(this.x, this.y, 1)
+    pellet = new Roach(this.x, this.y, 1)
     pellet.setHealth(1);
     pellet.setSpeed(10);
-    wave.addBug(pellet)
+    currentWave.addBug(pellet)
+    window.currentWave = currentWave ;
   };
 }
 
@@ -174,9 +179,31 @@ function snakeGenerate() {
   var newSnake = new Snake(2);
   for(var i in snakes) {
     var data = snakes[i] ;
-    var temp = new SnakeSegment(data["name"],data["class"],data["color"],data["count"][0],x,100,100,10) ;
+
+    var temp ;
+    if (data["name"] == "Speedster") {
+      temp = new Speedster(data["count"][0],x,100,100,100,10) ;
+      newSnake.addSegment(temp) ;
+    }
+    if (data["name"] == "Ranger") {
+      temp = new Ranger(data["count"][0],x,100,100,100,10) ;
+      newSnake.addSegment(temp) ;
+    }
+    if (data["name"] == "Nuker") {
+      temp = new Nuker(data["count"][0],x,100,100,100,10) ;
+      newSnake.addSegment(temp) ;
+    }
+
+    if (data["name"] == "Supporter") {
+      temp = new Supporter(data["count"][0],x,100,100,100,10) ;
+      newSnake.addSegment(temp) ;
+    }
+
+    if (data["name"] == "Fighter") {
+      temp = new Fighter(data["count"][0],x,100,100,100,10) ;
+      newSnake.addSegment(temp) ;
+    }
     x -= 40 ;
-    newSnake.addSegment(temp) ;
   }
   return newSnake ;
 
@@ -200,10 +227,16 @@ function display() {
     snakes = JSON.parse(localStorage.getItem('snakes')) ;
 
     snake = snakeGenerate() ;
+    for (var i = 0; i < snake.segments.length; i++){
+      if (snake.segments[i].type == "Green" || snake.segments[i].type == "Blue") {
+        var a = snake.segments[i] ;
+        setInterval(function(){if (enemyMoving) {a.shoot();}}, snake.segments[i].atkSpeed);
+      }
+    }
     waveNumber = 1 ;
     document.getElementById("waveText").innerHTML = "Wave: "+waveNumber+"/"+"4" ;
     localStorage.setItem('gameUpdate',"false") ;
-    setTimeout(function(){currentWave=waveGeneration(); enemyMoving = true ;},3000) ;
+    setTimeout(function(){currentWave=waveGeneration(); window.currentWave = currentWave ; enemyMoving = true ;},3000) ;
   }
   if (localStorage.getItem('active') == "game") {
     for (var i=0;i<snake.segments.length;i++) {
@@ -228,18 +261,24 @@ function display() {
     snake.updateAngle() ;
     snake.moveSnake() ;
     if (enemyMoving) {
+      currentWave = window.currentWave ;
       for (var bug=0;bug<currentWave.bugs.length;bug++) {
         currentWave.bugs[bug].displayBug();
         if (currentWave.bugs[bug].health <= 0) {
           currentWave.bugs.splice(bug,1) ;
           bug-- ;
+          window.currentWave = currentWave ;
         }
       }
+      currentWave = window.currentWave ;
+
       if (currentWave.bugs.length == 0) {
         if (waveNumber <= 3) {
           waveNumber++ ;
           document.getElementById("waveText").innerHTML = "Wave: "+waveNumber+"/"+"4" ;
           currentWave = waveGeneration();
+          window.currentWave = currentWave ;
+
         }
         else {enemyMoving = false ; endLevel();}
       }
@@ -256,25 +295,25 @@ setInterval(display,10);
 
 function enemyMove() {
   if (enemyMoving) {
+    currentWave = window.currentWave ;
     for (var bug=0;bug<currentWave.bugs.length;bug++) {
       currentWave.bugs[bug].move();
     }
+    window.currentWave = currentWave ;
   }
 }
 
 setInterval(enemyMove,30);
 
-for(hero in snake){
-  if (hero.type = "rangers" OR hero.type = "speedsters"){
-    setInterval(hero.shoot(), hero.atkSpeed);
-  }
-}
-
 function spit(){
-  for(bug in currentWave.bugs){
-    if(bug.name = "spitter"){
-      bug.shoot();
+  if (enemyMoving) {
+    currentWave = window.currentWave ;
+    for (var bug=0;bug<currentWave.bugs.length;bug++) {
+      if (currentWave.bugs[bug].name == "spitter") {
+        currentWave.bugs[bug].shoot();
+      }
     }
+    window.currentWave = currentWave ;
   }
 }
 
@@ -288,26 +327,27 @@ function enemyCollide() {
         snake.segments[i].invincible = false ;
       }
     }
+    currentWave = window.currentWave ;
     for (var bug=0;bug<currentWave.bugs.length;bug++) {
       currentWave.bugs[bug].collide();
     }
-
+    window.currentWave = currentWave ;
   }
 }
 
-setInterval(enemyCollide,500);
+setInterval(enemyCollide,400);
 
 function regenerate() {
   if (enemyMoving) {
     for (var i=0; i<snake.segments.length; i++) {
-      if (snake.segments[i].hp  < 100) {
+      if (snake.segments[i].hp  < snake.segments[i].maxhp+snake.healthBuff) {
         snake.segments[i].hp += 2 ;
       }
     }
   }
 }
 
-setInterval(regenerate,1000) ;
+setInterval(regenerate,1500) ;
 
 function endLevel() {
   enemyMoving = false ;

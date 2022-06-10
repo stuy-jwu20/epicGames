@@ -139,3 +139,6 @@ josephineL -- 2022-06-08 09:25
 - Started connecting username to database using jQuery
 - Fixed blank username input
 - Worked more on leaderboard
+
+josephineL -- 2022-06-10 00:01
+- Uploaded updated design doc (deleted jQuery stuff)

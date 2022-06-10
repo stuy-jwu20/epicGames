@@ -74,7 +74,7 @@ function counter(array,value) {
 }
 
 function randomSegment() {
-  let rand = (Math.floor(Math.random() * 5)) ;
+  let rand = (Math.floor(Math.random() * 15)) ;
   if (rand == 0) {
     return ['Ranger','Green','LawnGreen',1] ;
   }
@@ -90,7 +90,36 @@ function randomSegment() {
   if (rand == 4) {
     return ['Supporter','Purple','MediumOrchid',1] ;
   }
-
+  if (rand == 5) {
+    return ['Sniper','Green','LawnGreen',1] ;
+  }
+  if (rand == 6) {
+    return ['Bomber','Orange','LightSalmon',1] ;
+  }
+  if (rand == 7) {
+    return ['Guard','Yellow','Gold',1] ;
+  }
+  if (rand == 8) {
+    return ['Runner','Blue','CornflowerBlue',1] ;
+  }
+  if (rand == 9) {
+    return ['Healer','Purple','MediumOrchid',1] ;
+  }
+  if (rand == 10) {
+    return ['Deadeye','Green','LawnGreen',1] ;
+  }
+  if (rand == 11) {
+    return ['Boomer','Orange','LightSalmon',1] ;
+  }
+  if (rand == 12) {
+    return ['Knight','Yellow','Gold',1] ;
+  }
+  if (rand == 13) {
+    return ['Maglev','Blue','CornflowerBlue',1] ;
+  }
+  if (rand == 14) {
+    return ['Cultist','Purple','MediumOrchid',1] ;
+  }
 }
 var error = document.getElementById("error");
 

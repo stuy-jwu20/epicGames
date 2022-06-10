@@ -183,3 +183,11 @@ jesseX -- 2022-06-10 01:39
 - Worked on class stuff
 - Worked on enemies
 - Worked on other stuff probably
+
+jonathanW -- 2022-06-10 03:14
+- Did database
+- More styling
+- Added death screens
+- Fixed a lot of bugs
+- Stress tested
+- Probably a lot of other stuff?

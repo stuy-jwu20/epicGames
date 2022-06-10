@@ -328,9 +328,7 @@ var one = document.getElementById("one");
 one.addEventListener("click",function(){
                                 if (purchaseSegment(0)) {
                                   shopSegments[0] = randomSegment() ;
-                                  one.innerHTML = "Name: " + shopSegments[0][0]
-                                  + "  Class: " + shopSegments[0][1] + "  Cost: " + shopSegments[0][3];
-                                  one.style.color = shopSegments[0][2];
+                                  one.innerHTML = "" ;
                                   } ;
                                 }) ;
 
@@ -338,9 +336,7 @@ var two = document.getElementById("two");
 two.addEventListener("click",function(){
                                 if (purchaseSegment(1)) {
                                   shopSegments[1] = randomSegment() ;
-                                  two.innerHTML = "Name: " + shopSegments[1][0]
-                                  + "  Class: " + shopSegments[1][1] + "  Cost: " + shopSegments[1][3];
-                                  two.style.color = shopSegments[1][2];
+                                  two.innerHTML = "" ;
                                   } ;
                                 }) ;
 
@@ -348,10 +344,7 @@ var three = document.getElementById("three");
 three.addEventListener("click",function(){
                                 if (purchaseSegment(2)) {
                                   shopSegments[2] = randomSegment() ;
-                                  three.innerHTML = "Name: " + shopSegments[2][0]
-                                  + "  Class: " + shopSegments[2][1] + "  Cost: " + shopSegments[2][3];
-                                  three.setAttribute("color",shopSegments[2][2]) ;
-                                  three.style.color = shopSegments[2][2];
+                                  three.innerHTML = "" ;
                                   } ;
                                 }) ;
 

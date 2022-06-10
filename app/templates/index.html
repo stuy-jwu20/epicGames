@@ -19,8 +19,8 @@ P04 -- SoftDev Project 2021-22
   <script>
   localStorage.clear();
   localStorage.setItem('snakes',JSON.stringify({})) ;
-  localStorage.setItem('maxPartySize',3) ;
-  localStorage.setItem('gold',3) ;
+  localStorage.setItem('maxPartySize',5) ;
+  localStorage.setItem('gold',50) ;
   localStorage.setItem('level',1) ;
   function myFunction() {
     let text;
@@ -92,14 +92,12 @@ P04 -- SoftDev Project 2021-22
       <!-- <div id="deathScreen">
         <p id="deathMessage"> You Died... </p>  <br>
         <p> Stage Reached: 1 </p> <br>
-        <p id="submit"> Submit to Leaderboard? </p> <br>
-          <form action = "pythnx" method = "POST">
-            <div id="inputs">
-              <label for="user" class="p"> Username: </label>
-              <input type="text" id="user" name="user">
-              <input type="text" id="score" name="score">
-              <input type="text" id="mode" name="mode">
-            </div>
+        <form action = "d" method = "POST">
+          <input type="text" id="user" name="user">
+          <input type="text" id="waveReached" name="waveReached">
+          <input type="text" id="teamComposition" name="teamComposition">
+          <button id="submit"> Submit to Leaderboard?</button>
+        </form>
         <p> Restart Run? (r) </p>
       </div> -->
       <canvas width=window.innerWidth height=window.innerHeight; id="game"></canvas>
@@ -155,7 +153,7 @@ P04 -- SoftDev Project 2021-22
     </body>
     <script>
       var audio = document.getElementById("music");
-      audio.volume = 0.2;
+      audio.volume = 0.1;
       function openForm() {
         document.getElementById("myForm").style.display = "block";
       }

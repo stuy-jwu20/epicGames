@@ -238,15 +238,18 @@ canvas {
 
 #deathScreen {
   position: fixed;
-  display: block;
+  display: none;
   justify-content: center;
   align-items: center;
   text-align: center;
-  backdrop-filter: blur(50px);
 }
 
 #deathMessage {
   color: LightSalmon;
+}
+
+#stageMessage {
+  color: #56a67b;
 }
 
 #submit {
@@ -259,8 +262,26 @@ canvas {
   padding-bottom: 40px;
 }
 
-#user, #waveReached, #teamComposition {
+#username, #waveReached, #teamComposition, #submitButton {
   display: none;
+}
+
+table, tr, th, td {
+  padding: 20px;
+}
+
+input {
+  border: none;
+  height: 4rem;
+  background: none;
+  color: #749ecf;
+  margin-top: -20px;
+}
+
+input:hover {
+  color: #dcde8c;
+  text-shadow: 0px 0px 10px black;
+  transition: 0.9s ease all;
 }
 
 /* Animations */

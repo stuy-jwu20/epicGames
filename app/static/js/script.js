@@ -1,4 +1,5 @@
 import { SnakeSegment, Snake } from './snake.js';
+import * as hero from './snakes.js';
 
 var c = document.getElementById('game'); // GET CANVAS
 var ctx = c.getContext('2d');
@@ -81,7 +82,7 @@ class Bug {
 
 class Roach extends Bug {
   constructor(x, y, lvl){
-    super(60 * (lvl/5), 15 * (lvl/5), 2, 2, RED, x, y, lvl);
+    super("roach", 60 * (lvl/5), 15 * (lvl/5), 2, 2, RED, x, y, lvl);
   };
 
   setSpeed(speed){
@@ -105,7 +106,7 @@ class Roach extends Bug {
 
 class Spitter extends Bug {
   constructor(x, y, lvl){
-    super(40 * (lvl/5), 20 * (lvl/5), 1, 2, BLUE, x, y, lvl);
+    super("spitter", 40 * (lvl/5), 20 * (lvl/5), 1, 2, BLUE, x, y, lvl);
   };
 
   shoot() {
@@ -242,7 +243,21 @@ function enemyMove() {
 
 setInterval(enemyMove,30);
 
+for(hero in snake){
+  if (hero.type = "rangers" OR hero.type = "speedsters"){
+    setInterval(hero.shoot(), hero.atkSpeed);
+  }
+}
 
+function spit(){
+  for(bug in currentWave.bugs){
+    if(bug.name = "spitter"){
+      bug.shoot();
+    }
+  }
+}
+
+setInterval(spit, 5000);
 
 function endLevel() {
   enemyMoving = false ;

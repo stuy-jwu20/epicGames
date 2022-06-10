@@ -203,6 +203,49 @@ function snakeGenerate() {
       temp = new Fighter(data["count"][0],x,100,100,100,10) ;
       newSnake.addSegment(temp) ;
     }
+    if (data["name"] == "Runner") {
+      temp = new Speedster(data["count"][0],x,100,100,100,10) ;
+      newSnake.addSegment(temp) ;
+    }
+    if (data["name"] == "Sniper") {
+      temp = new Ranger(data["count"][0],x,100,100,100,10) ;
+      newSnake.addSegment(temp) ;
+    }
+    if (data["name"] == "Blaster") {
+      temp = new Nuker(data["count"][0],x,100,100,100,10) ;
+      newSnake.addSegment(temp) ;
+    }
+
+    if (data["name"] == "Healer") {
+      temp = new Supporter(data["count"][0],x,100,100,100,10) ;
+      newSnake.addSegment(temp) ;
+    }
+
+    if (data["name"] == "Guard") {
+      temp = new Fighter(data["count"][0],x,100,100,100,10) ;
+      newSnake.addSegment(temp) ;
+    }if (data["name"] == "Maglev") {
+      temp = new Speedster(data["count"][0],x,100,100,100,10) ;
+      newSnake.addSegment(temp) ;
+    }
+    if (data["name"] == "Deadeye") {
+      temp = new Ranger(data["count"][0],x,100,100,100,10) ;
+      newSnake.addSegment(temp) ;
+    }
+    if (data["name"] == "Boomer") {
+      temp = new Nuker(data["count"][0],x,100,100,100,10) ;
+      newSnake.addSegment(temp) ;
+    }
+
+    if (data["name"] == "Cultist") {
+      temp = new Supporter(data["count"][0],x,100,100,100,10) ;
+      newSnake.addSegment(temp) ;
+    }
+
+    if (data["name"] == "Knight") {
+      temp = new Fighter(data["count"][0],x,100,100,100,10) ;
+      newSnake.addSegment(temp) ;
+    }
     x -= 40 ;
   }
   return newSnake ;

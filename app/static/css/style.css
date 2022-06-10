@@ -219,8 +219,9 @@ canvas {
 }
 
 #snakeHP {
+  white-space: normal;
   position: fixed;
-  font-size: 0.75em;
+  font-size: 0.5em;
   height: 7%;
   padding-top: 20px;
   padding-bottom: 20px;
@@ -230,8 +231,8 @@ canvas {
 }
 
 #s1, #s2, #s3, #s4, #s5 {
-  font-size: 0.75em;
-  padding: 20px;
+  font-size: 0.6em;
+  padding: 10px;
   margin-bottom: 0px;
 }
 
@@ -250,12 +251,18 @@ canvas {
 
 #submit {
   color: #749ecf;
+  padding-bottom: 40px;
 }
 
-#input, #inputs {
-  border: 0;
-  outline: 0;
+#submit:hover {
+  color: #dcde8c;
+  padding-bottom: 40px;
 }
+
+#user, #waveReached, #teamComposition {
+  display: none;
+}
+
 /* Animations */
 
 .breathe {

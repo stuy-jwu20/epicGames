@@ -279,10 +279,3 @@ function endLevel() {
   localStorage.setItem('active','shop') ;
 
 }
-
-let audio = new Audio("../static/assets/music/Trailer - Ember.ogg");
-
-let volume = document.querySelector("#volume-control");
-volume.addEventListener("change", function(e) {
-audio.volume = e.currentTarget.value / 100;
-})

@@ -10,7 +10,7 @@ P04 -- SoftDev Project 2021-22
     <meta charset="utf-8">
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon"/>
+    <link rel="icon" href="../static/assets/images/favicon.ico" type="image/x-icon"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <link rel="stylesheet" href="/static/css/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -35,6 +35,8 @@ P04 -- SoftDev Project 2021-22
       document.getElementById("shop").classList.add("transitionShop");
       document.getElementById("goldVar").style.display = "block";
       document.getElementById("goldVar").classList.add("transitionShop");
+      document.getElementById("rerun").style.display = "block";
+      document.getElementById("rerun").classList.add("transitionShop");
       document.getElementById("reroll").style.display = "block";
       document.getElementById("reroll").classList.add("transitionShop");
       document.getElementById("lock").style.display = "block";
@@ -61,22 +63,6 @@ P04 -- SoftDev Project 2021-22
     goldVar.innerHTML = "Shop - Gold: " + gold ;
   }
   </script>
-
-  <script>
-    function showLeaders(){
-      <canvas width="1000" height="800" id="leadersCanvas"></canvas>
-
-    }
-
-  </script>
-  <script>
-    function showOptions(){
-
-      <canvas width="1000" height="800" id="optionsCanvas"></canvas>
-
-    }
-
-  </script>
   <!--<div class="hide" id="leaderboard">
 
     <table>
@@ -98,6 +84,10 @@ P04 -- SoftDev Project 2021-22
 
   </div>-->
   <body id="body">
+    <audio autoplay loop id="music">
+      <source src="../static/assets/music/Ember.ogg" type="audio/ogg">
+      Your browser does not support the audio element.
+    </audio>
     <div class="main-menu" id="mm">
       <canvas width=window.innerWidth height=window.innerHeight; id="game"></canvas>
       <p id="loadText"> Loading... </p>
@@ -105,7 +95,6 @@ P04 -- SoftDev Project 2021-22
       <div class="arena" id="arena">
         <p id="waveText"> Wave: 1/5 | Press "A" or "D" to move!</p>
         <p id="snakeHP"> aa <p>
-
       </div>
       <div class="shop" id="shop">
         <p id="goldVar"> Shop - Gold: 3 </p> <br>
@@ -151,15 +140,9 @@ P04 -- SoftDev Project 2021-22
       </div>
     </div>
     </body>
-    <audio autoplay loop id="music">
-      <source src="../static/assets/music/Ember.ogg" type="audio/ogg">
-    </audio>
     <script>
-      var key = new Audio();
-      key.src = "../static/assets/music/key.ogg";
-      key.play();
       var audio = document.getElementById("music");
-      audio.volume = 0.1;
+      audio.volume = 0.2;
       function openForm() {
         document.getElementById("myForm").style.display = "block";
       }

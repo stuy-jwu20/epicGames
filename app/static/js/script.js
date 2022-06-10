@@ -10,6 +10,81 @@ var level = parseInt(localStorage.getItem("level")) ;
 localStorage.setItem('active','game') ;
 var playSnakes;
 
+class Waves {
+  constructor(){
+    bugs = [];
+  };
+
+  addBug(bug){
+    this.bugs.push(bug);
+  };
+}
+
+
+class Bugs {
+  constructor(name,health, dmg, speed, size, color, x, y, lvl){
+    this.name = name ;
+    this.health = health;
+    this.atk = dmg;
+    this.speed = speed,
+    this.size = size;
+    this.color = color;
+    this.x = x;
+    this.y = y;
+    this.lvl = lvl;
+  }
+
+  move() {
+    var target = snake.segments[(Math.floor(Math.random() * snake.segments.length-1))] ;
+    this.x-target.x
+  }
+
+  collide() {
+    for(segment in snake) {
+      if(Math.sqrt((Math.pow(this.x - segment.x,2))+(Math.pow(this.y-segment.y,2))) <= this.size){
+        this.health -= segment.atk;
+        segment.health -= this.atk;
+      }
+    }
+  }
+}
+
+class Roach extends Bugs{
+  constructor(x, y, lvl){
+    super(60 * (lvl/5), 15 * (lvl/5), 2, 2, RED, x, y, lvl);
+  };
+
+  setSpeed(speed){
+    this.speed = speed;
+  };
+
+  setHealth(hp){
+    this.health = hp;
+  };
+
+  charge(){
+    this.speed += 4;
+
+    setTimeout(() => {
+      this.speed -= 4;
+    }, 2000);
+  };
+}
+
+class Spitter extends Bugs {
+  constructor(x, y, lvl){
+    super(40 * (lvl/5), 20 * (lvl/5), 1, 2, BLUE, x, y, lvl);
+  };
+
+  shoot() {
+    pellet = new roach(this.x, this.y, 1)
+    pellet.setHealth(1);
+    pellet.setSpeed(10);
+    wave.addBug(pellet)
+  };
+}
+
+
 let snake = new Snake(2) ;
 
 let colors = ['LawnGreen','LightSalmon','Gold','CornflowerBlue','MediumOrchid'] ;

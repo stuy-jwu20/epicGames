@@ -94,7 +94,7 @@ function randomSegment() {
     return ['Sniper','Green','LawnGreen',1] ;
   }
   if (rand == 6) {
-    return ['Bomber','Orange','LightSalmon',1] ;
+    return ['Blaster','Orange','LightSalmon',1] ;
   }
   if (rand == 7) {
     return ['Guard','Yellow','Gold',1] ;

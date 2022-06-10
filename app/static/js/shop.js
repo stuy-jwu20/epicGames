@@ -40,6 +40,7 @@ function update(){
     three.style.color = shopSegments[2][2];
 
     localStorage.setItem("shopUpdate",'false') ;
+    localStorage.setItem("active", "shop");
   }
 }
 setInterval(update,10);

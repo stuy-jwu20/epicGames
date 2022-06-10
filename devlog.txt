@@ -135,7 +135,42 @@ jonathanW -- 2022-06-07 00:44
 josephineL -- 2022-06-07 09:12
 - Got music and music toggle to work.
 
+jesseX -- 2022-06-07 09:36
+- Fixed bug with gold becoming null and negative when buying in shop
+- Changed snake sizes
+
+jesseX -- 2022-06-08 09:19
+- Updated shop party to have colors and display proper info
+
 josephineL -- 2022-06-08 09:25
 - Started connecting username to database using jQuery
 - Fixed blank username input
 - Worked more on leaderboard
+
+jesseX -- 2022-06-08 11:13
+- Added functionality to lock button
+- Edited transition between shop and game
+- Added snake segment count merging
+
+jesseX -- 2022-06-09 11:49
+- Added buttons for each level of snake in a class
+- Started on sell functionality
+
+jesseX -- 2022-06-09 14:44
+- Continued work on sell buttons
+
+jesseX -- 2022-06-09 17:12
+- Added restart button binded to r
+- Updated classes in shop with proper names
+
+jesseX -- 2022-06-09 18:23
+- Updated background behind canvas
+- Added gold economy after completing levels
+
+jesseX -- 2022-06-09 22:02
+- Added enemies in waves, wave generation
+- Enemies move towards players
+
+jesseX -- 2022-06-09 23:38
+- Added collision and damage with enemies
+- Edited transition between game and shop

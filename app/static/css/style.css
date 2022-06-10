@@ -220,12 +220,17 @@ canvas {
 
 #snakeHP {
   position: fixed;
+  font-size: 0.75em;
   height: 7%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  padding-right: 20px;
   left: 10vw;
   bottom: 0px;
 }
 
 #s1, #s2, #s3, #s4, #s5 {
+  font-size: 0.75em;
   padding: 20px;
   margin-bottom: 0px;
 }

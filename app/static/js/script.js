@@ -9,6 +9,7 @@ var waveNumber = 0 ;
 var level = parseInt(localStorage.getItem("level")) ;
 localStorage.setItem('active','game') ;
 var playSnakes;
+var restart = false;
 
 let snake = new Snake(2) ;
 
@@ -27,7 +28,8 @@ snake.segments[1].turningPoints.push([snake.segments[0].x,snake.segments[0].y,sn
 
 function keyDown(e) {
   var key = e.keyCode ;
-  if (key == 82) {
+  if (key == 82 && localStorage.getItem("active") == "game") {
+    restart = true;
     for(var i=1;i < (parseInt(localStorage.getItem('maxPartySize'))+1);i++) {
       document.getElementById("s"+i).innerHTML = '' ;
     }
@@ -38,7 +40,16 @@ function keyDown(e) {
     localStorage.setItem('gold',3) ;
     localStorage.setItem('level',1) ;
     localStorage.setItem('shopUpdate',"true") ;
-
+  } else if (key == 82 && localStorage.getItem("active") == "shop") {
+    for(var i=1;i < (parseInt(localStorage.getItem('maxPartySize'))+1);i++) {
+      document.getElementById("s"+i).innerHTML = '' ;
+    }
+    localStorage.clear();
+    localStorage.setItem('snakes',JSON.stringify({})) ;
+    localStorage.setItem('maxPartySize',3) ;
+    localStorage.setItem('gold',3) ;
+    localStorage.setItem('level',1) ;
+    localStorage.setItem('shopUpdate',"true") ;
   }
   if (key == 65) {
     snake.angleChange = -1 ;
@@ -107,8 +118,10 @@ function endLevel() {
   document.getElementById("body").classList.remove("transition");
   document.getElementById("waveText").classList.remove("transitionArena");
   document.getElementById("snakeHP").classList.remove("transitionArena");
-  document.getElementById("restartText").style.display = "block";
-  document.getElementById("restartText").classList.add("transitionRestart");
+  if (restart == true) {
+    document.getElementById("restartText").style.display = "block";
+    document.getElementById("restartText").classList.add("transitionRestart");
+  }
   setTimeout(() => {
     document.getElementById("shop").style.display = "flex";
     document.getElementById("shop").classList.add("transitionShop");
@@ -128,6 +141,12 @@ function endLevel() {
     document.getElementById("two").classList.add("transitionShop");
     document.getElementById("three").style.display = "block";
     document.getElementById("three").classList.add("transitionShop");
+    if (restart == true) {
+      document.getElementById("restartText").style.display = "none";
+      document.getElementById("restartText").classList.remove("transitionRestart");
+      restart = false;
+    }
+
   }, "1500")
   document.getElementById("mt").style.display = "none";
   document.getElementById("arena").style.opacity = 1;

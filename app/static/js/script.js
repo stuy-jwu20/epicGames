@@ -101,10 +101,12 @@ function display() {
     snake.moveSnake() ;
   }
   snake.displaySnake() ;
-  var hp = document.getElementById("snakeHP");
-  hp.innerHTML = "";
-  for (var i = 0; i < playSnakes.segments.length; i++) {
-    hp.innerHTML += playSnakes.segments[i]["name"] + ": " + playSnakes.segments[i]["hp"] + " ";
+  if (playSnakes != undefined) {
+    var hp = document.getElementById("snakeHP");
+    hp.innerHTML = "";
+    for (var i = 0; i < playSnakes.segments.length; i++) {
+      hp.innerHTML += playSnakes.segments[i]["name"] + ": " + playSnakes.segments[i]["hp"] + " ";
+    }
   }
 }
 setInterval(display,10);
@@ -154,10 +156,3 @@ function endLevel() {
   localStorage.setItem('active','shop') ;
 
 }
-
-let audio = new Audio("../static/assets/music/Trailer - Ember.ogg");
-
-let volume = document.querySelector("#volume-control");
-volume.addEventListener("change", function(e) {
-audio.volume = e.currentTarget.value / 100;
-})

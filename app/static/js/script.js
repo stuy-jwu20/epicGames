@@ -93,12 +93,14 @@ class Roach extends Bug {
   };
 
   charge(){
-    this.speed += 4;
+    if(this.health > 30){
+      this.speed += 4;
 
-    setTimeout(() => {
-      this.speed -= 4;
-    }, 2000);
-  };
+      setTimeout(() => {
+        this.speed -= 4;
+      }, 2000);
+    };
+  }
 }
 
 class Spitter extends Bug {

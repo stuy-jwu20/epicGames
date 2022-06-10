@@ -8,21 +8,34 @@ c.height = window.innerHeight - (1.6 * parent.offsetHeight);
 var waveNumber = 0 ;
 var level = parseInt(localStorage.getItem("level")) ;
 localStorage.setItem('active','game') ;
-var playSnakes;
-var restart = false;
+var currentWave ;
+var restart = false ;
+var enemyMoving = false ;
 
-class Waves {
+class Wave {
   constructor(){
-    bugs = [];
-  };
+    this.bugs = [];
+  }
 
   addBug(bug){
     this.bugs.push(bug);
-  };
+  }
+
 }
 
+function waveGeneration() {
+  var tempWave = new Wave() ;
+  var locations = [[50,30],[50,c.height-30],[c.width-50,30],[c.width-50,c.height-30]] ;
+  for(var i=0;i<level*2+10;i++) {
+    var rand = Math.floor(Math.random() * 4) ;
+    var tempBug = new Bug('bug',40,10,2,7,'LightCoral',locations[rand][0]-30+Math.floor(Math.random() * 60),locations[rand][1]-20+Math.floor(Math.random() * 40),level) ;
+    tempWave.addBug(tempBug) ;
+  }
+  console.log(tempWave);
+  return tempWave ;
+}
 
-class Bugs {
+class Bug {
   constructor(name,health, dmg, speed, size, color, x, y, lvl){
     this.name = name ;
     this.health = health;
@@ -36,21 +49,37 @@ class Bugs {
   }
 
   move() {
-    var target = snake.segments[(Math.floor(Math.random() * snake.segments.length-1))] ;
-    this.x-target.x
+    var target = snake.segments[(Math.floor(Math.random() * (snake.segments.length-1)))] ;
+    console.log()
+    var angle = Math.atan2( this.y - target.y, this.x - target.x ) * ( 180 / Math.PI ) - 180 ;
+    if (angle < 0) {
+      angle += 360 ;
+    }
+    this.x += Math.cos((angle-60+Math.floor(Math.random()*120))*(Math.PI/180))*this.speed*0.7 ;
+    this.y += Math.sin((angle-60+Math.floor(Math.random()*120))*(Math.PI/180))*this.speed*0.7 ;
+
   }
 
   collide() {
-    for(segment in snake) {
+    for(segment in snake.segments) {
       if(Math.sqrt((Math.pow(this.x - segment.x,2))+(Math.pow(this.y-segment.y,2))) <= this.size){
         this.health -= segment.atk;
         segment.health -= this.atk;
       }
     }
   }
+
+  displayBug() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
+    ctx.fillStyle = this.color ;
+    ctx.fill();
+    ctx.stroke();
+  }
+
 }
 
-class Roach extends Bugs{
+class Roach extends Bug {
   constructor(x, y, lvl){
     super(60 * (lvl/5), 15 * (lvl/5), 2, 2, RED, x, y, lvl);
   };
@@ -72,7 +101,7 @@ class Roach extends Bugs{
   };
 }
 
-class Spitter extends Bugs {
+class Spitter extends Bug {
   constructor(x, y, lvl){
     super(40 * (lvl/5), 20 * (lvl/5), 1, 2, BLUE, x, y, lvl);
   };
@@ -135,10 +164,9 @@ function keyDown(e) {
 }
 
 function snakeGenerate() {
-  let newSnake = new Snake(2) ;
-  playSnakes = newSnake;
   var snakes = JSON.parse(localStorage.getItem('snakes')) ;
   var x = 600 ;
+  var newSnake = new Snake(2);
   for(var i in snakes) {
     var data = snakes[i] ;
     var temp = new SnakeSegment(data["name"],data["class"],data["color"],data["count"][0],x,100,100,10) ;
@@ -165,7 +193,9 @@ document.addEventListener("keyup",keyUp);
 function display() {
   if (localStorage.getItem('gameUpdate') == "true") {
     snake = snakeGenerate() ;
+    waveNumber = 1 ;
     localStorage.setItem('gameUpdate',"false") ;
+    setTimeout(function(){currentWave=waveGeneration(); enemyMoving = true ;},3000) ;
   }
   if (localStorage.getItem('active') == "game") {
     ctx.clearRect(0,0,2000,1000) ;
@@ -174,17 +204,37 @@ function display() {
     ctx.fill();
     snake.updateAngle() ;
     snake.moveSnake() ;
+    if (enemyMoving) {
+      for (var bug=0;bug<currentWave.bugs.length;bug++) {
+        currentWave.bugs[bug].move();
+        currentWave.bugs[bug].displayBug();
+        if (currentWave.bugs[bug].hp <= 0) {
+          currentWave.bugs.splice(bug,1) ;
+          bug-- ;
+        }
+      }
+      if (currentWave.bugs.length == 0) {
+        if (waveNumber <= 3) {
+          wave++ ;
+          currentWave=waveGeneration();
+        }
+        else {enemyMoving = false ; endLevel();}
+      }
+    }
   }
   snake.displaySnake() ;
   var hp = document.getElementById("snakeHP");
   hp.innerHTML = "";
-  for (var i = 0; i < playSnakes.segments.length; i++) {
-    hp.innerHTML += playSnakes.segments[i]["name"] + ": " + playSnakes.segments[i]["hp"] + " ";
+  for (var i = 0; i < snake.segments.length; i++) {
+    hp.innerHTML += snake.segments[i]["name"] + ": " + snake.segments[i]["hp"] + " ";
   }
 }
 setInterval(display,10);
 
+
+
 function endLevel() {
+  enemyMoving = false ;
   localStorage.setItem("level",level+1) ;
   document.getElementById("game").style.display = "none";
   document.getElementById("game").style.opacity = "0%";

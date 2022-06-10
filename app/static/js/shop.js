@@ -284,7 +284,7 @@ function transition() {
     document.getElementById("body").classList.add("transition");
     document.getElementById("loadText").style.display = "block";
     document.getElementById("loadText").classList.add("transitionLoad");
-    document.getElementById("arena").style.display = "flex";
+    document.getElementById("arena").style.display = "inline-flex";
     document.getElementById("waveText").classList.add("transitionArena");
     document.getElementById("snakeHP").classList.add("transitionArena");
     document.getElementById("game").style.display = "flex";

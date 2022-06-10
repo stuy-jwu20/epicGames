@@ -210,7 +210,7 @@ function sell(index,value) {
   var count = snakeStorage[s]["count"] ; ;
   var temp = count.indexOf(parseInt(value));
   snakeStorage[s]["count"].splice(temp, 1);
-  var children = Array.from(parent.children).slice(index[1]);
+  var children = Array.from(parent.children).slice(index[0]);
   parent.removeChild(c) ;
   for (var i in children) {
     document.getElementById(children[i].id).id = children[i].id.substring(0,2)+(parseInt(children[i].id.substring(2,3))-1) ;

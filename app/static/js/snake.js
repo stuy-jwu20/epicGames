@@ -11,6 +11,7 @@ export class SnakeSegment {
     this.atk = atk;
     this.atkSpeed = atkSpeed;
     this.angle = 0 ;
+    this.invincible = false ;
   }
   getXY() {
     return [this.x,this.y] ;
@@ -65,42 +66,42 @@ export class Snake {
     this.atkBuff = 0;
     this.atkSpeed = 0;
     if (this.classes[blue] > 0) {
-      this.atkSpeed = 4;
+      this.atkSpeed = 1500;
       this.speed = 3;
     }
     if (this.classes[blue] > 2) {
-      this.atkSpeed = 8;
+      this.atkSpeed = 2500;
       this.speed = 5;
     }
     if (this.classes[purple] > 1) {
-      this.healthBuff = 20;
+      this.healthBuff = 40;
     }
     if (this.classes[purple] > 2) {
-      this.healthBuff = 50;
+      this.healthBuff = 70;
     }
     if (this.classes[greens] > 0) {
-      this.atkSpeed = 3;
-      this.atkBuff = 5;
+      this.atkSpeed = 1000;
+      this.atkBuff = 10;
     }
     if (this.classes[greens] > 2) {
-      this.atkSpeed = 4;
-      this.atkBuff = 15;
+      this.atkSpeed = 2000;
+      this.atkBuff = 25;
     }
     if (this.classes[yellow] > 0) {
-      this.healthBuff = 10;
-      this.atkBuff = 5;
+      this.healthBuff = 20;
+      this.atkBuff = 20;
     }
     if (this.classes[yellow] > 2) {
       this.healthBuff = 25;
-      this.atkBuff = 15;
+      this.atkBuff = 35;
     }
     if (this.classes[orange] > 0) {
-      this.atkBuff = 10;
+      this.atkBuff = 30;
     }
     if (this.classes[orange] > 2) {
-      this.atkBuff = 25;
+      this.atkBuff = 60;
     }
-    this.healthBuff += 20 * classes[purple];
+    this.healthBuff += 25 * classes[purple];
   }
 
   updateAngle() {
@@ -205,6 +206,9 @@ export class Snake {
       ctx.beginPath();
       ctx.arc(segment.x, segment.y, 20, 0, 2 * Math.PI);
       ctx.fillStyle = segment.color ;
+      if (segment.invincible) {
+        ctx.fillStyle = 'white' ;
+      }
       ctx.fill();
       ctx.stroke();
     }

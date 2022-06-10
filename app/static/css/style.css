@@ -225,11 +225,32 @@ canvas {
   bottom: 0px;
 }
 
-#s1, #s2, #s3, #s4 {
+#s1, #s2, #s3, #s4, #s5 {
   padding: 20px;
   margin-bottom: 0px;
 }
 
+#deathScreen {
+  position: fixed;
+  display: block;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  backdrop-filter: blur(50px);
+}
+
+#deathMessage {
+  color: LightSalmon;
+}
+
+#submit {
+  color: #749ecf;
+}
+
+#input, #inputs {
+  border: 0;
+  outline: 0;
+}
 /* Animations */
 
 .breathe {

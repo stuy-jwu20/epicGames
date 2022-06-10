@@ -69,8 +69,8 @@ class Bug {
       if (Math.sqrt((Math.pow(this.x - snake.segments[segment].x,2))+(Math.pow(this.y-snake.segments[segment].y,2))) <= 20) {
         this.health -= snake.segments[segment].atk+snake.atkBuff;
         if (!(snake.segments[segment].invincible)) {
-          // snake.segments[segment].hp -= this.atk;
-          snake.segments[segment].hp -= 200
+          snake.segments[segment].hp -= this.atk;
+          //snake.segments[segment].hp -= 200
           snake.segments[segment].invincible = true ;
         }
       }

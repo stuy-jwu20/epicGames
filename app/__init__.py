@@ -11,13 +11,12 @@ import db
 from sqlite3.dbapi2 import IntegrityError
 
 app = Flask(__name__)
-
-db.create_tables()
 DB_FILE = "leaderboard.db"
+db = sqlite3.connect(DB_FILE, check_same_thread=False)
 
 @app.route("/")
 def pythnx():
-    db.create_tables()
+    create_tables()
     data = grabData()[0:3]
     print(grabData()[0:3])
     return render_template("index.html", userScore = data)
@@ -47,6 +46,16 @@ def grabData():
     db.commit()
     db.close()
     return data;
+
+def create_tables():
+    c = db.cursor()
+    """Creates the tables in the database to store users"""
+    command = 'CREATE TABLE IF NOT EXISTS scores (user_id INTEGER, waveReached INTEGER, teamComposition TEXT)'
+    c.execute(command)
+    command = 'CREATE TABLE IF NOT EXISTS users (user_id INTEGER PRIMARY KEY, username TEXT NOT NULL UNIQUE)'
+    c.execute(command)
+    db.commit() #save changes
+create_tables()
 
 if __name__ == "__main__":
     app.debug = True

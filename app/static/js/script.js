@@ -335,7 +335,7 @@ function endLevel() {
   }, "1500")
   document.getElementById("mt").style.display = "none";
   document.getElementById("arena").style.opacity = 1;
-  localStorage.setItem('gold',Math.floor(parseInt(localStorage.getItem('gold'))/5)+parseInt(localStorage.getItem('gold'))+level+2-(Math.floor(Math.random() * Math.floor(level/2))))
+  localStorage.setItem('gold',Math.floor(parseInt(localStorage.getItem('gold'))/5)+parseInt(localStorage.getItem('gold'))+level+5-(Math.floor(Math.random() * Math.floor(level/2))))
   localStorage.setItem('active','shop') ;
   localStorage.setItem("shopUpdate", 'true') ;
   if (parseInt(localStorage.getItem('maxPartySize')) < 5) {

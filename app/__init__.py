@@ -7,7 +7,6 @@
 from flask import Flask, render_template, request, redirect
 import sqlite3
 import html
-import db
 from sqlite3.dbapi2 import IntegrityError
 
 app = Flask(__name__)

@@ -13,36 +13,41 @@ from sqlite3.dbapi2 import IntegrityError
 app = Flask(__name__)
 
 db.create_tables()
+DB_FILE = "leaderboard.db"
 
 @app.route("/")
 def pythnx():
     db.create_tables()
-    return render_template("index.html")
+    data = grabData()[0:3]
+    print(grabData()[0:3])
+    return render_template("index.html", userScore = data)
 
-#@app.route("/leaderboard", methods = ['GET', 'POST'])
+@app.route("/processing", methods = ['GET', 'POST'])
+def leaderboard():
+    statement = "hey"
+    if request.method == "POST":
+       if 'username' in request.form:
+           db = sqlite3.connect(DB_FILE)
+           c = db.cursor()
+           c.execute("""
+               INSERT INTO scores (user_id, waveReached, teamComposition) VALUES (?,?,?)
+               """, ((request.form['username'], request.form['waveReached'], request.form['teamComposition'])))
+           statement += request.form['username'] + request.form['waveReached'] + request.form['teamComposition']
+           c.execute("""SELECT * FROM scores ORDER BY waveReached ASC""")
+           data = c.fetchall()
+           db.commit()
+           db.close()
+           return redirect("/")
 
-#def leaderboard():
-    #statement = ""
-    #if request.method == "POST":
-    #    if 'user' in request.form:
-    #        db = sqlite3.connect(MAIN_DB)
-    #        c = db.cursor()
-    #        c.execute("""
-    #            INSERT INTO LEADERBOARD (USER, SCORE, MODE) VALUES (?,?,?)
-    #            """, ((request.form['user'], request.form['score'], request.form['mode'])))
-    #        statement += """ 'request.form['mode']' '"""
-    #        db.commit()
-    #        db.close()
-    #        return redirect("/leaderboard")
-    #else:
-    #    statement = """ SELECT USER, SCORE FROM LEADERBOARD WHERE MODE = 'NORMAL' ORDER BY SCORE DESC"""
-    #db = sqlite3.connect(MAIN_DB)
-    #c = db.cursor()
-    #c.execute(statement)
-    #data = c.fetchall()
-    #db.close()
-    #return render_template("leaderboard.html", userScore = data, mode = "/leaderboard")
-    
+def grabData():
+    db = sqlite3.connect(DB_FILE)
+    c = db.cursor()
+    c.execute("""SELECT * FROM scores ORDER BY waveReached ASC""")
+    data = c.fetchall()
+    db.commit()
+    db.close()
+    return data;
+
 if __name__ == "__main__":
     app.debug = True
     app.run()
